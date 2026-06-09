@@ -6,14 +6,20 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:migrate": "prisma migrate dev",
+    "db:seed": "node -r esbuild-register prisma/seed.ts",
+    "db:reset": "prisma migrate reset --force"
   },
   "dependencies": {
+    "@next-auth/prisma-adapter": "^1.0.7",
     "autoprefixer": "^10.4.16",
+    "bcryptjs": "^3.0.3",
     "clsx": "^2.0.0",
     "dagre": "^0.8.5",
     "lucide-react": "^0.263.1",
     "next": "^14.0.0",
+    "next-auth": "^4.24.14",
     "postcss": "^8.4.31",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -22,12 +28,16 @@
     "tailwindcss": "^3.3.0"
   },
   "devDependencies": {
+    "@prisma/client": "^7.8.0",
     "@types/dagre": "^0.7.54",
     "@types/node": "^20.4.2",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
     "eslint": "^8.45.0",
     "eslint-config-next": "^14.0.0",
-    "typescript": "^5.1.6"
+    "prisma": "^7.8.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.22.4",
+    "typescript": "^5.9.3"
   }
 }

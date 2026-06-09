@@ -14,6 +14,7 @@ interface FlowEdgeData {
   flowType?: 'power' | 'subsidy' | 'fuel';
   animated?: boolean;
   label?: string;
+  nodeColor?: string; // Color inherited from parent node
 }
 
 const FlowEdge: React.FC<EdgeProps<FlowEdgeData>> = ({
@@ -32,12 +33,17 @@ const FlowEdge: React.FC<EdgeProps<FlowEdgeData>> = ({
   const label = data?.label || '';
 
   // Calculate stroke width based on flow volume (MW)
-  // Min 1px, max 12px
+  // Min 2px, max 5px (increased from 1-12 for hierarchy edges)
   const calculateStrokeWidth = (volume: number): number => {
+    if (data?.nodeColor) {
+      // For hierarchy edges with node colors, use consistent width
+      return 3;
+    }
+
     const minVolume = 100;
     const maxVolume = 10000;
-    const minStroke = 1;
-    const maxStroke = 12;
+    const minStroke = 2;
+    const maxStroke = 5;
 
     if (volume <= minVolume) return minStroke;
     if (volume >= maxVolume) return maxStroke;
@@ -50,12 +56,21 @@ const FlowEdge: React.FC<EdgeProps<FlowEdgeData>> = ({
 
   const strokeWidth = calculateStrokeWidth(flowVolume);
 
-  // Determine stroke color and style based on flow type
+  // Determine stroke color and style based on node color or flow type
   const getStrokeStyle = (): {
     color: string;
     dasharray?: string;
     opacity: number;
   } => {
+    // If node color is provided, use it (from parent node's category)
+    if (data?.nodeColor) {
+      return {
+        color: data.nodeColor,
+        opacity: 0.85,
+      };
+    }
+
+    // Otherwise, fall back to flow type colors
     switch (flowType) {
       case 'subsidy':
         return {

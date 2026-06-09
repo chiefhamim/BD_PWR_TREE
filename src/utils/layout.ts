@@ -9,6 +9,65 @@ export interface LayoutNode extends Node {
   height?: number;
 }
 
+/**
+ * Snap coordinates to nearest grid intersection
+ * @param x X coordinate
+ * @param y Y coordinate
+ * @param gridSize Grid size in pixels
+ * @returns Snapped {x, y} coordinates
+ */
+export const snapToGrid = (x: number, y: number, gridSize: number = 100) => {
+  return {
+    x: Math.round(x / gridSize) * gridSize,
+    y: Math.round(y / gridSize) * gridSize,
+  }
+}
+
+/**
+ * Validates layout integrity - checks for overlaps and alignment
+ */
+export const validateLayoutIntegrity = (
+  nodes: LayoutNode[],
+  gridSize: number = 100
+): { hasOverlaps: boolean; unalignedSiblings: number } => {
+  const nodeWidth = 280
+  const nodeHeight = 140
+  let overlaps = 0
+  let misaligned = 0
+
+  // Check for overlaps
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+      const n1 = nodes[i]
+      const n2 = nodes[j]
+
+      const n1Left = n1.position.x
+      const n1Right = n1.position.x + nodeWidth
+      const n1Top = n1.position.y
+      const n1Bottom = n1.position.y + nodeHeight
+
+      const n2Left = n2.position.x
+      const n2Right = n2.position.x + nodeWidth
+      const n2Top = n2.position.y
+      const n2Bottom = n2.position.y + nodeHeight
+
+      if (
+        n1Left < n2Right &&
+        n1Right > n2Left &&
+        n1Top < n2Bottom &&
+        n1Bottom > n2Top
+      ) {
+        overlaps++
+      }
+    }
+  }
+
+  return {
+    hasOverlaps: overlaps > 0,
+    unalignedSiblings: misaligned,
+  }
+}
+
 export const calculateLayout = (
   nodes: LayoutNode[],
   edges: Edge[],
@@ -52,8 +111,8 @@ export const calculateLayout = (
   });
 };
 
-// Custom symmetric pyramid layout
-const calculateSymmetricLayout = (
+// Custom symmetric hierarchy layout
+export const calculateSymmetricLayout = (
   nodes: LayoutNode[],
   edges: Edge[]
 ): LayoutNode[] => {
@@ -61,6 +120,7 @@ const calculateSymmetricLayout = (
   const nodeHeight = 140;
   const horizontalSpacing = 320;
   const verticalSpacing = 180;
+  const gridSize = 100;
 
   // Build hierarchy
   const nodeMap = new Map(nodes.map((n) => [n.id, n]));
@@ -71,7 +131,7 @@ const calculateSymmetricLayout = (
   // Initialize maps
   nodes.forEach((node) => childrenMap.set(node.id, []));
 
-  // Build relationships
+  // Build relationships from edges
   edges.forEach((edge) => {
     const children = childrenMap.get(edge.source) || [];
     children.push(edge.target);
@@ -79,18 +139,10 @@ const calculateSymmetricLayout = (
     parentMap.set(edge.target, edge.source);
   });
 
-  // Find root node (no parent)
-  let rootId = '';
-  for (const node of nodes) {
-    if (!parentMap.has(node.id)) {
-      rootId = node.id;
-      break;
-    }
-  }
+  // Find root nodes (no parent)
+  const rootNodes = nodes.filter((n) => !parentMap.has(n.id));
 
-  // Calculate levels and positions
-  const levelOffsets = new Map<number, number>();
-
+  // Calculate levels
   const calculateLevel = (nodeId: string): number => {
     if (levelMap.has(nodeId)) return levelMap.get(nodeId)!;
 
@@ -106,14 +158,7 @@ const calculateSymmetricLayout = (
     return level;
   };
 
-  // Calculate all levels
   nodes.forEach((node) => calculateLevel(node.id));
-
-  // Count nodes at each level
-  const levelCounts = new Map<number, number>();
-  levelMap.forEach((level) => {
-    levelCounts.set(level, (levelCounts.get(level) || 0) + 1);
-  });
 
   // Calculate positions
   const positionMap = new Map<string, { x: number; y: number }>();
@@ -122,7 +167,8 @@ const calculateSymmetricLayout = (
     const children = childrenMap.get(nodeId) || [];
     const childCount = children.length;
 
-    // Center children horizontally around parent
+    if (childCount === 0) return;
+
     const totalChildWidth = (childCount - 1) * horizontalSpacing;
     const startX = parentX - totalChildWidth / 2;
 
@@ -130,16 +176,24 @@ const calculateSymmetricLayout = (
       const x = startX + index * horizontalSpacing;
       const y = level * verticalSpacing + verticalSpacing;
 
-      positionMap.set(childId, { x, y });
+      // Snap to grid
+      const snappedX = snapToGrid(x, gridSize).x;
+      const snappedY = snapToGrid(y, gridSize).y;
+
+      positionMap.set(childId, { x: snappedX, y: snappedY });
 
       // Recursively position grandchildren
-      calculatePositions(childId, x, level + 1);
+      calculatePositions(childId, snappedX, level + 1);
     });
   };
 
-  // Start positioning from root
-  positionMap.set(rootId, { x: 0, y: 0 });
-  calculatePositions(rootId, 0, 0);
+  // Start from root nodes
+  rootNodes.forEach((root, index) => {
+    const startX = (index - (rootNodes.length - 1) / 2) * 600;
+    const snappedX = snapToGrid(startX, gridSize).x;
+    positionMap.set(root.id, { x: snappedX, y: 0 });
+    calculatePositions(root.id, snappedX, 0);
+  });
 
   // Apply positions to nodes
   return nodes.map((node) => {
@@ -154,5 +208,5 @@ const calculateSymmetricLayout = (
   });
 };
 
-export { calculateSymmetricLayout };
 export default calculateLayout;
+

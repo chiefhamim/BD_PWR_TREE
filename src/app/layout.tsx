@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import Providers from './providers';
 
 export const metadata: Metadata = {
   title: 'Bangladesh Power Sector Interactive Dashboard',
@@ -14,7 +15,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="overflow-hidden">{children}</body>
+      <body className="overflow-hidden">
+        <Providers>
+          {children}
+        </Providers>
+      </body>
     </html>
   );
 }

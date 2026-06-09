@@ -1,6 +1,6 @@
-'use client';
+'use client'
 
-import React, { useCallback, useState, useMemo } from 'react';
+import React, { useCallback, useState, useEffect, useMemo } from 'react'
 import ReactFlow, {
   Node,
   Edge,
@@ -10,128 +10,309 @@ import ReactFlow, {
   useNodesState,
   useEdgesState,
   useReactFlow,
-} from 'reactflow';
-import 'reactflow/dist/style.css';
-import { RotateCcw } from 'lucide-react';
+  NodeMouseHandler,
+} from 'reactflow'
+import 'reactflow/dist/style.css'
+import { RotateCcw, Loader } from 'lucide-react'
 
-import EntityNode from './nodes/EntityNode';
-import FlowEdge from './edges/FlowEdge';
-import Dashboard from './Dashboard';
-import { powerSectorNodes, powerSectorEdges, NodeData } from '../data/powerSectorData';
-import calculateLayout, { calculateSymmetricLayout, LayoutNode } from '../utils/layout';
-
-// ============================================================================
-// CUSTOM NODE & EDGE TYPES
-// ============================================================================
+import EntityNode from './nodes/EntityNode'
+import FlowEdge from './edges/FlowEdge'
+import Dashboard from './Dashboard'
+import { fetchAllNodes, overrideNodeCoordinates, NodeData } from '@/lib/api'
+import { calculateSymmetricLayout, LayoutNode, snapToGrid } from '@/utils/layout'
 
 const nodeTypes = {
   customNode: EntityNode,
-};
+}
 
 const edgeTypes = {
   default: FlowEdge,
-};
-
-// ============================================================================
-// TREEVIEW COMPONENT
-// ============================================================================
-
-interface DrillPanelState {
-  isOpen: boolean;
-  nodeId: string | null;
-  nodeData: NodeData | null;
 }
 
-const TreeView: React.FC = () => {
-  const { fitView, getNode } = useReactFlow();
+interface DrillPanelState {
+  isOpen: boolean
+  nodeId: string | null
+  nodeData: NodeData | null
+}
 
-  // State for drill panel
+const GRID_SIZE = 100
+
+const TreeView: React.FC = () => {
+  const { fitView, getNode } = useReactFlow()
   const [drillPanel, setDrillPanel] = useState<DrillPanelState>({
     isOpen: false,
     nodeId: null,
     nodeData: null,
-  });
+  })
+  const [loading, setLoading] = useState(true)
+  const [apiNodes, setApiNodes] = useState<NodeData[]>([])
+  const [isPanning, setIsPanning] = useState(false)
 
-  // Layout mode state
-  const [useSymmetricLayout, setUseSymmetricLayout] = useState(true);
+  // Fetch nodes from API on mount
+  useEffect(() => {
+    const loadNodes = async () => {
+      setLoading(true)
+      try {
+        console.log('TreeView: Fetching nodes...')
+        const data = await fetchAllNodes()
+        console.log('TreeView: Got nodes:', data?.length || 0)
+        setApiNodes(data || [])
+      } catch (error) {
+        console.error('TreeView: Failed to load nodes:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    loadNodes()
+  }, [])
 
-  // Calculate layout for nodes
-  const layoutedNodes = useMemo(() => {
-    return calculateSymmetricLayout(powerSectorNodes as LayoutNode[], powerSectorEdges);
-  }, []);
+  // Convert API nodes to ReactFlow nodes and build edges from hierarchy
+  const { rfNodes, rfEdges } = useMemo(() => {
+    if (apiNodes.length === 0) {
+      return { rfNodes: [], rfEdges: [] }
+    }
+
+    // Build hierarchy map
+    const childrenMap = new Map<string, string[]>()
+    const parentMap = new Map<string, string>()
+
+    apiNodes.forEach((node) => {
+      if (!childrenMap.has(node.id)) {
+        childrenMap.set(node.id, [])
+      }
+      if (node.parentId) {
+        if (!childrenMap.has(node.parentId)) {
+          childrenMap.set(node.parentId, [])
+        }
+        childrenMap.get(node.parentId)!.push(node.id)
+        parentMap.set(node.id, node.parentId)
+      }
+    })
+
+    // Find root nodes
+    const rootNodes = apiNodes.filter((n) => !parentMap.has(n.id))
+    console.log('Layout: Root nodes:', rootNodes.map(r => r.id), 'Total nodes:', apiNodes.length)
+
+    // Hierarchical tree layout with golden ratio spacing - children centered under parents
+    const layoutMap = new Map<string, { x: number; y: number }>()
+    const blockSize = 200
+    const goldenRatio = 1.618
+    const blockGap = blockSize / goldenRatio  // ≈ 123.6px golden ratio spacing
+    const verticalGap = blockGap  // Same spacing vertically
+
+    // Calculate subtree width (how much horizontal space a node and all its descendants need)
+    const getSubtreeWidth = (nodeId: string): number => {
+      const children = childrenMap.get(nodeId) || []
+      if (children.length === 0) {
+        return blockSize
+      }
+
+      const childrenWidths = children.map(childId => getSubtreeWidth(childId))
+      const totalChildrenWidth = childrenWidths.reduce((a, b) => a + b, 0)
+      const gapsBetweenChildren = (children.length - 1) * blockGap
+      const totalWidth = totalChildrenWidth + gapsBetweenChildren
+
+      return Math.max(blockSize, totalWidth)
+    }
+
+    // Position nodes recursively - children centered under parent
+    const layoutNode = (nodeId: string, x: number, y: number): void => {
+      layoutMap.set(nodeId, { x, y })
+
+      const children = childrenMap.get(nodeId) || []
+      if (children.length === 0) return
+
+      // Calculate positions for children
+      const childrenWidths = children.map(childId => getSubtreeWidth(childId))
+      const totalChildrenWidth = childrenWidths.reduce((a, b) => a + b, 0)
+      const gapsBetweenChildren = (children.length - 1) * blockGap
+      const totalRowWidth = totalChildrenWidth + gapsBetweenChildren
+
+      // Position children in a row, centered under parent
+      let childX = x - totalRowWidth / 2 + childrenWidths[0] / 2
+
+      children.forEach((childId, index) => {
+        const childY = y + blockSize + verticalGap
+        layoutNode(childId, childX, childY)
+
+        if (index < children.length - 1) {
+          childX += childrenWidths[index] + blockGap + childrenWidths[index + 1] / 2 - childrenWidths[index] / 2
+        }
+      })
+    }
+
+    // Layout all root nodes and their trees
+    const rootNodesList = Array.from(rootNodes)
+    if (rootNodesList.length > 0) {
+      const rootWidths = rootNodesList.map(r => getSubtreeWidth(r.id))
+      const totalRootWidth = rootWidths.reduce((a, b) => a + b, 0)
+      const rootGaps = (rootNodesList.length - 1) * blockGap
+      const totalRootRowWidth = totalRootWidth + rootGaps
+
+      let rootX = -totalRootRowWidth / 2 + rootWidths[0] / 2
+      rootNodesList.forEach((root, index) => {
+        layoutNode(root.id, rootX, 0)
+
+        if (index < rootNodesList.length - 1) {
+          rootX += rootWidths[index] + blockGap + rootWidths[index + 1] / 2 - rootWidths[index] / 2
+        }
+      })
+    }
+
+    // Convert to ReactFlow nodes
+    const rfNodes: Node<NodeData>[] = apiNodes.map((node) => {
+      const position = layoutMap.get(node.id) || { x: 0, y: 0 }
+      // Snap to grid
+      const snappedPos = snapToGrid(position.x, position.y, GRID_SIZE)
+
+      if (apiNodes.length <= 10) {
+        console.log(`Node ${node.id}: y=${snappedPos.y}, parent=${node.parentId || 'ROOT'}`)
+      }
+
+      return {
+        id: node.id,
+        type: 'customNode',
+        data: node,
+        position: snappedPos,
+        draggable: true,
+      }
+    })
+
+    // Build edges from hierarchy with parent node colors
+    const nodeColorMap = new Map<string, string>()
+    apiNodes.forEach(node => {
+      nodeColorMap.set(node.id, node.nodeColor || '#94a3b8')
+    })
+
+    const rfEdges: Edge[] = apiNodes
+      .filter((node) => node.parentId)
+      .map((node) => ({
+        id: `${node.parentId}-${node.id}`,
+        source: node.parentId!,
+        target: node.id,
+        data: {
+          nodeColor: nodeColorMap.get(node.parentId!) || '#94a3b8',
+        }
+      }))
+
+    return { rfNodes, rfEdges }
+  }, [apiNodes])
 
   // Initialize nodes and edges state
-  const [nodes, setNodes, onNodesChange] = useNodesState(layoutedNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(powerSectorEdges);
+  const [nodes, setNodes, onNodesChange] = useNodesState(rfNodes)
+  const [edges, setEdges, onEdgesChange] = useEdgesState(rfEdges)
 
-  // Handle node click - open drill panel and pan to node
-  const handleNodeClick = useCallback(
-    (_event: React.MouseEvent, node: Node<NodeData>) => {
+  // Update nodes and edges when layout changes
+  useEffect(() => {
+    console.log('TreeView: Updating state with', rfNodes.length, 'nodes and', rfEdges.length, 'edges')
+    setNodes(rfNodes)
+    setEdges(rfEdges)
+  }, [rfNodes, rfEdges, setNodes, setEdges])
+
+  // Handle node drag end - snap to grid
+  const handleNodeDragStop = useCallback(
+    async (event: React.MouseEvent, node: Node<NodeData>) => {
+      const snappedPos = snapToGrid(node.position.x, node.position.y, GRID_SIZE)
+
+      // Update local state
+      setNodes((nds) =>
+        nds.map((n) =>
+          n.id === node.id
+            ? { ...n, position: snappedPos }
+            : n
+        )
+      )
+
+      // Persist to backend if position changed
+      if (node.position.x !== snappedPos.x || node.position.y !== snappedPos.y) {
+        await overrideNodeCoordinates(node.id, snappedPos.x, snappedPos.y)
+      }
+    },
+    [setNodes]
+  )
+
+  // Handle node click
+  const handleNodeClick: NodeMouseHandler = useCallback(
+    (_event, node) => {
       setDrillPanel({
         isOpen: true,
         nodeId: node.id,
-        nodeData: node.data,
-      });
+        nodeData: node.data as NodeData,
+      })
 
-      // Smoothly pan the camera to center the node
       if (getNode(node.id)) {
         fitView({
           nodes: [{ id: node.id }],
           padding: 0.5,
           duration: 800,
-        });
+        })
       }
     },
     [fitView, getNode]
-  );
+  )
 
-  // Reset layout to symmetric pyramid
   const handleResetLayout = useCallback(() => {
-    const newLayout = calculateSymmetricLayout(
-      powerSectorNodes as LayoutNode[],
-      powerSectorEdges
-    );
-    setNodes(newLayout);
-    
-    // Fit all nodes in view
+    setNodes((nds) =>
+      nds.map((node) => {
+        const apiNode = apiNodes.find((n) => n.id === node.id)
+        if (!apiNode?.useManualOverride && apiNode?.manualX !== undefined) {
+          return {
+            ...node,
+            position: snapToGrid(apiNode.x || 0, apiNode.y || 0, GRID_SIZE),
+          }
+        }
+        return node
+      })
+    )
+
     setTimeout(() => {
       fitView({
         padding: 0.2,
         duration: 600,
-      });
-    }, 100);
-  }, [setNodes, fitView]);
+      })
+    }, 100)
+  }, [setNodes, fitView, apiNodes])
 
-  // Close drill panel
   const closeDrillPanel = () => {
     setDrillPanel({
       isOpen: false,
       nodeId: null,
       nodeData: null,
-    });
-  };
+    })
+  }
 
-  // Get node color based on category for minimap
   const getNodeColor = (node: Node<NodeData>) => {
-    switch (node.data?.category) {
+    const data = node.data as NodeData
+    switch (data?.category) {
       case 'government':
-        return '#64748b';
+        return '#64748b'
       case 'generation':
-        return '#0D9488';
+        return '#0D9488'
       case 'transmission':
-        return '#1E3A8A';
+        return '#1E3A8A'
       case 'distribution':
-        return '#D97706';
+        return '#D97706'
       case 'consumer':
-        return '#7C3AED';
+        return '#7C3AED'
       case 'fuel':
-        return '#DC2626';
+        return '#DC2626'
       case 'regulator':
-        return '#059669';
+        return '#059669'
       default:
-        return '#94a3b8';
+        return '#94a3b8'
     }
-  };
+  }
+
+  if (loading) {
+    return (
+      <div className="relative w-full h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
+        <div className="text-center">
+          <Loader className="w-12 h-12 text-blue-400 animate-spin mx-auto mb-4" />
+          <p className="text-white text-lg">Loading Power Sector Data...</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="relative w-full h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
@@ -142,20 +323,18 @@ const TreeView: React.FC = () => {
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onNodeClick={handleNodeClick}
+        onNodeDragStop={handleNodeDragStop}
+        onMoveStart={() => setIsPanning(true)}
+        onMoveEnd={() => setIsPanning(false)}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
         fitView
       >
-        {/* Blueprint-style background with dots */}
         <Background
-          color="#334155"
-          size={1}
-          gap={40}
-          variant={'dots' as any}
-          style={{ backgroundColor: 'rgba(15, 23, 42, 0.8)' }}
+          color="transparent"
+          style={{ backgroundColor: 'rgba(15, 23, 42, 0.95)' }}
         />
 
-        {/* Controls for zoom and fit view */}
         <Controls
           position="bottom-left"
           style={{
@@ -164,7 +343,6 @@ const TreeView: React.FC = () => {
           }}
         />
 
-        {/* MiniMap in bottom right */}
         <MiniMap
           position="bottom-right"
           nodeColor={getNodeColor}
@@ -176,11 +354,11 @@ const TreeView: React.FC = () => {
         />
       </ReactFlow>
 
-      {/* Dashboard - Top Right */}
-      <Dashboard />
+      <div style={{ opacity: isPanning ? 0 : 1, transition: 'opacity 0s', pointerEvents: isPanning ? 'none' : 'auto' }}>
+        <Dashboard />
+      </div>
 
-      {/* Header Overlay */}
-      <div className="absolute top-0 left-0 right-0 bg-gradient-to-b from-slate-900 to-transparent pointer-events-none z-10">
+      <div className="absolute top-0 left-0 right-0 bg-gradient-to-b from-slate-900 to-transparent pointer-events-none z-10" style={{ opacity: isPanning ? 0 : 1, transition: 'opacity 0s' }}>
         <div className="px-8 py-6">
           <h1 className="text-3xl font-bold text-white mb-1">
             Bangladesh Power Sector
@@ -188,99 +366,53 @@ const TreeView: React.FC = () => {
           <p className="text-sm text-slate-300">
             Interactive Hierarchy Tree | Real-time Grid Operations & Distribution Network
           </p>
+          <p className="text-xs text-slate-400 mt-2">
+            {nodes.length} nodes • Drag to move (snaps to grid) • Click to view details
+          </p>
         </div>
       </div>
 
-      {/* Reset Layout Button */}
       <button
         onClick={handleResetLayout}
         className="absolute top-32 left-8 bg-slate-700 hover:bg-slate-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors flex items-center gap-2 shadow-lg z-20 border border-slate-600 hover:border-slate-500"
-        title="Reset to pyramid layout"
+        title="Reset to hierarchical layout"
+        style={{ opacity: isPanning ? 0 : 1, transition: 'opacity 0s', pointerEvents: isPanning ? 'none' : 'auto' }}
       >
         <RotateCcw className="w-4 h-4" />
         Reset Layout
       </button>
 
-      {/* Legend */}
-      <div className="absolute top-32 left-8 ml-32 bg-gradient-to-b from-slate-800 via-slate-800 to-slate-900 border border-slate-700 rounded-lg p-4 shadow-lg z-20 max-w-xs">
+      <div className="absolute top-32 left-8 ml-32 bg-gradient-to-b from-slate-800 via-slate-800 to-slate-900 border border-slate-700 rounded-lg p-4 shadow-lg z-20 max-w-xs" style={{ opacity: isPanning ? 0 : 1, transition: 'opacity 0s', pointerEvents: isPanning ? 'none' : 'auto' }}>
         <h3 className="text-sm font-bold text-white mb-3">Entity Categories</h3>
         <div className="space-y-2 text-xs">
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#64748b' }} />
-            <span className="text-slate-300">Government & Policy</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#059669' }} />
-            <span className="text-slate-300">Regulator</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#0D9488' }} />
-            <span className="text-slate-300">Generation</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#DC2626' }} />
-            <span className="text-slate-300">Fuel Supply</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#1E3A8A' }} />
-            <span className="text-slate-300">Transmission</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#D97706' }} />
-            <span className="text-slate-300">Distribution</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#7C3AED' }} />
-            <span className="text-slate-300">Consumer</span>
-          </div>
+          {[
+            { color: '#64748b', label: 'Government & Policy' },
+            { color: '#059669', label: 'Regulator' },
+            { color: '#0D9488', label: 'Generation' },
+            { color: '#DC2626', label: 'Fuel Supply' },
+            { color: '#1E3A8A', label: 'Transmission' },
+            { color: '#D97706', label: 'Distribution' },
+            { color: '#7C3AED', label: 'Consumer' },
+          ].map((cat) => (
+            <div key={cat.label} className="flex items-center gap-2">
+              <div
+                className="w-3 h-3 rounded-full"
+                style={{ backgroundColor: cat.color }}
+              />
+              <span className="text-slate-300">{cat.label}</span>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Flow Types Legend */}
-      <div className="absolute bottom-40 left-8 bg-gradient-to-b from-slate-800 via-slate-800 to-slate-900 border border-slate-700 rounded-lg p-4 shadow-lg z-20 max-w-xs">
-        <h3 className="text-sm font-bold text-white mb-3">Flow Types</h3>
-        <div className="space-y-2 text-xs">
-          <div className="flex items-center gap-2">
-            <div
-              className="w-6 h-0.5"
-              style={{
-                backgroundColor: '#475569',
-                opacity: 0.8,
-              }}
-            />
-            <span className="text-slate-300">Power Flow</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div
-              className="w-6 h-0.5"
-              style={{
-                backgroundColor: '#22c55e',
-                backgroundImage: 'repeating-linear-gradient(90deg, #22c55e 0px, #22c55e 5px, transparent 5px, transparent 10px)',
-                opacity: 0.7,
-              }}
-            />
-            <span className="text-slate-300">Subsidy Flow</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div
-              className="w-6 h-0.5"
-              style={{
-                backgroundColor: '#f59e0b',
-                backgroundImage: 'repeating-linear-gradient(90deg, #f59e0b 0px, #f59e0b 8px, transparent 8px, transparent 12px)',
-                opacity: 0.7,
-              }}
-            />
-            <span className="text-slate-300">Fuel Supply</span>
-          </div>
+      <div className="absolute bottom-40 left-8 bg-gradient-to-b from-slate-800 via-slate-800 to-slate-900 border border-slate-700 rounded-lg p-4 shadow-lg z-20 max-w-xs" style={{ opacity: isPanning ? 0 : 1, transition: 'opacity 0s', pointerEvents: isPanning ? 'none' : 'auto' }}>
+        <h3 className="text-sm font-bold text-white mb-3">Grid Controls</h3>
+        <div className="space-y-2 text-xs text-slate-300">
+          <p>• Grid Size: {GRID_SIZE}px</p>
+          <p>• Drag nodes to reposition</p>
+          <p>• Release to snap to grid</p>
+          <p>• Click Reset to auto-layout</p>
         </div>
-      </div>
-
-      {/* Status Indicators */}
-      <div className="absolute bottom-4 left-8 bg-gradient-to-r from-slate-800 to-slate-900 border border-slate-700 rounded-lg px-4 py-2 shadow-lg z-20 text-xs text-slate-300">
-        <span className="inline-flex items-center gap-2">
-          <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" /> System
-          Operational
-        </span>
       </div>
 
       {/* Right Side Drill Panel */}
@@ -288,10 +420,10 @@ const TreeView: React.FC = () => {
         className={`fixed right-0 top-0 h-screen w-96 bg-gradient-to-b from-slate-800 via-slate-800 to-slate-900 border-l border-slate-700 shadow-2xl transform transition-transform duration-300 ease-in-out z-30 overflow-y-auto ${
           drillPanel.isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
+        style={{ opacity: isPanning ? 0 : 1, pointerEvents: isPanning ? 'none' : 'auto' }}
       >
         {drillPanel.isOpen && drillPanel.nodeData && (
           <div className="p-6">
-            {/* Close Button */}
             <button
               onClick={closeDrillPanel}
               className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"
@@ -311,62 +443,30 @@ const TreeView: React.FC = () => {
               </svg>
             </button>
 
-            {/* Header */}
             <div className="mb-6 pr-6">
               <h2 className="text-2xl font-bold text-white mb-2">
                 {drillPanel.nodeData.label}
               </h2>
               <div className="flex items-center gap-2 mb-3">
                 <span
-                  className="inline-block px-3 py-1 text-xs font-semibold rounded-full"
-                  style={{
-                    backgroundColor:
-                      drillPanel.nodeData.category === 'government'
-                        ? '#334155'
-                        : drillPanel.nodeData.category === 'generation'
-                          ? '#0d4437'
-                          : drillPanel.nodeData.category === 'transmission'
-                            ? '#0f1f3c'
-                            : drillPanel.nodeData.category === 'distribution'
-                              ? '#5a2e0f'
-                              : drillPanel.nodeData.category === 'consumer'
-                                ? '#3d1d54'
-                                : drillPanel.nodeData.category === 'fuel'
-                                  ? '#4a0e0e'
-                                  : '#0d3d2c',
-                    color: 'white',
-                  }}
+                  className="inline-block px-3 py-1 text-xs font-semibold rounded-full text-white"
+                  style={{ backgroundColor: drillPanel.nodeData.nodeColor || '#0D9488' }}
                 >
-                  {drillPanel.nodeData.category.charAt(0).toUpperCase() +
-                    drillPanel.nodeData.category.slice(1)}
+                  {drillPanel.nodeData.category}
                 </span>
-                {drillPanel.nodeData.status === 'alert' && (
-                  <span className="inline-block px-3 py-1 text-xs font-semibold bg-red-900 text-red-200 rounded-full">
-                    ⚠️ Alert
-                  </span>
-                )}
-                {drillPanel.nodeData.status === 'warning' && (
-                  <span className="inline-block px-3 py-1 text-xs font-semibold bg-yellow-900 text-yellow-200 rounded-full">
-                    ⚡ Warning
-                  </span>
-                )}
               </div>
             </div>
 
-            {/* Main Metrics */}
             <div className="bg-slate-700 rounded-lg p-4 mb-6">
               <div className="text-slate-300 text-xs mb-2">Primary Metric</div>
               <div className="text-4xl font-mono font-bold text-white mb-1">
-                {typeof drillPanel.nodeData.kpiValue === 'number'
-                  ? drillPanel.nodeData.kpiValue.toLocaleString()
-                  : drillPanel.nodeData.kpiValue}
+                {drillPanel.nodeData.kpiValue || 'N/A'}
               </div>
               <div className="text-sm text-slate-400">
                 {drillPanel.nodeData.kpiUnit}
               </div>
             </div>
 
-            {/* Description */}
             {drillPanel.nodeData.description && (
               <div className="mb-6">
                 <h3 className="text-sm font-bold text-white mb-2">Description</h3>
@@ -376,56 +476,52 @@ const TreeView: React.FC = () => {
               </div>
             )}
 
-            {/* Detailed Information */}
             <div className="mb-6">
               <h3 className="text-sm font-bold text-white mb-3">Details</h3>
               <div className="space-y-3">
-                <div className="bg-slate-700 bg-opacity-50 rounded p-3">
-                  <div className="text-xs text-slate-400 mb-1">Last Updated</div>
-                  <div className="text-sm font-semibold text-white">
-                    {drillPanel.nodeData.lastUpdated || 'Real-time'}
+                {drillPanel.nodeData.designation && (
+                  <div className="bg-slate-700 bg-opacity-50 rounded p-3">
+                    <div className="text-xs text-slate-400 mb-1">Designation</div>
+                    <div className="text-sm font-semibold text-white">
+                      {drillPanel.nodeData.designation}
+                    </div>
                   </div>
-                </div>
-                <div className="bg-slate-700 bg-opacity-50 rounded p-3">
-                  <div className="text-xs text-slate-400 mb-1">Status</div>
-                  <div className="text-sm font-semibold text-white capitalize">
-                    {drillPanel.nodeData.status || 'Normal'}
+                )}
+                {drillPanel.nodeData.status && (
+                  <div className="bg-slate-700 bg-opacity-50 rounded p-3">
+                    <div className="text-xs text-slate-400 mb-1">Status</div>
+                    <div className="text-sm font-semibold text-white capitalize">
+                      {drillPanel.nodeData.status}
+                    </div>
                   </div>
-                </div>
+                )}
+                {drillPanel.nodeData.websiteUrl && (
+                  <div className="bg-slate-700 bg-opacity-50 rounded p-3">
+                    <div className="text-xs text-slate-400 mb-1">Website</div>
+                    <a
+                      href={drillPanel.nodeData.websiteUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-blue-400 hover:text-blue-300 break-all"
+                    >
+                      {drillPanel.nodeData.websiteUrl}
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
 
-            {/* Quick Actions */}
-            <div className="space-y-2">
-              <button className="w-full bg-slate-600 hover:bg-slate-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm">
-                View Historical Data
-              </button>
-              <button className="w-full bg-slate-600 hover:bg-slate-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm">
-                Generate Report
-              </button>
-              <button className="w-full bg-slate-600 hover:bg-slate-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm">
-                Set Alerts
-              </button>
-            </div>
+            <a
+              href="/admin"
+              className="w-full block text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm"
+            >
+              Go to Admin Panel
+            </a>
           </div>
         )}
       </div>
-
-      {/* Instructions Overlay (initially shown) */}
-      {!drillPanel.isOpen && (
-        <div className="absolute bottom-8 right-8 bg-slate-800 border border-slate-700 rounded-lg p-4 shadow-lg z-20 max-w-sm text-xs text-slate-300">
-          <p className="font-semibold text-white mb-2">💡 Interactive Tips</p>
-          <ul className="space-y-1">
-            <li>• Click any node to view detailed information</li>
-            <li>• Drag nodes to rearrange them freely</li>
-            <li>• Use &quot;Reset Layout&quot; to return to pyramid view</li>
-            <li>• Scroll to zoom in/out</li>
-            <li>• Drag canvas to pan around</li>
-          </ul>
-        </div>
-      )}
     </div>
-  );
-};
+  )
+}
 
-export default TreeView;
+export default TreeView

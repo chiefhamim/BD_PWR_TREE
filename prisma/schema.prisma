@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  hashedPassword String
+  name          String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  sessions      Session[]
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  sessionToken String @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expires   DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Node {
+  id                String    @id @default(cuid())
+  label             String
+  designation       String
+  category          String
+  status            String    @default("normal")
+  websiteUrl        String?
+  capacityData      String?
+  nodeColor         String?
+  textColor         String    @default("#000000")
+  x                 Float     @default(0)
+  y                 Float     @default(0)
+  manualX           Float?
+  manualY           Float?
+  useManualOverride Boolean   @default(false)
+  parentId          String?
+  icon              String?
+  kpiValue          String?
+  kpiUnit           String?
+  lastUpdated       String?
+  description       String?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  parent            Node?     @relation("NodeHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  children          Node[]    @relation("NodeHierarchy")
+  edgesFrom         Edge[]    @relation("EdgeSource")
+  edgesTo           Edge[]    @relation("EdgeTarget")
+}
+
+model Edge {
+  id        String    @id @default(cuid())
+  sourceId  String
+  targetId  String
+  edgeColor String    @default("#64748b")
+  edgeStyle String    @default("solid")
+  label     String?
+  flowVolume Float?
+  flowType  String?
+  animated  Boolean   @default(false)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  source    Node      @relation("EdgeSource", fields: [sourceId], references: [id], onDelete: Cascade)
+  target    Node      @relation("EdgeTarget", fields: [targetId], references: [id], onDelete: Cascade)
+}
+
+model DashboardStat {
+  id               String    @id @default(cuid())
+  statName         String    @unique
+  value            Float     @default(0)
+  calculatedValue  Float?
+  isManualOverride Boolean   @default(false)
+  unit             String?
+  formula          String?
+  lastCalculated   DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+}
+
+model GridConfig {
+  id             String    @id @default(cuid())
+  canvasWidth    Int       @default(1920)
+  canvasHeight   Int       @default(1080)
+  gridSize       Int       @default(100)
+  nodeWidth      Int       @default(280)
+  nodeHeight     Int       @default(140)
+  horizontalSpacing Int    @default(320)
+  verticalSpacing Int      @default(180)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
