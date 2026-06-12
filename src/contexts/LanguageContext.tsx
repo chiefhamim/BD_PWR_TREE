@@ -265,9 +265,9 @@ const DICTIONARY: Record<string, string> = {
   // Ticker Names & Units
   'Gold (22K BD)': 'স্বর্ণ (২২ ক্যারেট)',
   'BDT/Vori': '৳/ভরি',
-  'USD/BDT (Bank Rate)': 'ইউএসডি/টাকা (ব্যাংক রেট)',
+  'USD/BDT (Live Rate)': 'ইউএসডি/টাকা (লাইভ রেট)',
   'BDT': 'টাকা',
-  'EUR/BDT (Bank Rate)': 'ইউরো/টাকা',
+  'EUR/BDT (Live Rate)': 'ইউরো/টাকা (লাইভ রেট)',
   'Crude Oil (WTI)': 'জ্বালানি তেল (WTI)',
   'Brent Oil': 'ব্রেন্ট ক্রুড',
   'bbl': 'ব্যারেল',

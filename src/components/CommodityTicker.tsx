@@ -34,7 +34,7 @@ export default function CommodityTicker() {
 
   useEffect(() => {
     fetchMarketData();
-    const pollInterval = setInterval(fetchMarketData, 60000);
+    const pollInterval = setInterval(fetchMarketData, 86400000); // Poll every 24 hours
     return () => clearInterval(pollInterval);
   }, []);
 

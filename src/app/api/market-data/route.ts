@@ -3,7 +3,7 @@ import YahooFinance from 'yahoo-finance2';
 
 const yahooFinance = new YahooFinance({ suppressNotices: ['yahooSurvey'] });
 
-export const revalidate = 60; // Cache for 60 seconds
+export const revalidate = 86400; // Cache for 24 hours (86400 seconds)
 
 const bnToEn = (str: string) => {
   const bnDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
@@ -32,6 +32,8 @@ export async function GET() {
       { id: 'NG=F', name: 'Natural Gas', unit: '/ MMBtu', prefix: '$' },
       { id: 'HO=F', name: 'Heating Oil', unit: '/ gal', prefix: '$' },
       { id: 'BTC-USD', name: 'BTC/USD', unit: '', prefix: '$' },
+      { id: 'BDT=X', name: 'USD/BDT (Live Rate)', unit: '', prefix: '৳' },
+      { id: 'EURBDT=X', name: 'EUR/BDT (Live Rate)', unit: '', prefix: '৳' },
     ];
 
     const results = await yahooFinance.quote(symbols.map(s => s.id));
@@ -46,28 +48,6 @@ export async function GET() {
         unit: symbolDef?.unit || '',
         prefix: symbolDef?.prefix || '',
       };
-    });
-
-    // 1. Bangladesh Bank Official FX Rates (Crawling Peg Mid-Rate)
-    const bdBankUsdRate = 117.50; // Current BB Crawling Peg
-    const bdBankEurRate = 127.10; // Current BB EUR rate
-
-    formattedResults.splice(4, 0, {
-      id: 'BDT=X',
-      name: 'USD/BDT (Bank Rate)',
-      value: bdBankUsdRate,
-      change: 0.00, // Crawling peg is mostly static
-      unit: '',
-      prefix: '৳',
-    });
-
-    formattedResults.splice(5, 0, {
-      id: 'EURBDT=X',
-      name: 'EUR/BDT (Bank Rate)',
-      value: bdBankEurRate,
-      change: 0.00,
-      unit: '',
-      prefix: '৳',
     });
 
     // 2. Scrape authentic BD 22K Gold Price
