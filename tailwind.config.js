@@ -21,6 +21,10 @@ module.exports = {
           900: '#0f172a',
         },
       },
+      fontFamily: {
+        sans: ['var(--font-inter)', 'sans-serif'],
+        bengali: ['var(--font-noto-bengali)', 'sans-serif'],
+      },
       keyframes: {
         pulse: {
           '0%, 100%': { opacity: '1' },
