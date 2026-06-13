@@ -121,8 +121,8 @@ const Dashboard: React.FC<DashboardProps> = ({ stats = DEFAULT_STATS }) => {
                         .replace('৳/Unit', '$/Unit');
                   } else if (language === 'EN' && finalValue.includes('koti ৳')) {
                      finalValue = finalValue
-                        .replace(/[0-9,]+/g, (m) => formatNum(parseFloat(m.replace(/,/g, '')) / 11750, 2))
-                        .replace('koti ৳', 'B $');
+                        .replace(/[0-9,.]+/g, (m) => formatNum(parseFloat(m.replace(/,/g, '')) / 11.75, 2))
+                        .replace('koti ৳', 'M $');
                   } else {
                      if (language !== 'EN' && finalValue.includes('koti ৳')) {
                         const numericMatch = finalValue.match(/[0-9,.]+/);
