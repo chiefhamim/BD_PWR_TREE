@@ -621,7 +621,7 @@ const TreeView: React.FC = () => {
         }}
       >
         {drillPanel.isOpen && drillPanel.nodeData && (
-          <div className="p-6 animate-fade-in">
+          <div className="p-6 animate-fade-in font-serif">
             {/* Close button */}
             <button
               onClick={closeDrillPanel}
@@ -630,134 +630,108 @@ const TreeView: React.FC = () => {
               <X className="w-4 h-4" />
             </button>
 
-            {/* Category pill */}
-            <div className="mb-5 flex">
-              <span
-                className="inline-flex items-center justify-center text-center px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider"
-                style={{
-                  color: drillPanel.nodeData.nodeColor || '#14b8a6',
-                  background: `rgba(${drillPanel.nodeData.nodeColor ? '148, 163, 184' : '20, 184, 166'}, 0.1)`,
-                  border: `1px solid rgba(${drillPanel.nodeData.nodeColor ? '148, 163, 184' : '20, 184, 166'}, 0.15)`,
-                }}
-              >
-                {t(CATEGORY_LEGEND.find(c => c.id === drillPanel.nodeData!.category)?.label || drillPanel.nodeData!.category)}
-              </span>
-            </div>
-
-            {/* Title */}
-            <div className="mb-6 pr-8">
-              <h2 className="text-xl font-bold text-white leading-tight tracking-tight">
+            {/* Newspaper Header / Masthead */}
+            <div className="mb-6 border-b border-double border-slate-600 pb-4">
+              <div className="flex justify-between items-end mb-2">
+                <span className="text-xs uppercase tracking-widest text-slate-400 font-sans">
+                  {t(CATEGORY_LEGEND.find(c => c.id === drillPanel.nodeData!.category)?.label || drillPanel.nodeData!.category)}
+                </span>
+                <span className="text-[9px] font-sans text-slate-500 uppercase tracking-wider">
+                  {t('Updated')} {mounted ? new Date().toLocaleTimeString(language === 'EN' ? 'en-US' : 'bn-BD', { hour: '2-digit', minute: '2-digit', hour12: true }) : '--:--'}
+                </span>
+              </div>
+              <h2 className="text-3xl font-bold text-white leading-tight mt-1" style={{ fontFamily: 'Georgia, serif' }}>
                 {t(drillPanel.nodeData.label)}
               </h2>
-              <div className="flex items-center gap-1.5 mt-2 text-[9px] font-mono text-slate-500 uppercase tracking-wider">
-                <span className="text-emerald-500/80">{t('Source')}: <a href={drillPanel.nodeData.websiteUrl || "https://power.gov.bd"} target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 underline decoration-emerald-500/30 underline-offset-2 transition-colors">{drillPanel.nodeData.category === 'government' ? 'MoPEMR' : 'BPDB Database'}</a></span>
-                <span className="text-slate-700">•</span>
-                <span>{t('Updated')}: {mounted ? new Date().toLocaleTimeString(language === 'EN' ? 'en-US' : 'bn-BD', { hour: '2-digit', minute: '2-digit', hour12: true }) : '--:--'}</span>
-              </div>
+              {drillPanel.nodeData.designation && (
+                <h3 className="text-sm italic text-slate-400 mt-1">
+                  {t(drillPanel.nodeData.designation)}
+                </h3>
+              )}
             </div>
 
-            {/* KPI Card */}
+            {/* KPI Headline Section */}
             {(() => {
               const kpi = translateKpi(drillPanel.nodeData.kpiValue, drillPanel.nodeData.kpiUnit);
               return (
-                <div
-                  className="rounded-xl p-5 mb-6"
-                  style={{
-                    background: 'rgba(148, 163, 184, 0.04)',
-                    border: '1px solid rgba(148, 163, 184, 0.08)',
-                  }}
-                >
-                  <div className="text-[10px] uppercase tracking-wider text-slate-500 font-medium mb-2">{t('Primary Metric')}</div>
-                  <div
-                    className="text-3xl font-bold text-white mb-1"
-                    style={{ fontFamily: 'JetBrains Mono, monospace' }}
-                  >
-                    {kpi.value}
+                <div className="mb-6 border-b border-slate-700 pb-6">
+                  <div className="text-[10px] font-sans uppercase tracking-widest text-slate-500 mb-1">{t('Primary Metric')}</div>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-4xl font-bold text-white font-serif">{kpi.value}</span>
+                    <span className="text-sm font-sans text-slate-400 uppercase tracking-wide">{kpi.unit}</span>
                   </div>
-                  <div className="text-xs text-slate-500">{kpi.unit}</div>
                 </div>
               );
             })()}
 
-            {/* KPI Definition block */}
-            {drillPanel.nodeData.kpiUnit && UNIT_EXPLANATIONS[drillPanel.nodeData.kpiUnit] && (
-              <div
-                className="rounded-xl p-4 mb-6 relative overflow-hidden"
-                style={{
-                  background: 'linear-gradient(145deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.4) 100%)',
-                  border: '1px solid rgba(148, 163, 184, 0.1)',
-                }}
-              >
-                <div className="absolute top-0 left-0 w-1 h-full bg-blue-500/50" />
-                <h3 className="text-[10px] uppercase tracking-wider text-slate-500 font-bold mb-1">{t('Definition')}</h3>
-                <p className="text-xs text-slate-300 leading-relaxed mb-3">
-                  {language === 'EN' ? UNIT_EXPLANATIONS[drillPanel.nodeData.kpiUnit].defEn : UNIT_EXPLANATIONS[drillPanel.nodeData.kpiUnit].defBn}
-                </p>
-                <h3 className="text-[10px] uppercase tracking-wider text-slate-500 font-bold mb-1">{t('Example')}</h3>
-                <p className="text-xs text-slate-400 leading-relaxed italic">
-                  {language === 'EN' ? UNIT_EXPLANATIONS[drillPanel.nodeData.kpiUnit].exEn : UNIT_EXPLANATIONS[drillPanel.nodeData.kpiUnit].exBn}
-                </p>
-              </div>
-            )}
-
-            {/* Description */}
+            {/* Article Body (Description) */}
             {drillPanel.nodeData.description && (
-              <div className="mb-6">
-                <h3 className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold mb-2">{t('Description')}</h3>
-                <p className="text-sm text-slate-300 leading-relaxed">
+              <div className="mb-6 prose prose-invert prose-sm max-w-none">
+                <p className="text-slate-300 leading-relaxed font-serif first-letter:text-5xl first-letter:font-bold first-letter:text-emerald-500 first-letter:float-left first-letter:mr-2 first-letter:mt-1">
                   {t(drillPanel.nodeData.description)}
                 </p>
               </div>
             )}
 
-            {/* Details Grid */}
-            <div className="space-y-2.5 mb-6">
-              {drillPanel.nodeData.designation && (
-                <div
-                  className="rounded-lg p-3.5"
-                  style={{ background: 'rgba(148, 163, 184, 0.04)', border: '1px solid rgba(148, 163, 184, 0.06)' }}
-                >
-                  <div className="text-[10px] text-slate-500 mb-1 uppercase tracking-wider font-medium">{t('Designation')}</div>
-                  <div className="text-sm font-medium text-slate-200">{t(drillPanel.nodeData.designation)}</div>
-                </div>
-              )}
-              {drillPanel.nodeData.status && (
-                <div
-                  className="rounded-lg p-3.5"
-                  style={{ background: 'rgba(148, 163, 184, 0.04)', border: '1px solid rgba(148, 163, 184, 0.06)' }}
-                >
-                  <div className="text-[10px] text-slate-500 mb-1 uppercase tracking-wider font-medium">{t('Status')}</div>
-                  <div className="flex items-center gap-2">
-                    <div
-                      className="w-2 h-2 rounded-full"
-                      style={{
-                        background: drillPanel.nodeData.status === 'alert' ? '#f87171'
-                          : drillPanel.nodeData.status === 'warning' ? '#fbbf24' : '#34d399',
-                        boxShadow: drillPanel.nodeData.status === 'alert' ? '0 0 6px rgba(248,113,113,0.5)'
-                          : drillPanel.nodeData.status === 'warning' ? '0 0 6px rgba(251,191,36,0.5)' : '0 0 6px rgba(52,211,153,0.5)',
-                      }}
-                    />
-                    <span className="text-sm font-medium text-slate-200 capitalize">{t(drillPanel.nodeData.status)}</span>
+            {/* KPI Definition block (if any) */}
+            {drillPanel.nodeData.kpiUnit && UNIT_EXPLANATIONS[drillPanel.nodeData.kpiUnit] && (
+               <div className="mb-6 bg-slate-800/30 p-4 border-l-4 border-emerald-600 italic font-serif">
+                <h3 className="text-xs uppercase tracking-wider text-emerald-500 font-sans font-bold mb-1">{t('Definition')}</h3>
+                <p className="text-xs text-slate-300 mb-2">
+                  {language === 'EN' ? UNIT_EXPLANATIONS[drillPanel.nodeData.kpiUnit].defEn : UNIT_EXPLANATIONS[drillPanel.nodeData.kpiUnit].defBn}
+                </p>
+                <h3 className="text-[10px] uppercase tracking-wider text-slate-500 font-sans font-bold mb-1">{t('Example')}</h3>
+                <p className="text-xs text-slate-400">
+                  {language === 'EN' ? UNIT_EXPLANATIONS[drillPanel.nodeData.kpiUnit].exEn : UNIT_EXPLANATIONS[drillPanel.nodeData.kpiUnit].exBn}
+                </p>
+              </div>
+            )}
+
+            {/* Institutional Details / Fact Box */}
+            <div className="mt-8 border-t border-slate-700 pt-5 font-sans">
+              <h4 className="text-[10px] uppercase tracking-widest text-slate-500 mb-4 font-bold">{t('Institutional Fact Sheet')}</h4>
+              <div className="grid grid-cols-1 gap-4 text-sm">
+                
+                {drillPanel.nodeData.status && (
+                  <div className="flex flex-col">
+                    <span className="text-[10px] text-slate-500 uppercase tracking-widest mb-1">{t('Status')}</span>
+                    <div className="flex items-center gap-2">
+                      <div className={`w-2 h-2 rounded-full ${drillPanel.nodeData.status === 'alert' ? 'bg-red-500' : drillPanel.nodeData.status === 'warning' ? 'bg-amber-500' : 'bg-emerald-500'}`} />
+                      <span className="text-slate-200 capitalize">{t(drillPanel.nodeData.status)}</span>
+                    </div>
                   </div>
+                )}
+
+                {drillPanel.nodeData.officeAddress && (
+                  <div className="flex flex-col">
+                    <span className="text-[10px] text-slate-500 uppercase tracking-widest mb-1">{t('Headquarters')}</span>
+                    <span className="text-slate-200">{t(drillPanel.nodeData.officeAddress)}</span>
+                  </div>
+                )}
+
+                {drillPanel.nodeData.operatingArea && (
+                  <div className="flex flex-col">
+                    <span className="text-[10px] text-slate-500 uppercase tracking-widest mb-1">{t('Operating Jurisdiction')}</span>
+                    <span className="text-slate-200">{t(drillPanel.nodeData.operatingArea)}</span>
+                  </div>
+                )}
+
+                {drillPanel.nodeData.websiteUrl && (
+                  <div className="flex flex-col">
+                    <span className="text-[10px] text-slate-500 uppercase tracking-widest mb-1">{t('Official Portal')}</span>
+                    <a href={drillPanel.nodeData.websiteUrl} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline underline-offset-2 flex items-center gap-1.5 truncate">
+                      <span className="truncate">{drillPanel.nodeData.websiteUrl}</span>
+                      <ExternalLink className="w-3 h-3 flex-shrink-0" />
+                    </a>
+                  </div>
+                )}
+
+                <div className="flex flex-col">
+                  <span className="text-[10px] text-slate-500 uppercase tracking-widest mb-1">{t('Data Source')}</span>
+                  <a href={drillPanel.nodeData.websiteUrl || "https://power.gov.bd"} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-300 underline decoration-slate-600 underline-offset-2 transition-colors">{drillPanel.nodeData.category === 'government' ? 'MoPEMR' : 'BPDB Database'}</a>
                 </div>
-              )}
-              {drillPanel.nodeData.websiteUrl && (
-                <div
-                  className="rounded-lg p-3.5"
-                  style={{ background: 'rgba(148, 163, 184, 0.04)', border: '1px solid rgba(148, 163, 184, 0.06)' }}
-                >
-                  <div className="text-[10px] text-slate-500 mb-1 uppercase tracking-wider font-medium">{t('Website')}</div>
-                  <a
-                    href={drillPanel.nodeData.websiteUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1.5"
-                  >
-                    <span className="truncate">{drillPanel.nodeData.websiteUrl}</span>
-                    <ExternalLink className="w-3 h-3 flex-shrink-0" />
-                  </a>
-                </div>
-              )}
+
+              </div>
             </div>
           </div>
         )}

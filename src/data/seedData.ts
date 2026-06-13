@@ -15,6 +15,8 @@ export interface NodeData {
   x?: number
   y?: number
   useManualOverride?: boolean
+  officeAddress?: string
+  operatingArea?: string
 }
 
 export const seedNodesData: NodeData[] = [
@@ -31,6 +33,8 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '17345',
     kpiUnit: 'Cr BDT Budget',
     description: 'National policy oversight for energy sector. Overseen by Minister Iqbal Hassan Mahmood and MoS Anindya Islam Amit.',
+    officeAddress: 'Bangladesh Secretariat, Dhaka 1000',
+    operatingArea: 'Nationwide',
   },
   {
     id: 'powerDiv',
@@ -46,6 +50,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'MW Installed',
     description: 'Led by Sec. Ms. Farzana Mamtaz. Oversees generation, transmission, and distribution entities.',
     parentId: 'mpemr',
+    officeAddress: 'Bidyut Bhaban, Abdul Gani Road, Dhaka 1000',
+    operatingArea: 'Nationwide',
   },
   {
     id: 'energyDiv',
@@ -61,6 +67,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'MMcfd Gas Supply',
     description: 'Led by Sec. Mr. Mohammad Saiful Islam. Manages exploration, extraction, processing of fuels.',
     parentId: 'mpemr',
+    officeAddress: 'Bangladesh Secretariat, Dhaka 1000',
+    operatingArea: 'Nationwide',
   },
   {
     id: 'berc',
@@ -75,6 +83,8 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '10.63',
     kpiUnit: 'Tk/kWh Retail',
     description: 'Regulates tariffs to insulate sector. Recently raised wholesale to Tk 8.39 and retail to Tk 10.63/kWh.',
+    officeAddress: 'TCB Bhaban, Karwan Bazar, Dhaka 1215',
+    operatingArea: 'Nationwide',
   },
   {
     id: 'powercell',
@@ -88,6 +98,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Unit',
     description: 'Technical oversight and policy research.',
     parentId: 'powerDiv',
+    officeAddress: 'Bidyut Bhaban, Abdul Gani Road, Dhaka',
+    operatingArea: 'Nationwide',
   },
   {
     id: 'ocei',
@@ -101,6 +113,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Unit',
     description: 'Electric inspection.',
     parentId: 'powerDiv',
+    officeAddress: '25, New Eskaton Road, Dhaka',
+    operatingArea: 'Nationwide',
   },
   {
     id: 'eprc',
@@ -114,6 +128,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Unit',
     description: 'Energy and power research.',
     parentId: 'powerDiv',
+    officeAddress: 'Bidyut Bhaban, Dhaka',
+    operatingArea: 'Nationwide',
   },
   {
     id: 'sreda',
@@ -127,6 +143,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'MW RE',
     description: 'Promotes renewable energy transitions.',
     parentId: 'powerDiv',
+    officeAddress: 'IEB Bhaban, Ramna, Dhaka',
+    operatingArea: 'Nationwide',
   },
   {
     id: 'gsb',
@@ -140,6 +158,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Vacancies',
     description: 'Geological exploration.',
     parentId: 'energyDiv',
+    officeAddress: '153 Pioneer Road, Segunbagicha, Dhaka',
+    operatingArea: 'Nationwide',
   },
   {
     id: 'doex',
@@ -153,6 +173,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Vacancies',
     description: 'Explosives management.',
     parentId: 'energyDiv',
+    officeAddress: 'Segunbagicha, Dhaka',
+    operatingArea: 'Nationwide',
   },
   {
     id: 'bmd',
@@ -166,6 +188,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Unit',
     description: 'Mineral development.',
     parentId: 'energyDiv',
+    officeAddress: 'Segunbagicha, Dhaka',
+    operatingArea: 'Nationwide',
   },
   {
     id: 'hcu',
@@ -179,6 +203,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Unit',
     description: 'Hydrocarbon research.',
     parentId: 'energyDiv',
+    officeAddress: 'Petrocentre, Karwan Bazar, Dhaka',
+    operatingArea: 'Nationwide',
   },
   {
     id: 'bpi',
@@ -192,6 +218,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Unit',
     description: 'Petroleum training.',
     parentId: 'energyDiv',
+    officeAddress: 'Sector 8, Uttara, Dhaka',
+    operatingArea: 'Nationwide',
   },
   {
     id: 'bpdb',
@@ -207,6 +235,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Cr BDT Loss',
     description: 'Central pillar of generation. Incurs catastrophic operating losses of BDT 39,590 crore, relying on subsidies.',
     parentId: 'powerDiv',
+    officeAddress: 'WAPDA Building, Motijheel C/A, Dhaka 1000',
+    operatingArea: 'Major urban and regional zones (Chattogram, Cumilla, Mymensingh, Sylhet)',
   },
   {
     id: 'nwpgcl',
@@ -221,6 +251,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'MW',
     description: 'State-owned combined cycle and LNG plants.',
     parentId: 'bpdb',
+    officeAddress: 'UTC Building, Panthapath, Dhaka',
+    operatingArea: 'Northwestern Region (Sirajganj, Bheramara)',
   },
   {
     id: 'apscl',
@@ -235,6 +267,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'MW',
     description: 'Ashuganj gas-based power station complex.',
     parentId: 'bpdb',
+    officeAddress: 'Ashuganj, Brahmanbaria',
+    operatingArea: 'Ashuganj',
   },
   {
     id: 'egcb',
@@ -249,6 +283,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'MW',
     description: 'Focusing on Siddhirganj and Haripur.',
     parentId: 'bpdb',
+    officeAddress: 'Unique Trade Centre, Panthapath, Dhaka',
+    operatingArea: 'Siddhirganj and Haripur',
   },
   {
     id: 'cpgcbl',
@@ -263,6 +299,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Tk/kWh',
     description: 'Ultra Super Critical Coal-Fired. Cheaper baseload power.',
     parentId: 'bpdb',
+    officeAddress: 'Matarbari, Moheshkhali, Cox\'s Bazar',
+    operatingArea: 'Matarbari',
   },
   {
     id: 'bcpcl',
@@ -277,6 +315,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Bn BDT Charge',
     description: 'Received 74.55 billion BDT in capacity charges, partly while idle.',
     parentId: 'bpdb',
+    officeAddress: 'Payra, Patuakhali',
+    operatingArea: 'Payra',
   },
   {
     id: 'rampal',
@@ -291,6 +331,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'MW',
     description: 'Bangladesh-India JV coal plant.',
     parentId: 'bpdb',
+    officeAddress: 'Rampal, Bagerhat',
+    operatingArea: 'Rampal',
   },
   {
     id: 'rooppur',
@@ -305,6 +347,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'MW Target',
     description: 'Managed by BAEC.',
     parentId: 'bpdb',
+    officeAddress: 'Rooppur, Ishwardi, Pabna',
+    operatingArea: 'Rooppur',
   },
   {
     id: 'summit-power',
@@ -319,6 +363,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Bn BDT Charge',
     description: 'Dominant conglomerate. Received massive capacity charges.',
     parentId: 'bpdb',
+    officeAddress: 'Summit Centre, Kawran Bazar, Dhaka',
+    operatingArea: 'Meghnaghat, Bibiana, Madangonj, Khulna',
   },
   {
     id: 'united-power',
@@ -333,6 +379,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'MW',
     description: 'Major private producer.',
     parentId: 'bpdb',
+    officeAddress: 'United House, Madani Avenue, Dhaka',
+    operatingArea: 'EPZs and National Grid',
   },
   {
     id: 'orion-group',
@@ -346,6 +394,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Unit',
     description: 'Major local conglomerate.',
     parentId: 'bpdb',
+    officeAddress: 'Orion House, Tejgaon I/A, Dhaka',
+    operatingArea: 'National Grid',
   },
   {
     id: 'salam-group',
@@ -360,6 +410,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'MW',
     description: 'JV with SEPCO3 for Banshkhali coal plant.',
     parentId: 'bpdb',
+    officeAddress: 'S. Alam Bhaban, Asadganj, Chattogram',
+    operatingArea: 'Banshkhali',
   },
   {
     id: 'meghna-power',
@@ -373,6 +425,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Bn BDT Charge',
     description: 'Top recipient of IPP capacity charges.',
     parentId: 'bpdb',
+    officeAddress: 'Meghnaghat, Narayanganj',
+    operatingArea: 'Meghnaghat',
   },
   {
     id: 'rpcl',
@@ -386,6 +440,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Bn BDT Charge',
     description: 'State-owned acting as IPP, extracting heavy charges.',
     parentId: 'bpdb',
+    officeAddress: 'House 19, Sector 1, Uttara, Dhaka',
+    operatingArea: 'Mymensingh, Gazipur',
   },
   {
     id: 'sembcorp',
@@ -399,6 +455,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Bn BDT Charge',
     description: 'Major capacity charge earner.',
     parentId: 'bpdb',
+    officeAddress: 'Sirajganj',
+    operatingArea: 'Sirajganj',
   },
   {
     id: 'apr-energy',
@@ -412,6 +470,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Bn BDT Charge',
     description: 'Major capacity charge earner.',
     parentId: 'bpdb',
+    officeAddress: 'Pangaon, Keraniganj',
+    operatingArea: 'Keraniganj',
   },
   {
     id: 'haripur-power',
@@ -425,6 +485,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Bn BDT Charge',
     description: 'Major capacity charge earner.',
     parentId: 'bpdb',
+    officeAddress: 'Haripur, Narayanganj',
+    operatingArea: 'Haripur',
   },
   {
     id: 'united-ashuganj',
@@ -438,6 +500,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Bn BDT Charge',
     description: 'Major capacity charge earner.',
     parentId: 'bpdb',
+    officeAddress: 'Ashuganj',
+    operatingArea: 'Ashuganj',
   },
   {
     id: 'bangla-trac',
@@ -451,6 +515,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Bn BDT Charge',
     description: 'Major capacity charge earner.',
     parentId: 'bpdb',
+    officeAddress: 'Banani, Dhaka',
+    operatingArea: 'National Grid',
   },
   {
     id: 'adani-godda',
@@ -465,6 +531,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Tk/kWh',
     description: 'Severe dispute over arrears, penalty charges, and inflated coal index.',
     parentId: 'bpdb',
+    officeAddress: 'Godda, Jharkhand, India',
+    operatingArea: 'India to Bangladesh',
   },
   {
     id: 'bheramara',
@@ -479,6 +547,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'MW',
     description: 'India Import.',
     parentId: 'bpdb',
+    officeAddress: 'Bheramara, Kushtia',
+    operatingArea: 'India Interconnection',
   },
   {
     id: 'aggreko',
@@ -492,6 +562,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Bn BDT Charge',
     description: 'Extracted massive rental payments over 14 years.',
     parentId: 'bpdb',
+    officeAddress: 'UK Headquartered',
+    operatingArea: 'Various short-term sites',
   },
   {
     id: 'kpcl',
@@ -505,6 +577,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Bn BDT Charge',
     description: 'Rental plant payments.',
     parentId: 'bpdb',
+    officeAddress: 'Khulna',
+    operatingArea: 'Khulna',
   },
   {
     id: 'summit-narayanganj',
@@ -518,6 +592,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Bn BDT Charge',
     description: 'Rental plant payments.',
     parentId: 'bpdb',
+    officeAddress: 'Narayanganj',
+    operatingArea: 'Narayanganj',
   },
   {
     id: 'dutch-bangla',
@@ -531,6 +607,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Bn BDT Charge',
     description: 'Rental plant payments.',
     parentId: 'bpdb',
+    officeAddress: 'Narayanganj',
+    operatingArea: 'Narayanganj',
   },
   {
     id: 'acorn',
@@ -544,6 +622,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Bn BDT Charge',
     description: 'Rental plant payments.',
     parentId: 'bpdb',
+    officeAddress: 'Chattogram',
+    operatingArea: 'Chattogram',
   },
   {
     id: 'desh-energy',
@@ -557,6 +637,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Bn BDT Charge',
     description: 'Rental plant payments.',
     parentId: 'bpdb',
+    officeAddress: 'Narayanganj',
+    operatingArea: 'Narayanganj',
   },
   {
     id: 'siddirganj-max',
@@ -570,6 +652,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Bn BDT Charge',
     description: 'Rental plant payments.',
     parentId: 'bpdb',
+    officeAddress: 'Siddhirganj, Narayanganj',
+    operatingArea: 'Siddhirganj',
   },
   {
     id: 'petrobangla',
@@ -584,6 +668,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'MMcfd Gas',
     description: 'Monopolizes domestic gas. Power sector receives only 1050 MMCFD.',
     parentId: 'energyDiv',
+    officeAddress: 'Petrocentre, 3 Kawran Bazar, Dhaka 1215',
+    operatingArea: 'Nationwide',
   },
   {
     id: 'bapex',
@@ -597,6 +683,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Unit',
     description: 'Domestic exploration.',
     parentId: 'petrobangla',
+    officeAddress: 'BAPEX Bhaban, Kawran Bazar, Dhaka',
+    operatingArea: 'Domestic Gas Fields',
   },
   {
     id: 'bgfcl',
@@ -610,6 +698,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Unit',
     description: 'Gas fields operation.',
     parentId: 'petrobangla',
+    officeAddress: 'Birashar, Brahmanbaria',
+    operatingArea: 'Brahmanbaria Fields',
   },
   {
     id: 'sgfl',
@@ -623,6 +713,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Unit',
     description: 'Sylhet gas fields.',
     parentId: 'petrobangla',
+    officeAddress: 'Haripur, Sylhet',
+    operatingArea: 'Sylhet Fields',
   },
   {
     id: 'gtcl',
@@ -636,6 +728,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Unit',
     description: 'High-pressure national transmission.',
     parentId: 'petrobangla',
+    officeAddress: 'GTCL Bhaban, Agargaon, Dhaka',
+    operatingArea: 'National Transmission Network',
   },
   {
     id: 'tgtdplc',
@@ -649,6 +743,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Unit',
     description: 'Dhaka & industrial belts.',
     parentId: 'petrobangla',
+    officeAddress: 'Titas Gas Bhaban, Kawran Bazar, Dhaka',
+    operatingArea: 'Greater Dhaka and surrounding industrial belts',
   },
   {
     id: 'bgdcl',
@@ -662,6 +758,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Unit',
     description: 'Cumilla and Noakhali.',
     parentId: 'petrobangla',
+    officeAddress: 'Chapapur, Cumilla',
+    operatingArea: 'Cumilla and Noakhali regions',
   },
   {
     id: 'kgdcl',
@@ -675,6 +773,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Unit',
     description: 'Chattogram region.',
     parentId: 'petrobangla',
+    officeAddress: 'Sholashahar, Chattogram',
+    operatingArea: 'Chattogram region',
   },
   {
     id: 'jgtdsl',
@@ -688,6 +788,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Unit',
     description: 'Sylhet region.',
     parentId: 'petrobangla',
+    officeAddress: 'Gas Bhaban, Mendibagh, Sylhet',
+    operatingArea: 'Sylhet region',
   },
   {
     id: 'pgcl',
@@ -701,6 +803,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Unit',
     description: 'Northwestern region.',
     parentId: 'petrobangla',
+    officeAddress: 'Nalka, Sirajganj',
+    operatingArea: 'Northwestern regions',
   },
   {
     id: 'sgcl',
@@ -714,6 +818,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Unit',
     description: 'Southwestern region.',
     parentId: 'petrobangla',
+    officeAddress: 'Boyra, Khulna',
+    operatingArea: 'Southwestern regions',
   },
   {
     id: 'rpgcl',
@@ -728,6 +834,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'MMcfd',
     description: 'Manages Moheshkhali FSRUs. Highly exposed to spot market volatility.',
     parentId: 'petrobangla',
+    officeAddress: 'RPGCL Head Office, Nikunja-2, Dhaka',
+    operatingArea: 'Moheshkhali Floating LNG Terminals',
   },
   {
     id: 'bcmcl',
@@ -741,6 +849,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Tonnes',
     description: 'Monopolized domestic coal mining.',
     parentId: 'petrobangla',
+    officeAddress: 'Barapukuria, Parbatipur, Dinajpur',
+    operatingArea: 'Dinajpur',
   },
   {
     id: 'bpc',
@@ -754,6 +864,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: '% Demand',
     description: 'Imports crude oil and refined petroleum.',
     parentId: 'energyDiv',
+    officeAddress: 'BSCIC Building, Agrabad, Chattogram',
+    operatingArea: 'Nationwide',
   },
   {
     id: 'erl',
@@ -767,6 +879,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'M Tonnes',
     description: 'Sole domestic crude refinery.',
     parentId: 'bpc',
+    officeAddress: 'North Patenga, Chattogram',
+    operatingArea: 'Patenga',
   },
   {
     id: 'pgcb',
@@ -781,6 +895,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'Circuit KM',
     description: 'Sole proprietor of high-voltage transmission. Base wheeling charge Tk 0.39/kWh.',
     parentId: 'powerDiv',
+    officeAddress: 'PGCB Bhaban, Aftabnagar, Dhaka',
+    operatingArea: 'National Grid',
   },
   {
     id: 'nldc',
@@ -795,6 +911,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'MW Demand',
     description: 'Balances supply and demand. Handled 16,221 MW max demand vs 26,815 MW capacity.',
     parentId: 'pgcb',
+    officeAddress: 'Aftabnagar, Dhaka',
+    operatingArea: 'National Grid',
   },
   {
     id: 'breb',
@@ -808,6 +926,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: '% Sys Loss',
     description: '80 PBSs, 36M connections. Highest consumer base.',
     parentId: 'powerDiv',
+    officeAddress: 'Joar Sahara, Khilkhet, Dhaka',
+    operatingArea: '80 Palli Bidyut Samities connecting rural households',
   },
   {
     id: 'dpdc',
@@ -821,6 +941,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: '% Sys Loss',
     description: 'Dhaka South. 1.77M consumers.',
     parentId: 'powerDiv',
+    officeAddress: 'Bidyut Bhaban, Abdul Gani Road, Dhaka',
+    operatingArea: 'Central and southern corridors of Dhaka',
   },
   {
     id: 'desco',
@@ -834,6 +956,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: '% Sys Loss',
     description: 'Dhaka North. 1.28M consumers.',
     parentId: 'powerDiv',
+    officeAddress: 'Nikunja-2, Khilkhet, Dhaka',
+    operatingArea: 'Northern zones of Dhaka, Mirpur, Gulshan, Tongi',
   },
   {
     id: 'nesco',
@@ -847,6 +971,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: '% Sys Loss',
     description: 'Rajshahi and Rangpur. 2.01M consumers.',
     parentId: 'powerDiv',
+    officeAddress: 'Rajshahi',
+    operatingArea: 'Rajshahi and Rangpur divisions',
   },
   {
     id: 'wzpdc',
@@ -860,6 +986,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: '% Sys Loss',
     description: 'Khulna and Barisal. 1.59M consumers.',
     parentId: 'powerDiv',
+    officeAddress: 'Boyra Main Road, Khulna',
+    operatingArea: 'Khulna and Barisal divisions',
   },
   {
     id: 'industrial-consumer',
@@ -873,6 +1001,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'MW Demand',
     description: 'RMG, textile, cement, steel, etc.',
     parentId: 'nldc',
+    officeAddress: 'N/A',
+    operatingArea: 'Industrial Zones',
   },
   {
     id: 'commercial-consumer',
@@ -886,6 +1016,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'MW Demand',
     description: 'Shopping malls, hospitals, corporate hubs.',
     parentId: 'nldc',
+    officeAddress: 'N/A',
+    operatingArea: 'Urban Centers',
   },
   {
     id: 'agricultural-consumer',
@@ -899,6 +1031,8 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'MW Demand',
     description: 'Irrigation pumps.',
     parentId: 'nldc',
+    officeAddress: 'N/A',
+    operatingArea: 'Rural Areas',
   },
   {
     id: 'residential-consumer',
@@ -912,5 +1046,7 @@ export const seedNodesData: NodeData[] = [
     kpiUnit: 'MW Demand',
     description: '45+ million households.',
     parentId: 'nldc',
+    officeAddress: 'N/A',
+    operatingArea: 'Nationwide',
   },
 ]
