@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
-import yahooFinance from 'yahoo-finance2';
+import { YahooFinance } from 'yahoo-finance2';
 
-// We calculate Cache-Control dynamically instead of static revalidate
+const yahooFinance = new YahooFinance();
+
+export const dynamic = 'force-dynamic';
 // export const revalidate = 86400; 
 
 const bnToEn = (str: string) => {
