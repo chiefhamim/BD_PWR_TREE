@@ -3,6 +3,8 @@ import prisma from '@/lib/prisma'
 
 import { seedNodesData } from '@/data/seedData'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
   try {
     const nodes = await prisma.node.findMany()
