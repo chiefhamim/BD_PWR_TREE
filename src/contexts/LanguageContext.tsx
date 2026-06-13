@@ -339,13 +339,11 @@ const DICTIONARY: Record<string, string> = {
 
   // Categories & Statuses
   'Government': 'সরকার',
-  'Ministry': 'মন্ত্রণালয়',
   'Regulator': 'নিয়ন্ত্রক সংস্থা',
   'State Gen': 'সরকারি বিদ্যুৎ উৎপাদন',
   'Private Gen': 'বেসরকারি বিদ্যুৎ উৎপাদন',
-  'Import': 'আন্তঃদেশীয় আমদানি',
-  'Transmission': 'বিদ্যুৎ সঞ্চালন',
-  'Distribution': 'বিদ্যুৎ বিতরণ',
+  'Grid Transmission': 'বিদ্যুৎ সঞ্চালন',
+  'Grid Distribution': 'বিদ্যুৎ বিতরণ',
   'Fuel Supply': 'জ্বালানি সরবরাহ',
   'Consumer': 'গ্রাহক পর্যায়',
   'normal': 'স্বাভাবিক',

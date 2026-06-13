@@ -62,8 +62,8 @@ const CATEGORY_LEGEND = [
   { id: 'state_generation', color: '#f3722c', glow: '243, 114, 44', label: 'State Gen' },
   { id: 'private_generation', color: '#f8961e', glow: '248, 150, 30', label: 'Private Gen' },
   { id: 'import', color: '#8338ec', glow: '131, 56, 236', label: 'Import' },
-  { id: 'transmission', color: '#3a86ff', glow: '58, 134, 255', label: 'Transmission' },
-  { id: 'distribution', color: '#f9c74f', glow: '249, 199, 79', label: 'Distribution' },
+  { id: 'transmission', color: '#3a86ff', glow: '58, 134, 255', label: 'Grid Transmission' },
+  { id: 'distribution', color: '#f9c74f', glow: '249, 199, 79', label: 'Grid Distribution' },
   { id: 'fuel_supply', color: '#43aa8b', glow: '67, 170, 139', label: 'Fuel Supply' },
   { id: 'consumer', color: '#90be6d', glow: '144, 190, 109', label: 'Consumer' },
 ]
