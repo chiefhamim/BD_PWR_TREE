@@ -16,7 +16,8 @@ export const seedNodesData: NodeData[] = [
     description: 'National policy oversight for energy sector. Overseen by Minister Iqbal Hassan Mahmood and MoS Anindya Islam Amit.',
     officeAddress: 'Bangladesh Secretariat, Dhaka 1000',
     operatingArea: 'Nationwide',
-    auditedHighlight: 'The Comptroller and Auditor General (CAG) reviewed the FY2023 financials, verifying the figure of 17345 Crore BDT, citing global fuel price shocks as the primary driver for the Y2Y deficit.'
+    auditedHighlight: 'The Comptroller and Auditor General (CAG) reviewed the FY2023 financials, verifying the figure of 17345 Crore BDT, citing global fuel price shocks as the primary driver for the Y2Y deficit.',
+    auditedHighlightBN: 'মহা হিসাব নিরীক্ষক ও নিয়ন্ত্রক (সিএজি) ২০২৩ অর্থবছরের আর্থিক বিবরণী পর্যালোচনা করে ১৭৩৪৫ কোটি টাকার ফিগারটি যাচাই করেছেন, যেখানে বিশ্বব্যাপী জ্বালানি মূল্যের ধাক্কাকে বার্ষিক ঘাটতির প্রধান কারণ হিসেবে উল্লেখ করা হয়েছে।'
   },
   {
     id: 'powerDiv',
@@ -34,7 +35,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'mpemr',
     officeAddress: 'Bidyut Bhaban, Abdul Gani Road, Dhaka 1000',
     operatingArea: 'Nationwide',
-    auditedHighlight: "According to BPDB's audited technical reports, operational derated capacity consistently meets the 28098 MW baseline, maintaining a solid 88% plant factor Y2Y."
+    auditedHighlight: "According to BPDB's audited technical reports, operational derated capacity consistently meets the 28098 MW baseline, maintaining a solid 88% plant factor Y2Y.",
+    auditedHighlightBN: 'বিউবোর নিরীক্ষিত কারিগরি প্রতিবেদন অনুসারে, সক্ষমতা ধারাবাহিকভাবে ২৮০৯৮ মেগাওয়াট বেসলাইন পূরণ করে, যা বার্ষিক ৮৮% প্ল্যান্ট ফ্যাক্টর বজায় রেখেছে।'
   },
   {
     id: 'energyDiv',
@@ -52,7 +54,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'mpemr',
     officeAddress: 'Bangladesh Secretariat, Dhaka 1000',
     operatingArea: 'Nationwide',
-    auditedHighlight: "Petrobangla's audited Y2Y delivery logs indicate a steady supply volume of 2682 MMcfd, with a minor 3% seasonal fluctuation during winter months."
+    auditedHighlight: "Petrobangla's audited Y2Y delivery logs indicate a steady supply volume of 2682 MMcfd, with a minor 3% seasonal fluctuation during winter months.",
+    auditedHighlightBN: 'পেট্রোবাংলার নিরীক্ষিত বার্ষিক ডেলিভারি লগ অনুযায়ী সরবরাহকৃত ভলিউম স্থিতিশীলভাবে ২৬৮২ এমএমসিএফডি, যা শীতকালে ৩% সামান্য ওঠানামা করে।'
   },
   {
     id: 'berc',
@@ -70,7 +73,8 @@ export const seedNodesData: NodeData[] = [
     officeAddress: 'TCB Bhaban, Karwan Bazar, Dhaka 1215',
     operatingArea: 'Nationwide',
     parentId: 'powerDiv',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'powercell',
@@ -86,7 +90,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'powerDiv',
     officeAddress: 'Bidyut Bhaban, Abdul Gani Road, Dhaka',
     operatingArea: 'Nationwide',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'ocei',
@@ -102,7 +107,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'powerDiv',
     officeAddress: '25, New Eskaton Road, Dhaka',
     operatingArea: 'Nationwide',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'eprc',
@@ -118,7 +124,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'powerDiv',
     officeAddress: 'Bidyut Bhaban, Dhaka',
     operatingArea: 'Nationwide',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'sreda',
@@ -134,7 +141,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'powerDiv',
     officeAddress: 'IEB Bhaban, Ramna, Dhaka',
     operatingArea: 'Nationwide',
-    auditedHighlight: 'Audited generation logs from NLDC confirm 595 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.'
+    auditedHighlight: 'Audited generation logs from NLDC confirm 595 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.',
+    auditedHighlightBN: 'এনএলডিসি-এর নিরীক্ষিত উৎপাদন লগ ২০২৩ সালের গ্রীষ্মে ৫৯৫ মেগাওয়াট সর্বোচ্চ উৎপাদন নিশ্চিত করে, যা ডিসপ্যাচ করা বিদ্যুতে ৫% বার্ষিক প্রবৃদ্ধি নির্দেশ করে।'
   },
   {
     id: 'gsb',
@@ -150,7 +158,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'energyDiv',
     officeAddress: '153 Pioneer Road, Segunbagicha, Dhaka',
     operatingArea: 'Nationwide',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'doex',
@@ -166,7 +175,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'energyDiv',
     officeAddress: 'Segunbagicha, Dhaka',
     operatingArea: 'Nationwide',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'bmd',
@@ -182,7 +192,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'energyDiv',
     officeAddress: 'Segunbagicha, Dhaka',
     operatingArea: 'Nationwide',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'hcu',
@@ -198,7 +209,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'energyDiv',
     officeAddress: 'Petrocentre, Karwan Bazar, Dhaka',
     operatingArea: 'Nationwide',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'bpi',
@@ -214,7 +226,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'energyDiv',
     officeAddress: 'Sector 8, Uttara, Dhaka',
     operatingArea: 'Nationwide',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'bpdb',
@@ -232,7 +245,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'powerDiv',
     officeAddress: 'WAPDA Building, Motijheel C/A, Dhaka 1000',
     operatingArea: 'Major urban and regional zones (Chattogram, Cumilla, Mymensingh, Sylhet)',
-    auditedHighlight: 'The Comptroller and Auditor General (CAG) reviewed the FY2023 financials, verifying the figure of -39590 Crore BDT, citing global fuel price shocks as the primary driver for the Y2Y deficit.'
+    auditedHighlight: 'The Comptroller and Auditor General (CAG) reviewed the FY2023 financials, verifying the figure of -39590 Crore BDT, citing global fuel price shocks as the primary driver for the Y2Y deficit.',
+    auditedHighlightBN: 'মহা হিসাব নিরীক্ষক ও নিয়ন্ত্রক (সিএজি) ২০২৩ অর্থবছরের আর্থিক বিবরণী পর্যালোচনা করে -৩৯৫৯০ কোটি টাকার ফিগারটি যাচাই করেছেন, যেখানে বিশ্বব্যাপী জ্বালানি মূল্যের ধাক্কাকে বার্ষিক ঘাটতির প্রধান কারণ হিসেবে উল্লেখ করা হয়েছে।'
   },
   {
     id: 'nwpgcl',
@@ -246,10 +260,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '3063',
     kpiUnit: 'MW',
     description: 'State-owned combined cycle and LNG plants.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_state_gen',
     officeAddress: 'UTC Building, Panthapath, Dhaka',
     operatingArea: 'Northwestern Region (Sirajganj, Bheramara)',
-    auditedHighlight: 'Audited generation logs from NLDC confirm 3063 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.'
+    auditedHighlight: 'Audited generation logs from NLDC confirm 3063 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.',
+    auditedHighlightBN: 'এনএলডিসি-এর নিরীক্ষিত উৎপাদন লগ ২০২৩ সালের গ্রীষ্মে ৩০৬৩ মেগাওয়াট সর্বোচ্চ উৎপাদন নিশ্চিত করে, যা ডিসপ্যাচ করা বিদ্যুতে ৫% বার্ষিক প্রবৃদ্ধি নির্দেশ করে।'
   },
   {
     id: 'apscl',
@@ -263,10 +278,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '1584',
     kpiUnit: 'MW',
     description: 'Ashuganj gas-based power station complex.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_state_gen',
     officeAddress: 'Ashuganj, Brahmanbaria',
     operatingArea: 'Ashuganj',
-    auditedHighlight: 'Audited generation logs from NLDC confirm 1584 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.'
+    auditedHighlight: 'Audited generation logs from NLDC confirm 1584 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.',
+    auditedHighlightBN: 'এনএলডিসি-এর নিরীক্ষিত উৎপাদন লগ ২০২৩ সালের গ্রীষ্মে ১৫৮৪ মেগাওয়াট সর্বোচ্চ উৎপাদন নিশ্চিত করে, যা ডিসপ্যাচ করা বিদ্যুতে ৫% বার্ষিক প্রবৃদ্ধি নির্দেশ করে।'
   },
   {
     id: 'egcb',
@@ -280,10 +296,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '955',
     kpiUnit: 'MW',
     description: 'Focusing on Siddhirganj and Haripur.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_state_gen',
     officeAddress: 'Unique Trade Centre, Panthapath, Dhaka',
     operatingArea: 'Siddhirganj and Haripur',
-    auditedHighlight: 'Audited generation logs from NLDC confirm 955 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.'
+    auditedHighlight: 'Audited generation logs from NLDC confirm 955 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.',
+    auditedHighlightBN: 'এনএলডিসি-এর নিরীক্ষিত উৎপাদন লগ ২০২৩ সালের গ্রীষ্মে ৯৫৫ মেগাওয়াট সর্বোচ্চ উৎপাদন নিশ্চিত করে, যা ডিসপ্যাচ করা বিদ্যুতে ৫% বার্ষিক প্রবৃদ্ধি নির্দেশ করে।'
   },
   {
     id: 'cpgcbl',
@@ -297,10 +314,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '8.45',
     kpiUnit: 'Tk/kWh',
     description: 'Ultra Super Critical Coal-Fired. Cheaper baseload power.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_state_gen',
     officeAddress: "Matarbari, Moheshkhali, Cox's Bazar",
     operatingArea: 'Matarbari',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'bcpcl',
@@ -314,10 +332,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '7455',
     kpiUnit: 'Cr BDT Charge',
     description: 'Received 74.55 billion BDT in capacity charges, partly while idle.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_state_gen',
     officeAddress: 'Payra, Patuakhali',
     operatingArea: 'Payra',
-    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~7455 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.'
+    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~7455 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ৭৪৫৫ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
   },
   {
     id: 'rampal',
@@ -331,10 +350,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '1320',
     kpiUnit: 'MW',
     description: 'Bangladesh-India JV coal plant.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_state_gen',
     officeAddress: 'Rampal, Bagerhat',
     operatingArea: 'Rampal',
-    auditedHighlight: 'Audited generation logs from NLDC confirm 1320 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.'
+    auditedHighlight: 'Audited generation logs from NLDC confirm 1320 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.',
+    auditedHighlightBN: 'এনএলডিসি-এর নিরীক্ষিত উৎপাদন লগ ২০২৩ সালের গ্রীষ্মে ১৩২০ মেগাওয়াট সর্বোচ্চ উৎপাদন নিশ্চিত করে, যা ডিসপ্যাচ করা বিদ্যুতে ৫% বার্ষিক প্রবৃদ্ধি নির্দেশ করে।'
   },
   {
     id: 'rooppur',
@@ -348,10 +368,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '2400',
     kpiUnit: 'MW Target',
     description: 'Managed by BAEC.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_state_gen',
     officeAddress: 'Rooppur, Ishwardi, Pabna',
     operatingArea: 'Rooppur',
-    auditedHighlight: 'Audited generation logs from NLDC confirm 2400 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.'
+    auditedHighlight: 'Audited generation logs from NLDC confirm 2400 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.',
+    auditedHighlightBN: 'এনএলডিসি-এর নিরীক্ষিত উৎপাদন লগ ২০২৩ সালের গ্রীষ্মে ২৪০০ মেগাওয়াট সর্বোচ্চ উৎপাদন নিশ্চিত করে, যা ডিসপ্যাচ করা বিদ্যুতে ৫% বার্ষিক প্রবৃদ্ধি নির্দেশ করে।'
   },
   {
     id: 'summit-power',
@@ -365,10 +386,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '3644',
     kpiUnit: 'Cr BDT Charge',
     description: 'Dominant conglomerate. Received massive capacity charges.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_private_gen',
     officeAddress: 'Summit Centre, Kawran Bazar, Dhaka',
     operatingArea: 'Meghnaghat, Bibiana, Madangonj, Khulna',
-    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~3644 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.'
+    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~3644 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ৩৬৪৪ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
   },
   {
     id: 'united-power',
@@ -382,10 +404,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '1100',
     kpiUnit: 'MW',
     description: 'Major private producer.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_private_gen',
     officeAddress: 'United House, Madani Avenue, Dhaka',
     operatingArea: 'EPZs and National Grid',
-    auditedHighlight: 'Audited generation logs from NLDC confirm 1100 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.'
+    auditedHighlight: 'Audited generation logs from NLDC confirm 1100 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.',
+    auditedHighlightBN: 'এনএলডিসি-এর নিরীক্ষিত উৎপাদন লগ ২০২৩ সালের গ্রীষ্মে ১১০০ মেগাওয়াট সর্বোচ্চ উৎপাদন নিশ্চিত করে, যা ডিসপ্যাচ করা বিদ্যুতে ৫% বার্ষিক প্রবৃদ্ধি নির্দেশ করে।'
   },
   {
     id: 'orion-group',
@@ -398,10 +421,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '1',
     kpiUnit: 'Unit',
     description: 'Major local conglomerate.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_private_gen',
     officeAddress: 'Orion House, Tejgaon I/A, Dhaka',
     operatingArea: 'National Grid',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'salam-group',
@@ -415,10 +439,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '1300',
     kpiUnit: 'MW',
     description: 'JV with SEPCO3 for Banshkhali coal plant.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_private_gen',
     officeAddress: 'S. Alam Bhaban, Asadganj, Chattogram',
     operatingArea: 'Banshkhali',
-    auditedHighlight: 'Audited generation logs from NLDC confirm 1300 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.'
+    auditedHighlight: 'Audited generation logs from NLDC confirm 1300 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.',
+    auditedHighlightBN: 'এনএলডিসি-এর নিরীক্ষিত উৎপাদন লগ ২০২৩ সালের গ্রীষ্মে ১৩০০ মেগাওয়াট সর্বোচ্চ উৎপাদন নিশ্চিত করে, যা ডিসপ্যাচ করা বিদ্যুতে ৫% বার্ষিক প্রবৃদ্ধি নির্দেশ করে।'
   },
   {
     id: 'meghna-power',
@@ -431,10 +456,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '5475',
     kpiUnit: 'Cr BDT Charge',
     description: 'Top recipient of IPP capacity charges.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_private_gen',
     officeAddress: 'Meghnaghat, Narayanganj',
     operatingArea: 'Meghnaghat',
-    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~5475 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.'
+    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~5475 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ৫৪৭৫ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
   },
   {
     id: 'rpcl',
@@ -447,10 +473,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '4004',
     kpiUnit: 'Cr BDT Charge',
     description: 'State-owned acting as IPP, extracting heavy charges.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_state_gen',
     officeAddress: 'House 19, Sector 1, Uttara, Dhaka',
     operatingArea: 'Mymensingh, Gazipur',
-    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~4004 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.'
+    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~4004 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ৪০০৪ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
   },
   {
     id: 'sembcorp',
@@ -463,10 +490,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '2824',
     kpiUnit: 'Cr BDT Charge',
     description: 'Major capacity charge earner.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_private_gen',
     officeAddress: 'Sirajganj',
     operatingArea: 'Sirajganj',
-    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~2824 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.'
+    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~2824 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ২৮২৪ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
   },
   {
     id: 'apr-energy',
@@ -479,10 +507,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '2788',
     kpiUnit: 'Cr BDT Charge',
     description: 'Major capacity charge earner.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_private_gen',
     officeAddress: 'Pangaon, Keraniganj',
     operatingArea: 'Keraniganj',
-    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~2788 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.'
+    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~2788 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ২৭৮৮ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
   },
   {
     id: 'haripur-power',
@@ -495,10 +524,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '2558',
     kpiUnit: 'Cr BDT Charge',
     description: 'Major capacity charge earner.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_private_gen',
     officeAddress: 'Haripur, Narayanganj',
     operatingArea: 'Haripur',
-    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~2558 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.'
+    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~2558 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ২৫৫৮ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
   },
   {
     id: 'united-ashuganj',
@@ -511,10 +541,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '2377',
     kpiUnit: 'Cr BDT Charge',
     description: 'Major capacity charge earner.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_private_gen',
     officeAddress: 'Ashuganj',
     operatingArea: 'Ashuganj',
-    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~2377 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.'
+    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~2377 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ২৩৭৭ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
   },
   {
     id: 'bangla-trac',
@@ -527,10 +558,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '1853',
     kpiUnit: 'Cr BDT Charge',
     description: 'Major capacity charge earner.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_private_gen',
     officeAddress: 'Banani, Dhaka',
     operatingArea: 'National Grid',
-    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~1853 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.'
+    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~1853 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ১৮৫৩ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
   },
   {
     id: 'adani-godda',
@@ -544,10 +576,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '14.87',
     kpiUnit: 'Tk/kWh',
     description: 'Severe dispute over arrears, penalty charges, and inflated coal index.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_import',
     officeAddress: 'Godda, Jharkhand, India',
     operatingArea: 'India to Bangladesh',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'bheramara',
@@ -561,10 +594,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '1000',
     kpiUnit: 'MW',
     description: 'India Import.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_import',
     officeAddress: 'Bheramara, Kushtia',
     operatingArea: 'India Interconnection',
-    auditedHighlight: 'Audited generation logs from NLDC confirm 1000 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.'
+    auditedHighlight: 'Audited generation logs from NLDC confirm 1000 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.',
+    auditedHighlightBN: 'এনএলডিসি-এর নিরীক্ষিত উৎপাদন লগ ২০২৩ সালের গ্রীষ্মে ১০০০ মেগাওয়াট সর্বোচ্চ উৎপাদন নিশ্চিত করে, যা ডিসপ্যাচ করা বিদ্যুতে ৫% বার্ষিক প্রবৃদ্ধি নির্দেশ করে।'
   },
   {
     id: 'aggreko',
@@ -577,10 +611,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '11749',
     kpiUnit: 'Cr BDT Charge',
     description: 'Extracted massive rental payments over 14 years.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_private_gen',
     officeAddress: 'UK Headquartered',
     operatingArea: 'Various short-term sites',
-    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~11749 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.'
+    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~11749 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ১১৭৪৯ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
   },
   {
     id: 'kpcl',
@@ -593,10 +628,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '1929',
     kpiUnit: 'Cr BDT Charge',
     description: 'Rental plant payments.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_private_gen',
     officeAddress: 'Khulna',
     operatingArea: 'Khulna',
-    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~1929 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.'
+    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~1929 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ১৯২৯ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
   },
   {
     id: 'summit-narayanganj',
@@ -609,10 +645,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '1569',
     kpiUnit: 'Cr BDT Charge',
     description: 'Rental plant payments.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_private_gen',
     officeAddress: 'Narayanganj',
     operatingArea: 'Narayanganj',
-    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~1569 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.'
+    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~1569 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ১৫৬৯ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
   },
   {
     id: 'dutch-bangla',
@@ -625,10 +662,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '1530',
     kpiUnit: 'Cr BDT Charge',
     description: 'Rental plant payments.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_private_gen',
     officeAddress: 'Narayanganj',
     operatingArea: 'Narayanganj',
-    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~1530 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.'
+    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~1530 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ১৫৩০ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
   },
   {
     id: 'acorn',
@@ -641,10 +679,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '1484',
     kpiUnit: 'Cr BDT Charge',
     description: 'Rental plant payments.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_private_gen',
     officeAddress: 'Chattogram',
     operatingArea: 'Chattogram',
-    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~1484 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.'
+    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~1484 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ১৪৮৪ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
   },
   {
     id: 'desh-energy',
@@ -657,10 +696,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '1391',
     kpiUnit: 'Cr BDT Charge',
     description: 'Rental plant payments.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_private_gen',
     officeAddress: 'Narayanganj',
     operatingArea: 'Narayanganj',
-    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~1391 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.'
+    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~1391 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ১৩৯১ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
   },
   {
     id: 'siddirganj-max',
@@ -673,10 +713,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '1306',
     kpiUnit: 'Cr BDT Charge',
     description: 'Rental plant payments.',
-    parentId: 'bpdb',
+    parentId: 'bpdb_private_gen',
     officeAddress: 'Siddhirganj, Narayanganj',
     operatingArea: 'Siddhirganj',
-    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~1306 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.'
+    auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~1306 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ১৩০৬ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
   },
   {
     id: 'petrobangla',
@@ -693,7 +734,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'energyDiv',
     officeAddress: 'Petrocentre, 3 Kawran Bazar, Dhaka 1215',
     operatingArea: 'Nationwide',
-    auditedHighlight: "Petrobangla's audited Y2Y delivery logs indicate a steady supply volume of 2682 MMcfd, with a minor 3% seasonal fluctuation during winter months."
+    auditedHighlight: "Petrobangla's audited Y2Y delivery logs indicate a steady supply volume of 2682 MMcfd, with a minor 3% seasonal fluctuation during winter months.",
+    auditedHighlightBN: 'পেট্রোবাংলার নিরীক্ষিত বার্ষিক ডেলিভারি লগ অনুযায়ী সরবরাহকৃত ভলিউম স্থিতিশীলভাবে ২৬৮২ এমএমসিএফডি, যা শীতকালে ৩% সামান্য ওঠানামা করে।'
   },
   {
     id: 'bapex',
@@ -706,10 +748,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '1',
     kpiUnit: 'Unit',
     description: 'Domestic exploration.',
-    parentId: 'petrobangla',
+    parentId: 'petro_prod',
     officeAddress: 'BAPEX Bhaban, Kawran Bazar, Dhaka',
     operatingArea: 'Domestic Gas Fields',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'bgfcl',
@@ -722,10 +765,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '1',
     kpiUnit: 'Unit',
     description: 'Gas fields operation.',
-    parentId: 'petrobangla',
+    parentId: 'petro_prod',
     officeAddress: 'Birashar, Brahmanbaria',
     operatingArea: 'Brahmanbaria Fields',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'sgfl',
@@ -738,10 +782,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '1',
     kpiUnit: 'Unit',
     description: 'Sylhet gas fields.',
-    parentId: 'petrobangla',
+    parentId: 'petro_prod',
     officeAddress: 'Haripur, Sylhet',
     operatingArea: 'Sylhet Fields',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'gtcl',
@@ -754,10 +799,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '1',
     kpiUnit: 'Unit',
     description: 'High-pressure national transmission.',
-    parentId: 'petrobangla',
+    parentId: 'petro_dist',
     officeAddress: 'GTCL Bhaban, Agargaon, Dhaka',
     operatingArea: 'National Transmission Network',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'tgtdplc',
@@ -770,10 +816,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '1',
     kpiUnit: 'Unit',
     description: 'Dhaka & industrial belts.',
-    parentId: 'petrobangla',
+    parentId: 'petro_dist',
     officeAddress: 'Titas Gas Bhaban, Kawran Bazar, Dhaka',
     operatingArea: 'Greater Dhaka and surrounding industrial belts',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'bgdcl',
@@ -786,10 +833,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '1',
     kpiUnit: 'Unit',
     description: 'Cumilla and Noakhali.',
-    parentId: 'petrobangla',
+    parentId: 'petro_dist',
     officeAddress: 'Chapapur, Cumilla',
     operatingArea: 'Cumilla and Noakhali regions',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'kgdcl',
@@ -802,10 +850,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '1',
     kpiUnit: 'Unit',
     description: 'Chattogram region.',
-    parentId: 'petrobangla',
+    parentId: 'petro_dist',
     officeAddress: 'Sholashahar, Chattogram',
     operatingArea: 'Chattogram region',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'jgtdsl',
@@ -818,10 +867,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '1',
     kpiUnit: 'Unit',
     description: 'Sylhet region.',
-    parentId: 'petrobangla',
+    parentId: 'petro_dist',
     officeAddress: 'Gas Bhaban, Mendibagh, Sylhet',
     operatingArea: 'Sylhet region',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'pgcl',
@@ -834,10 +884,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '1',
     kpiUnit: 'Unit',
     description: 'Northwestern region.',
-    parentId: 'petrobangla',
+    parentId: 'petro_dist',
     officeAddress: 'Nalka, Sirajganj',
     operatingArea: 'Northwestern regions',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'sgcl',
@@ -850,10 +901,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '1',
     kpiUnit: 'Unit',
     description: 'Southwestern region.',
-    parentId: 'petrobangla',
+    parentId: 'petro_dist',
     officeAddress: 'Boyra, Khulna',
     operatingArea: 'Southwestern regions',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'rpgcl',
@@ -867,10 +919,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '1100',
     kpiUnit: 'MMcfd',
     description: 'Manages Moheshkhali FSRUs. Highly exposed to spot market volatility.',
-    parentId: 'petrobangla',
+    parentId: 'petro_dist',
     officeAddress: 'RPGCL Head Office, Nikunja-2, Dhaka',
     operatingArea: 'Moheshkhali Floating LNG Terminals',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'bcmcl',
@@ -883,10 +936,11 @@ export const seedNodesData: NodeData[] = [
     kpiValue: '487926',
     kpiUnit: 'Tonnes',
     description: 'Monopolized domestic coal mining.',
-    parentId: 'petrobangla',
+    parentId: 'petro_prod',
     officeAddress: 'Barapukuria, Parbatipur, Dinajpur',
     operatingArea: 'Dinajpur',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'bpc',
@@ -902,7 +956,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'energyDiv',
     officeAddress: 'BSCIC Building, Agrabad, Chattogram',
     operatingArea: 'Nationwide',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'erl',
@@ -918,7 +973,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'bpc',
     officeAddress: 'North Patenga, Chattogram',
     operatingArea: 'Patenga',
-    auditedHighlight: 'Audited import and refining manifests from BPC verify a throughput of 1.535 Million Tonnes, aligning with the 5-year strategic fuel reserve targets.'
+    auditedHighlight: 'Audited import and refining manifests from BPC verify a throughput of 1.535 Million Tonnes, aligning with the 5-year strategic fuel reserve targets.',
+    auditedHighlightBN: 'বিপিসির নিরীক্ষিত আমদানি ও পরিশোধন ম্যানিফেস্ট অনুযায়ী থ্রুপুট ১.৫৩৫ মিলিয়ন টন, যা ৫ বছরের কৌশলগত জ্বালানি রিজার্ভ লক্ষ্যের সাথে সামঞ্জস্যপূর্ণ।'
   },
   {
     id: 'pgcb',
@@ -935,7 +991,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'powerDiv',
     officeAddress: 'PGCB Bhaban, Aftabnagar, Dhaka',
     operatingArea: 'National Grid',
-    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.'
+    auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   },
   {
     id: 'nldc',
@@ -952,7 +1009,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'pgcb',
     officeAddress: 'Aftabnagar, Dhaka',
     operatingArea: 'National Grid',
-    auditedHighlight: 'Audited generation logs from NLDC confirm 16221 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.'
+    auditedHighlight: 'Audited generation logs from NLDC confirm 16221 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.',
+    auditedHighlightBN: 'এনএলডিসি-এর নিরীক্ষিত উৎপাদন লগ ২০২৩ সালের গ্রীষ্মে ১৬২২১ মেগাওয়াট সর্বোচ্চ উৎপাদন নিশ্চিত করে, যা ডিসপ্যাচ করা বিদ্যুতে ৫% বার্ষিক প্রবৃদ্ধি নির্দেশ করে।'
   },
   {
     id: 'breb',
@@ -968,7 +1026,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'powerDiv',
     officeAddress: 'Joar Sahara, Khilkhet, Dhaka',
     operatingArea: '80 Palli Bidyut Samities connecting rural households',
-    auditedHighlight: 'Independently audited grid performance metrics validate the system loss at 8.16%, demonstrating a 1.2% Y2Y improvement through nationwide infrastructure upgrades.'
+    auditedHighlight: 'Independently audited grid performance metrics validate the system loss at 8.16%, demonstrating a 1.2% Y2Y improvement through nationwide infrastructure upgrades.',
+    auditedHighlightBN: 'স্বাধীনভাবে নিরীক্ষিত গ্রিড পারফরম্যান্স মেট্রিক্স সিস্টেম লস ৮.১৬% হিসেবে যাচাই করেছে, যা দেশব্যাপী অবকাঠামো আপগ্রেডের মাধ্যমে ১.২% বার্ষিক উন্নতি নির্দেশ করে।'
   },
   {
     id: 'dpdc',
@@ -984,7 +1043,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'powerDiv',
     officeAddress: 'Bidyut Bhaban, Abdul Gani Road, Dhaka',
     operatingArea: 'Central and southern corridors of Dhaka',
-    auditedHighlight: 'Independently audited grid performance metrics validate the system loss at 5.91%, demonstrating a 1.2% Y2Y improvement through nationwide infrastructure upgrades.'
+    auditedHighlight: 'Independently audited grid performance metrics validate the system loss at 5.91%, demonstrating a 1.2% Y2Y improvement through nationwide infrastructure upgrades.',
+    auditedHighlightBN: 'স্বাধীনভাবে নিরীক্ষিত গ্রিড পারফরম্যান্স মেট্রিক্স সিস্টেম লস ৫.৯১% হিসেবে যাচাই করেছে, যা দেশব্যাপী অবকাঠামো আপগ্রেডের মাধ্যমে ১.২% বার্ষিক উন্নতি নির্দেশ করে।'
   },
   {
     id: 'desco',
@@ -1000,7 +1060,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'powerDiv',
     officeAddress: 'Nikunja-2, Khilkhet, Dhaka',
     operatingArea: 'Northern zones of Dhaka, Mirpur, Gulshan, Tongi',
-    auditedHighlight: 'Independently audited grid performance metrics validate the system loss at 5.58%, demonstrating a 1.2% Y2Y improvement through nationwide infrastructure upgrades.'
+    auditedHighlight: 'Independently audited grid performance metrics validate the system loss at 5.58%, demonstrating a 1.2% Y2Y improvement through nationwide infrastructure upgrades.',
+    auditedHighlightBN: 'স্বাধীনভাবে নিরীক্ষিত গ্রিড পারফরম্যান্স মেট্রিক্স সিস্টেম লস ৫.৫৮% হিসেবে যাচাই করেছে, যা দেশব্যাপী অবকাঠামো আপগ্রেডের মাধ্যমে ১.২% বার্ষিক উন্নতি নির্দেশ করে।'
   },
   {
     id: 'nesco',
@@ -1016,7 +1077,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'powerDiv',
     officeAddress: 'Rajshahi',
     operatingArea: 'Rajshahi and Rangpur divisions',
-    auditedHighlight: 'Independently audited grid performance metrics validate the system loss at 8.58%, demonstrating a 1.2% Y2Y improvement through nationwide infrastructure upgrades.'
+    auditedHighlight: 'Independently audited grid performance metrics validate the system loss at 8.58%, demonstrating a 1.2% Y2Y improvement through nationwide infrastructure upgrades.',
+    auditedHighlightBN: 'স্বাধীনভাবে নিরীক্ষিত গ্রিড পারফরম্যান্স মেট্রিক্স সিস্টেম লস ৮.৫৮% হিসেবে যাচাই করেছে, যা দেশব্যাপী অবকাঠামো আপগ্রেডের মাধ্যমে ১.২% বার্ষিক উন্নতি নির্দেশ করে।'
   },
   {
     id: 'wzpdc',
@@ -1032,7 +1094,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'powerDiv',
     officeAddress: 'Boyra Main Road, Khulna',
     operatingArea: 'Khulna and Barisal divisions',
-    auditedHighlight: 'Independently audited grid performance metrics validate the system loss at 7.37%, demonstrating a 1.2% Y2Y improvement through nationwide infrastructure upgrades.'
+    auditedHighlight: 'Independently audited grid performance metrics validate the system loss at 7.37%, demonstrating a 1.2% Y2Y improvement through nationwide infrastructure upgrades.',
+    auditedHighlightBN: 'স্বাধীনভাবে নিরীক্ষিত গ্রিড পারফরম্যান্স মেট্রিক্স সিস্টেম লস ৭.৩৭% হিসেবে যাচাই করেছে, যা দেশব্যাপী অবকাঠামো আপগ্রেডের মাধ্যমে ১.২% বার্ষিক উন্নতি নির্দেশ করে।'
   },
   {
     id: 'industrial-consumer',
@@ -1048,7 +1111,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'dpdc',
     officeAddress: 'N/A',
     operatingArea: 'Industrial Zones',
-    auditedHighlight: 'Audited generation logs from NLDC confirm 4500 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.'
+    auditedHighlight: 'Audited generation logs from NLDC confirm 4500 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.',
+    auditedHighlightBN: 'এনএলডিসি-এর নিরীক্ষিত উৎপাদন লগ ২০২৩ সালের গ্রীষ্মে ৪৫০০ মেগাওয়াট সর্বোচ্চ উৎপাদন নিশ্চিত করে, যা ডিসপ্যাচ করা বিদ্যুতে ৫% বার্ষিক প্রবৃদ্ধি নির্দেশ করে।'
   },
   {
     id: 'commercial-consumer',
@@ -1064,7 +1128,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'dpdc',
     officeAddress: 'N/A',
     operatingArea: 'Urban Centers',
-    auditedHighlight: 'Audited generation logs from NLDC confirm 2200 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.'
+    auditedHighlight: 'Audited generation logs from NLDC confirm 2200 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.',
+    auditedHighlightBN: 'এনএলডিসি-এর নিরীক্ষিত উৎপাদন লগ ২০২৩ সালের গ্রীষ্মে ২২০০ মেগাওয়াট সর্বোচ্চ উৎপাদন নিশ্চিত করে, যা ডিসপ্যাচ করা বিদ্যুতে ৫% বার্ষিক প্রবৃদ্ধি নির্দেশ করে।'
   },
   {
     id: 'agricultural-consumer',
@@ -1080,7 +1145,8 @@ export const seedNodesData: NodeData[] = [
     parentId: 'dpdc',
     officeAddress: 'N/A',
     operatingArea: 'Rural Areas',
-    auditedHighlight: 'Audited generation logs from NLDC confirm 2500 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.'
+    auditedHighlight: 'Audited generation logs from NLDC confirm 2500 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.',
+    auditedHighlightBN: 'এনএলডিসি-এর নিরীক্ষিত উৎপাদন লগ ২০২৩ সালের গ্রীষ্মে ২৫০০ মেগাওয়াট সর্বোচ্চ উৎপাদন নিশ্চিত করে, যা ডিসপ্যাচ করা বিদ্যুতে ৫% বার্ষিক প্রবৃদ্ধি নির্দেশ করে।'
   },
   {
     id: 'residential-consumer',
@@ -1096,6 +1162,57 @@ export const seedNodesData: NodeData[] = [
     parentId: 'dpdc',
     officeAddress: 'N/A',
     operatingArea: 'Nationwide',
-    auditedHighlight: 'Audited generation logs from NLDC confirm 6800 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.'
+    auditedHighlight: 'Audited generation logs from NLDC confirm 6800 MW peak output during summer 2023, marking a 5% Y2Y growth in dispatched energy.',
+    auditedHighlightBN: 'এনএলডিসি-এর নিরীক্ষিত উৎপাদন লগ ২০২৩ সালের গ্রীষ্মে ৬৮০০ মেগাওয়াট সর্বোচ্চ উৎপাদন নিশ্চিত করে, যা ডিসপ্যাচ করা বিদ্যুতে ৫% বার্ষিক প্রবৃদ্ধি নির্দেশ করে।'
+  },
+  {
+    id: 'bpdb_state_gen',
+    label: 'State Generation',
+    category: 'state_generation',
+    parentId: 'bpdb',
+    description: 'State-owned power generation companies',
+    officeAddress: 'WAPDA Building, Dhaka',
+    operatingArea: 'Nationwide',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
+  },
+  {
+    id: 'bpdb_private_gen',
+    label: 'Private IPPs & Rentals',
+    category: 'private_generation',
+    parentId: 'bpdb',
+    description: 'Independent Power Producers and Rentals',
+    officeAddress: 'Various Locations',
+    operatingArea: 'Nationwide',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
+  },
+  {
+    id: 'bpdb_import',
+    label: 'Cross-Border Import',
+    category: 'import',
+    parentId: 'bpdb',
+    description: 'Bilateral power purchase from cross-border entities',
+    officeAddress: 'WAPDA Building, Dhaka',
+    operatingArea: 'Cross-Border (India-BD)',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
+  },
+  {
+    id: 'petro_prod',
+    label: 'Gas Production & E&P',
+    category: 'fuel_supply',
+    parentId: 'petrobangla',
+    description: 'National and international gas exploration and production',
+    officeAddress: 'Petrocenter, Dhaka',
+    operatingArea: 'Nationwide',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
+  },
+  {
+    id: 'petro_dist',
+    label: 'Gas Distribution Utilities',
+    category: 'fuel_supply',
+    parentId: 'petrobangla',
+    description: 'Regional gas distribution utilities',
+    officeAddress: 'Petrocenter, Dhaka',
+    operatingArea: 'Nationwide',
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
   }
 ];

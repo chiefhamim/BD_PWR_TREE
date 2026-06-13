@@ -21,6 +21,7 @@ export interface NodeData {
   officeAddress?: string
   operatingArea?: string
   auditedHighlight?: string
+  auditedHighlightBN?: string
 }
 
 export interface Node extends NodeData {}

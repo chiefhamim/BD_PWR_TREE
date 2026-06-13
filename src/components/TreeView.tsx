@@ -684,7 +684,9 @@ const TreeView: React.FC = () => {
                   {t('Audited Record')}
                 </h3>
                 <p className="text-xs text-slate-300 leading-relaxed">
-                  {t(drillPanel.nodeData.auditedHighlight)}
+                  {language === 'BN' && drillPanel.nodeData.auditedHighlightBN 
+                    ? drillPanel.nodeData.auditedHighlightBN 
+                    : drillPanel.nodeData.auditedHighlight}
                 </p>
               </div>
             )}
