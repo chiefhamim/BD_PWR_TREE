@@ -236,7 +236,7 @@ const DICTIONARY: Record<string, string> = {
   'Vacancies': 'শূন্যপদ',
   'Cr BDT Loss': 'কোটি টাকা (লোকসান)',
   'Tk/kWh': 'টাকা/কিলোওয়াট-ঘণ্টা',
-  'Bn BDT Charge': 'বিলিয়ন টাকা (চার্জ)',
+  'Cr BDT Charge': 'কোটি টাকা (চার্জ)',
   'M Tonnes': 'মিলিয়ন টন',
   '% Sys Loss': '% (সিস্টেম লস)',
   '% Demand': '% (চাহিদা)',
@@ -544,18 +544,26 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
   };
 
   const formatCurrency = (num: number, currencyType: 'BDT' | 'USD' = 'BDT'): string => {
+    if (currencyType === 'USD') {
+      if (language === 'EN') {
+        if (num >= 1e9) return (num / 1e9).toFixed(2) + ' B';
+        if (num >= 1e6) return (num / 1e6).toFixed(2) + ' M';
+        return num.toLocaleString('en-US', { maximumFractionDigits: 2 });
+      } else {
+        if (num >= 1e9) return enToBnDigits((num / 1e9).toFixed(2)) + ' বিলিয়ন';
+        if (num >= 1e6) return enToBnDigits((num / 1e6).toFixed(2)) + ' মিলিয়ন';
+        return enToBnDigits(num.toLocaleString('en-US', { maximumFractionDigits: 2 }));
+      }
+    }
+
+    // BDT Formatting - ALWAYS use Crore (1e7) and Lakh (1e5) instead of Millions/Billions
     if (language === 'EN') {
-      if (num >= 1e9) return (num / 1e9).toFixed(2) + ' B';
-      if (num >= 1e6) return (num / 1e6).toFixed(2) + ' M';
+      if (num >= 1e7) return (num / 1e7).toFixed(2) + ' Cr';
+      if (num >= 1e5) return (num / 1e5).toFixed(2) + ' Lakh';
       return num.toLocaleString('en-US', { maximumFractionDigits: 2 });
     } else {
-      // Bengali formatting: Crore (1e7) and Lakh (1e5)
-      if (num >= 1e7) {
-        return enToBnDigits((num / 1e7).toFixed(2)) + ' কোটি';
-      }
-      if (num >= 1e5) {
-        return enToBnDigits((num / 1e5).toFixed(2)) + ' লাখ';
-      }
+      if (num >= 1e7) return enToBnDigits((num / 1e7).toFixed(2)) + ' কোটি';
+      if (num >= 1e5) return enToBnDigits((num / 1e5).toFixed(2)) + ' লাখ';
       return enToBnDigits(num.toLocaleString('en-US', { maximumFractionDigits: 2 }));
     }
   };
