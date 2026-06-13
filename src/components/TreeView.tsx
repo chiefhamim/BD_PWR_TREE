@@ -667,7 +667,7 @@ const TreeView: React.FC = () => {
             {/* Article Body (Description) */}
             {drillPanel.nodeData.description && (
               <div className="mb-6 prose prose-invert prose-sm max-w-none">
-                <p className="text-slate-300 leading-relaxed font-serif first-letter:text-5xl first-letter:font-bold first-letter:text-emerald-500 first-letter:float-left first-letter:mr-2 first-letter:mt-1">
+                <p className="text-slate-300 leading-relaxed font-serif">
                   {t(drillPanel.nodeData.description)}
                 </p>
               </div>
@@ -728,7 +728,7 @@ const TreeView: React.FC = () => {
 
                 <div className="flex flex-col">
                   <span className="text-[10px] text-slate-500 uppercase tracking-widest mb-1">{t('Data Source')}</span>
-                  <a href={drillPanel.nodeData.websiteUrl || "https://power.gov.bd"} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-300 underline decoration-slate-600 underline-offset-2 transition-colors">{drillPanel.nodeData.category === 'government' ? 'MoPEMR' : 'BPDB Database'}</a>
+                  <a href={drillPanel.nodeData.websiteUrl || "https://power.gov.bd"} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-300 underline decoration-slate-600 underline-offset-2 transition-colors">{t(drillPanel.nodeData.category === 'government' ? 'MoPEMR' : 'BPDB Database')}</a>
                 </div>
 
               </div>
