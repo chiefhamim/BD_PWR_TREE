@@ -1,9 +1,6 @@
 import { NextResponse } from 'next/server';
 import yahooFinance from 'yahoo-finance2';
 
-// @ts-ignore: Property 'suppressNotices' type missing in some versions
-yahooFinance.suppressNotices(['yahooSurvey']);
-
 // We calculate Cache-Control dynamically instead of static revalidate
 // export const revalidate = 86400; 
 
