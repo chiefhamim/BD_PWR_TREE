@@ -633,18 +633,10 @@ const DICTIONARY: Record<string, string> = {
 
   // Drill Panel UI
   'Institutional Fact Sheet': 'প্রাতিষ্ঠানিক তথ্য বিবরণী',
-  'Status': 'অবস্থা',
   'Headquarters': 'সদর দপ্তর',
   'Operating Jurisdiction': 'পরিচালন এলাকা',
   'Official Portal': 'অফিসিয়াল পোর্টাল',
   'Data Source': 'তথ্য সূত্র',
-  'MoPEMR': 'বিদ্যুৎ, জ্বালানি ও খনিজ সম্পদ মন্ত্রণালয়',
-  'BPDB Database': 'পিডিবি ডাটাবেস',
-  'State-owned power generation companies': 'রাষ্ট্রীয় মালিকানাধীন বিদ্যুৎ উৎপাদন কোম্পানিগুলো',
-  'WAPDA Building, Dhaka': 'ওয়াপদা ভবন, ঢাকা',
-  'normal': 'স্বাভাবিক',
-  'warning': 'সতর্কতা',
-  'alert': 'সঙ্কটাপন্ন',
 
 };
 
