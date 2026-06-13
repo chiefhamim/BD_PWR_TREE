@@ -18,6 +18,8 @@ export interface NodeData {
   description?: string
   parentId?: string
   lastUpdated?: string
+  officeAddress?: string
+  operatingArea?: string
 }
 
 export interface Node extends NodeData {}
