@@ -620,15 +620,31 @@ const DICTIONARY: Record<string, string> = {
   'Irrigation pumps.': 'Irrigation pumps.',
   '45+ million households.': '45+ million households.',
   'State-owned power generation companies': 'State-owned power generation companies',
-  'WAPDA Building, Dhaka': 'WAPDA Building, Dhaka',
+  'WAPDA Building, Dhaka': 'ওয়াপদা ভবন, ঢাকা',
   'Sector Coordinator': 'সেক্টর সমন্বয়কারী',
   'Independent Power Producers and Rentals': 'Independent পাওয়ার Producers and Rentals',
   'Various Locations': 'Various Locations',
   'Bilateral power purchase from cross-border entities': 'Bilateral power purchase from cross-border entities',
   'Cross-Border (India-BD)': 'Cross-Border (India-BD)',
   'National and international gas exploration and production': 'জাতীয় ও আন্তর্জাতিক গ্যাস অনুসন্ধান ও উৎপাদন',
-  'Petrocenter, Dhaka': 'Petrocenter, Dhaka',
+  'Petrocenter, Dhaka': 'পেট্রোসেন্টার, ঢাকা',
   'Regional gas distribution utilities': 'আঞ্চলিক গ্যাস বিতরণ ইউটিলিটি',
+
+
+  // Drill Panel UI
+  'Institutional Fact Sheet': 'প্রাতিষ্ঠানিক তথ্য বিবরণী',
+  'Status': 'অবস্থা',
+  'Headquarters': 'সদর দপ্তর',
+  'Operating Jurisdiction': 'পরিচালন এলাকা',
+  'Official Portal': 'অফিসিয়াল পোর্টাল',
+  'Data Source': 'তথ্য সূত্র',
+  'MoPEMR': 'বিদ্যুৎ, জ্বালানি ও খনিজ সম্পদ মন্ত্রণালয়',
+  'BPDB Database': 'পিডিবি ডাটাবেস',
+  'State-owned power generation companies': 'রাষ্ট্রীয় মালিকানাধীন বিদ্যুৎ উৎপাদন কোম্পানিগুলো',
+  'WAPDA Building, Dhaka': 'ওয়াপদা ভবন, ঢাকা',
+  'normal': 'স্বাভাবিক',
+  'warning': 'সতর্কতা',
+  'alert': 'সঙ্কটাপন্ন',
 
 };
 
