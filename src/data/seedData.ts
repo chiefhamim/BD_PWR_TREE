@@ -1173,7 +1173,9 @@ export const seedNodesData: NodeData[] = [
     description: 'State-owned power generation companies',
     officeAddress: 'WAPDA Building, Dhaka',
     operatingArea: 'Nationwide',
-    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।',
+    designation: 'Sector Coordinator',
+    status: 'normal'
   },
   {
     id: 'bpdb_private_gen',
@@ -1183,7 +1185,9 @@ export const seedNodesData: NodeData[] = [
     description: 'Independent Power Producers and Rentals',
     officeAddress: 'Various Locations',
     operatingArea: 'Nationwide',
-    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।',
+    designation: 'Sector Coordinator',
+    status: 'normal'
   },
   {
     id: 'bpdb_import',
@@ -1193,7 +1197,9 @@ export const seedNodesData: NodeData[] = [
     description: 'Bilateral power purchase from cross-border entities',
     officeAddress: 'WAPDA Building, Dhaka',
     operatingArea: 'Cross-Border (India-BD)',
-    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।',
+    designation: 'Sector Coordinator',
+    status: 'normal'
   },
   {
     id: 'petro_prod',
@@ -1203,7 +1209,9 @@ export const seedNodesData: NodeData[] = [
     description: 'National and international gas exploration and production',
     officeAddress: 'Petrocenter, Dhaka',
     operatingArea: 'Nationwide',
-    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।',
+    designation: 'Sector Coordinator',
+    status: 'normal'
   },
   {
     id: 'petro_dist',
@@ -1213,6 +1221,8 @@ export const seedNodesData: NodeData[] = [
     description: 'Regional gas distribution utilities',
     officeAddress: 'Petrocenter, Dhaka',
     operatingArea: 'Nationwide',
-    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।',
+    designation: 'Sector Coordinator',
+    status: 'normal'
   }
 ];
