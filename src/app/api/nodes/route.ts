@@ -1,16 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
 
+import { seedNodesData } from '@/data/seedData'
+
 export async function GET() {
   try {
     const nodes = await prisma.node.findMany()
+    if (!nodes || nodes.length === 0) {
+      // Fallback for Vercel if SQLite database is not seeded
+      return NextResponse.json(seedNodesData)
+    }
     return NextResponse.json(nodes)
   } catch (error) {
     console.error('Error fetching nodes:', error)
-    return NextResponse.json(
-      { error: 'Failed to fetch nodes', details: String(error) },
-      { status: 500 }
-    )
+    // Fallback if Prisma connection fails entirely (e.g. on Vercel serverless)
+    return NextResponse.json(seedNodesData)
   }
 }
 
