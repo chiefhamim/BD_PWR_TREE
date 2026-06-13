@@ -70,6 +70,7 @@ export type LayoutType = 'Default' | 'Horizontal'
 const TreeView: React.FC = () => {
   const { fitView, getNode, zoomIn, zoomOut } = useReactFlow()
   const [isLocked, setIsLocked] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const [drillPanel, setDrillPanel] = useState<DrillPanelState>({
     isOpen: false,
     nodeId: null,
@@ -77,6 +78,11 @@ const TreeView: React.FC = () => {
   })
   const [isTariffPanelOpen, setIsTariffPanelOpen] = useState(false)
   const { t, language, formatNum, translateKpi } = useLanguage()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const fontClass = language === 'BN' ? 'font-bengali' : 'font-sans'
   const [loading, setLoading] = useState(true)
   const [apiNodes, setApiNodes] = useState<NodeData[]>([])
@@ -646,7 +652,7 @@ const TreeView: React.FC = () => {
               <div className="flex items-center gap-1.5 mt-2 text-[9px] font-mono text-slate-500 uppercase tracking-wider">
                 <span className="text-emerald-500/80">{t('Source')}: <a href={drillPanel.nodeData.websiteUrl || "https://power.gov.bd"} target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 underline decoration-emerald-500/30 underline-offset-2 transition-colors">{drillPanel.nodeData.category === 'government' ? 'MoPEMR' : 'BPDB Database'}</a></span>
                 <span className="text-slate-700">•</span>
-                <span>{t('Updated')}: {new Date().toLocaleTimeString(language === 'EN' ? 'en-US' : 'bn-BD', { hour: '2-digit', minute: '2-digit' })}</span>
+                <span>{t('Updated')}: {mounted ? new Date().toLocaleTimeString(language === 'EN' ? 'en-US' : 'bn-BD', { hour: '2-digit', minute: '2-digit' }) : '--:--'}</span>
               </div>
             </div>
 
