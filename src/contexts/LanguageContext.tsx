@@ -50,7 +50,6 @@ const DICTIONARY: Record<string, string> = {
   'Zoom Out': 'জুম আউট',
   'Lock Grid': 'গ্রিড লক করুন',
   'Unlock Grid': 'গ্রিড আনলক করুন',
-  'Categories': 'ক্যাটাগরি',
   'View System Details': 'সিস্টেম বিস্তারিত দেখুন',
 
   'Load Shed': 'লোড শেডিং',
