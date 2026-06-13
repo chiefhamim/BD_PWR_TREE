@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import { YahooFinance } from 'yahoo-finance2';
+import YahooFinance from 'yahoo-finance2';
 
-const yahooFinance = new YahooFinance();
+const yahooFinance = new YahooFinance({ suppressNotices: ['yahooSurvey'] });
 
 export const dynamic = 'force-dynamic';
 // export const revalidate = 86400; 
