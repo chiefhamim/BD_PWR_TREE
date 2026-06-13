@@ -6,16 +6,18 @@ import { seedNodesData } from '@/data/seedData'
 export const dynamic = 'force-dynamic'
 
 export async function GET() {
+  if (process.env.VERCEL) {
+    return NextResponse.json(seedNodesData)
+  }
+
   try {
     const nodes = await prisma.node.findMany()
     if (!nodes || nodes.length === 0) {
-      // Fallback for Vercel if SQLite database is not seeded
       return NextResponse.json(seedNodesData)
     }
     return NextResponse.json(nodes)
   } catch (error) {
     console.error('Error fetching nodes:', error)
-    // Fallback if Prisma connection fails entirely (e.g. on Vercel serverless)
     return NextResponse.json(seedNodesData)
   }
 }

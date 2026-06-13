@@ -57,15 +57,21 @@ export async function GET() {
   const secondsUntilMidnightBst = Math.max(0, Math.floor((nextMidnightBst.getTime() - bstDate.getTime()) / 1000));
 
   try {
-    // 1. Fetch Yahoo Finance Data with timeout
+    // Fetch Yahoo Finance and BD Gold concurrently with lower timeouts
     const fetchYahoo = yahooFinance.quote(symbols.map(s => s.id));
     const timeoutPromise = new Promise<any[]>((_, reject) => 
-      setTimeout(() => reject(new Error('Yahoo Finance timeout')), 8000)
+      setTimeout(() => reject(new Error('Yahoo Finance timeout')), 4500)
     );
     
-    const results = await Promise.race([fetchYahoo, timeoutPromise]);
+    const [results, bdGoldVoriPrice] = await Promise.all([
+      Promise.race([fetchYahoo, timeoutPromise]).catch(e => {
+        console.warn('Yahoo timeout:', e);
+        return symbols.map(s => ({ symbol: s.id, regularMarketPrice: s.fallback }));
+      }),
+      fetchBdGold()
+    ]);
     
-    const formattedResults = results.map(quote => {
+    const formattedResults = results.map((quote: any) => {
       const symbolDef = symbols.find(s => s.id === quote.symbol);
       return {
         id: quote.symbol,
@@ -77,8 +83,6 @@ export async function GET() {
       };
     });
 
-    // 2. Scrape authentic BD 22K Gold Price
-    const bdGoldVoriPrice = await fetchBdGold();
     formattedResults.splice(6, 0, {
       id: 'BD_GOLD_22K',
       name: 'Gold (22K BD)',
