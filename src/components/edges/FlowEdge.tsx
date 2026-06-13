@@ -3,7 +3,7 @@
 import React from 'react';
 import {
   EdgeProps,
-  getBezierPath,
+  getSmoothStepPath,
   BaseEdge,
   EdgeLabelRenderer,
 } from 'reactflow';
@@ -26,6 +26,7 @@ const FlowEdge: React.FC<EdgeProps<FlowEdgeData>> = ({
   targetPosition,
   data,
   markerEnd,
+  style,
 }) => {
   const flowType = data?.flowType || 'power';
   const label = data?.label || '';
@@ -50,7 +51,7 @@ const FlowEdge: React.FC<EdgeProps<FlowEdgeData>> = ({
 
   const strokeStyle = getStrokeStyle();
 
-  const [edgePath, labelX, labelY] = getBezierPath({
+  const [edgePath, labelX, labelY] = getSmoothStepPath({
     sourceX,
     sourceY,
     sourcePosition,
@@ -69,8 +70,31 @@ const FlowEdge: React.FC<EdgeProps<FlowEdgeData>> = ({
           strokeWidth: strokeStyle.width,
           strokeDasharray: (strokeStyle as any).dasharray,
           opacity: strokeStyle.opacity,
+          ...style,
         }}
       />
+      
+      {/* Moving Energy Pulse */}
+      {data?.animated !== false && (
+        <circle r="4" fill={style?.stroke || strokeStyle.color} filter={`url(#glow-${id})`}>
+          <animateMotion 
+            dur="3s" 
+            repeatCount="indefinite" 
+            path={edgePath} 
+          />
+        </circle>
+      )}
+
+      {/* SVG filter for glow effect */}
+      <defs>
+        <filter id={`glow-${id}`} x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
 
       {label && (
         <EdgeLabelRenderer>

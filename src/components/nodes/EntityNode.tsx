@@ -27,6 +27,8 @@ interface EntityNodeData {
   nodeColor?: string;
   designation?: string;
   description?: string;
+  isCategoryActive?: boolean;
+  isActiveCategory?: boolean;
 }
 
 const getIconComponent = (icon?: string): React.ReactNode => {
@@ -78,7 +80,7 @@ const EntityNode: React.FC<EntityNodeProps> = ({ data, sourcePosition = Position
   const fontClass = language === 'BN' ? 'font-bengali' : 'font-sans';
 
   return (
-    <div className={`group relative cursor-pointer ${fontClass}`} style={{ width: 220, height: 220 }}>
+    <div className={`group relative cursor-pointer outline-none focus:outline-none focus-visible:outline-none ${fontClass} transition-all duration-500`} style={{ width: 220, height: 220, opacity: data.isCategoryActive && !data.isActiveCategory ? 0.2 : 1, filter: data.isCategoryActive && !data.isActiveCategory ? 'blur(4px)' : 'none', pointerEvents: data.isCategoryActive && !data.isActiveCategory ? 'none' : 'auto' }}>
       {/* Subtle hover glow */}
       <div
         className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"

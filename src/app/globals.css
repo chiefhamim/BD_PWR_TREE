@@ -66,6 +66,13 @@ body {
   padding: 4px !important;
 }
 
+.react-flow__node:focus, .react-flow__node:focus-visible, .react-flow__node.selected {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  ring: none !important;
+}
+
 .react-flow__controls button {
   background: transparent !important;
   border: none !important;
@@ -148,6 +155,15 @@ body {
 
 .animate-subtle-pulse {
   animation: subtlePulse 2s ease-in-out infinite;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Glass morphism utility */

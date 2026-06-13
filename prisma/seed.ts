@@ -6,8 +6,8 @@ const prisma = new PrismaClient()
 async function main() {
   console.log('🌱 Seeding database with Bangladesh Power Sector data...')
 
-  await prisma.node.deleteMany()
   await prisma.edge.deleteMany()
+  await prisma.node.deleteMany()
   await prisma.user.deleteMany()
   await prisma.dashboardStat.deleteMany()
   await prisma.gridConfig.deleteMany()
@@ -36,7 +36,7 @@ async function main() {
       kpiValue: '1',
       kpiUnit: 'Ministry',
       lastUpdated: new Date().toISOString(),
-      description: 'National policy oversight for energy sector',
+      description: 'The supreme policy-making body overseeing the entire energy and mineral resources sector, ensuring national energy security and sustainable growth.',
     },
     {
       id: 'powerDiv',
@@ -52,7 +52,7 @@ async function main() {
       kpiValue: '11000',
       kpiUnit: 'MW Supervised',
       lastUpdated: new Date().toISOString(),
-      description: 'Oversees generation, transmission, and distribution',
+      description: 'Responsible for the holistic management, strategic planning, and regulatory oversight of electricity generation, transmission, and distribution across the nation.',
     },
     {
       id: 'energyDiv',
@@ -68,7 +68,7 @@ async function main() {
       kpiValue: '1200',
       kpiUnit: 'MW Supervised',
       lastUpdated: new Date().toISOString(),
-      description: 'Renewable energy and fuel import coordination',
+      description: 'Coordinates the exploration, production, and import of primary fuels (gas, coal, oil) and spearheads renewable energy policy implementation.',
     },
     {
       id: 'berc',
@@ -83,7 +83,7 @@ async function main() {
       kpiValue: '47',
       kpiUnit: 'Tariff Changes/Year',
       lastUpdated: new Date().toISOString(),
-      description: 'Independent electricity and gas regulator',
+      description: 'An independent statutory body that ensures fair tariffs, promotes competition, and protects consumer rights in the electricity and downstream gas sectors.',
     },
     {
       id: 'bpdb',
@@ -99,7 +99,7 @@ async function main() {
       kpiValue: '6600',
       kpiUnit: 'MW Capacity',
       lastUpdated: new Date().toISOString(),
-      description: 'State-owned generation utility',
+      description: 'The largest state-owned statutory body functioning as the single buyer of electricity and managing massive public generation facilities.',
     },
     {
       id: 'bpdb-coal',
@@ -114,7 +114,7 @@ async function main() {
       kpiValue: '2800',
       kpiUnit: 'MW',
       lastUpdated: new Date().toISOString(),
-      description: 'Barapukuria, Rangpur coal facilities',
+      description: 'Major baseload thermal power stations utilizing domestic and imported coal to maintain grid stability and meet base demand.',
     },
     {
       id: 'bpdb-gas',
@@ -129,7 +129,7 @@ async function main() {
       kpiValue: '3200',
       kpiUnit: 'MW',
       lastUpdated: new Date().toISOString(),
-      description: 'Natural gas powered generating stations',
+      description: 'The backbone of the power grid, these stations use domestic natural gas and imported LNG to provide reliable and cost-effective electricity.',
     },
     {
       id: 'bpdb-hydro',
@@ -144,7 +144,7 @@ async function main() {
       kpiValue: '230',
       kpiUnit: 'MW',
       lastUpdated: new Date().toISOString(),
-      description: 'Kaptai and Teesta hydroelectric facilities',
+      description: 'Eco-friendly renewable energy facilities harnessing water flow to provide essential peaking power and grid frequency regulation.',
     },
     {
       id: 'bpdb-renewable',
@@ -159,7 +159,7 @@ async function main() {
       kpiValue: '370',
       kpiUnit: 'MW',
       lastUpdated: new Date().toISOString(),
-      description: 'Solar and wind energy initiatives',
+      description: 'Key sustainability projects integrating utility-scale solar parks and coastal wind farms to reduce carbon footprint and fossil fuel dependency.',
     },
     {
       id: 'summit-power',
@@ -175,7 +175,7 @@ async function main() {
       kpiValue: '1500',
       kpiUnit: 'MW',
       lastUpdated: new Date().toISOString(),
-      description: 'Major private power producer',
+      description: 'A leading Independent Power Producer (IPP) contributing significantly to the national grid through high-efficiency combined cycle power plants.',
     },
     {
       id: 'united-power',
@@ -222,7 +222,7 @@ async function main() {
       kpiValue: '2100',
       kpiUnit: 'MW',
       lastUpdated: new Date().toISOString(),
-      description: 'Various smaller independent producers',
+      description: 'A diverse portfolio of private sector generation companies adding critical capacity and fostering market competition.',
     },
     {
       id: 'rental-power',
@@ -237,7 +237,7 @@ async function main() {
       kpiValue: '800',
       kpiUnit: 'MW',
       lastUpdated: new Date().toISOString(),
-      description: 'Short-term emergency power capacity',
+      description: 'Quick-rental and rental power plants deployed to rapidly address short-term power deficits and stabilize regional supply.',
     },
     {
       id: 'adani-godda',
@@ -252,7 +252,7 @@ async function main() {
       kpiValue: '500',
       kpiUnit: 'MW',
       lastUpdated: new Date().toISOString(),
-      description: 'Coal-based import from India',
+      description: 'A dedicated cross-border transmission link importing baseload coal power from the Adani Godda plant in India.',
     },
     {
       id: 'tripura-import',
@@ -267,7 +267,7 @@ async function main() {
       kpiValue: '300',
       kpiUnit: 'MW',
       lastUpdated: new Date().toISOString(),
-      description: 'Hydro power import from Tripura',
+      description: 'A strategic cross-border interconnection importing clean hydroelectric power from Tripura, India, strengthening regional cooperation.',
     },
     {
       id: 'petrobangla',
@@ -283,7 +283,7 @@ async function main() {
       kpiValue: '1850',
       kpiUnit: 'MMcfd Gas',
       lastUpdated: new Date().toISOString(),
-      description: 'State-owned gas supplier and producer',
+      description: 'The national oil company responsible for exploration, production, and distribution of natural gas and mineral resources.',
     },
     {
       id: 'rpgcl',
@@ -299,7 +299,7 @@ async function main() {
       kpiValue: '5.5',
       kpiUnit: 'MMTPA',
       lastUpdated: new Date().toISOString(),
-      description: 'Liquefied natural gas importer and regasifier',
+      description: 'Manages the importation, regasification, and integration of LNG to supplement declining domestic natural gas reserves.',
     },
     {
       id: 'coal-suppliers',
@@ -314,7 +314,7 @@ async function main() {
       kpiValue: '18',
       kpiUnit: 'Million Tonnes/Year',
       lastUpdated: new Date().toISOString(),
-      description: 'Imported coal from international markets',
+      description: 'International supply chains ensuring the delivery of high-calorific-value coal for major baseload power plants.',
     },
     {
       id: 'renewable-fuel',
@@ -329,7 +329,7 @@ async function main() {
       kpiValue: '1500',
       kpiUnit: 'MW Target',
       lastUpdated: new Date().toISOString(),
-      description: 'Solar, wind, and biomass resources',
+      description: 'A growing sector of decentralized and grid-tied renewable resources aiming to diversify the primary energy mix.',
     },
     {
       id: 'pgcb',
@@ -345,7 +345,7 @@ async function main() {
       kpiValue: '24000',
       kpiUnit: 'Circuit KM',
       lastUpdated: new Date().toISOString(),
-      description: 'Transmission backbone of Bangladesh power system',
+      description: 'The sole state-owned entity responsible for operating, maintaining, and expanding the national high-voltage transmission grid.',
     },
     {
       id: 'nldc',
@@ -361,7 +361,7 @@ async function main() {
       kpiValue: '14000',
       kpiUnit: 'MW Real-time',
       lastUpdated: new Date().toISOString(),
-      description: 'Real-time grid operations and frequency control',
+      description: 'The central nervous system of the grid, balancing real-time supply and demand, and maintaining system frequency within safe limits.',
     },
     {
       id: 'dpdc',
@@ -377,7 +377,7 @@ async function main() {
       kpiValue: '3200',
       kpiUnit: 'MW Peak',
       lastUpdated: new Date().toISOString(),
-      description: 'Distribution company serving Dhaka south and suburbs',
+      description: 'Manages the intricate power distribution network for the southern parts of the capital and adjacent highly industrialized areas.',
     },
     {
       id: 'desco',
@@ -393,7 +393,7 @@ async function main() {
       kpiValue: '2800',
       kpiUnit: 'MW Peak',
       lastUpdated: new Date().toISOString(),
-      description: 'Distribution company serving Dhaka north and suburbs',
+      description: 'Delivers reliable electricity to the northern half of the capital, encompassing major commercial hubs and residential zones.',
     },
     {
       id: 'breb',
@@ -409,7 +409,7 @@ async function main() {
       kpiValue: '1500',
       kpiUnit: 'MW Peak',
       lastUpdated: new Date().toISOString(),
-      description: '80 Palli Bidyut Samities serving rural areas',
+      description: 'The largest distribution network in the country, electrifying thousands of villages through rural cooperatives.',
     },
     {
       id: 'nesco',
@@ -425,7 +425,7 @@ async function main() {
       kpiValue: '1200',
       kpiUnit: 'MW Peak',
       lastUpdated: new Date().toISOString(),
-      description: 'Distribution company serving northern regions',
+      description: 'Ensures stable power supply to the Rajshahi and Rangpur divisions, supporting regional agricultural and industrial growth.',
     },
     {
       id: 'wzpdc',
@@ -441,7 +441,7 @@ async function main() {
       kpiValue: '1100',
       kpiUnit: 'MW Peak',
       lastUpdated: new Date().toISOString(),
-      description: 'Distribution company serving western and southern regions',
+      description: 'Provides electricity to the Khulna and Barisal divisions, encompassing major ports and coastal economic zones.',
     },
     {
       id: 'industrial-consumer',
@@ -456,7 +456,7 @@ async function main() {
       kpiValue: '4800',
       kpiUnit: 'MW Demand',
       lastUpdated: new Date().toISOString(),
-      description: 'Garments, textile, cement, and manufacturing sectors',
+      description: 'High-demand industrial hubs driving the national economy, requiring uninterrupted and high-quality power supply.',
     },
     {
       id: 'commercial-consumer',
@@ -471,7 +471,7 @@ async function main() {
       kpiValue: '2400',
       kpiUnit: 'MW Demand',
       lastUpdated: new Date().toISOString(),
-      description: 'Retail, offices, hospitals, and service sectors',
+      description: 'The urban commercial backbone, characterized by fluctuating daytime demand driven by commercial complexes and essential services.',
     },
     {
       id: 'agricultural-consumer',
@@ -486,7 +486,7 @@ async function main() {
       kpiValue: '1800',
       kpiUnit: 'MW Demand',
       lastUpdated: new Date().toISOString(),
-      description: 'Irrigation pumps and agricultural processing',
+      description: 'Critical seasonal load driven by rural irrigation pumps ensuring national food security and agricultural productivity.',
     },
     {
       id: 'residential-consumer',
@@ -501,17 +501,15 @@ async function main() {
       kpiValue: '5600',
       kpiUnit: 'MW Demand',
       lastUpdated: new Date().toISOString(),
-      description: '35+ million household connections',
+      description: 'The largest consumer base by volume, representing millions of households with a predominantly evening peak demand profile.',
     },
   ]
 
-  const createdNodes = await Promise.all(
-    nodes.map((node) =>
-      prisma.node.create({
-        data: node,
-      })
-    )
-  )
+  const createdNodes = [];
+  for (const node of nodes) {
+    createdNodes.push(await prisma.node.create({ data: node }));
+  }
+
   console.log(`✅ Created ${createdNodes.length} nodes`)
 
   const edges = [

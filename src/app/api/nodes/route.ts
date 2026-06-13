@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { seedNodesData } from '@/data/seedData'
+import prisma from '@/lib/prisma'
 
 export async function GET() {
   try {
-    // Return seed data for the Bangladesh Power Sector
-    return NextResponse.json(seedNodesData)
+    const nodes = await prisma.node.findMany()
+    return NextResponse.json(nodes)
   } catch (error) {
     console.error('Error fetching nodes:', error)
     return NextResponse.json(

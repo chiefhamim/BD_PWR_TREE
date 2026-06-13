@@ -14,16 +14,30 @@ import ReactFlow, {
   Position,
 } from 'reactflow'
 import 'reactflow/dist/style.css'
-import { RotateCcw, Loader, X, ExternalLink, ChevronDown, ChevronRight } from 'lucide-react'
+import { RefreshCw, Loader, X, Focus, ChevronDown, ChevronRight, ZoomIn, ZoomOut, Lock, Unlock, Rows, Columns, ExternalLink } from 'lucide-react'
 
 import EntityNode from './nodes/EntityNode'
 import FlowEdge from './edges/FlowEdge'
 import Dashboard from './Dashboard'
+import ElectricityTariffPanel from './ElectricityTariffPanel'
 import CommodityTicker from './CommodityTicker'
 import { useLanguage, UNIT_EXPLANATIONS } from '@/contexts/LanguageContext'
 import { fetchAllNodes, overrideNodeCoordinates, NodeData } from '@/lib/api'
 import { snapToGrid } from '@/utils/layout'
 import { getDagreLayout } from '@/lib/layoutUtils'
+
+const getCategoryTheme = (category: string) => {
+  switch (category) {
+    case 'government': return { accent: '#f94144' };
+    case 'generation': return { accent: '#f3722c' };
+    case 'transmission': return { accent: '#f8961e' };
+    case 'distribution': return { accent: '#f9c74f' };
+    case 'consumer': return { accent: '#90be6d' };
+    case 'fuel': return { accent: '#43aa8b' };
+    case 'regulator': return { accent: '#577590' };
+    default: return { accent: '#577590' };
+  }
+};
 
 const nodeTypes = {
   customNode: EntityNode,
@@ -54,17 +68,18 @@ const CATEGORY_LEGEND = [
 export type LayoutType = 'Default' | 'Horizontal'
 
 const TreeView: React.FC = () => {
-  const { fitView, getNode } = useReactFlow()
+  const { fitView, getNode, zoomIn, zoomOut } = useReactFlow()
+  const [isLocked, setIsLocked] = useState(false)
   const [drillPanel, setDrillPanel] = useState<DrillPanelState>({
     isOpen: false,
     nodeId: null,
     nodeData: null,
   })
+  const [isTariffPanelOpen, setIsTariffPanelOpen] = useState(false)
   const { t, language, formatNum, translateKpi } = useLanguage()
   const fontClass = language === 'BN' ? 'font-bengali' : 'font-sans'
   const [loading, setLoading] = useState(true)
   const [apiNodes, setApiNodes] = useState<NodeData[]>([])
-  const [isPanning, setIsPanning] = useState(false)
   const [legendOpen, setLegendOpen] = useState(true)
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [layoutType, setLayoutType] = useState<LayoutType>('Default')
@@ -173,7 +188,6 @@ const TreeView: React.FC = () => {
         type: 'customNode',
         data: node,
         position: snappedPos,
-        draggable: true,
         sourcePosition: layoutType === 'Horizontal' ? Position.Right : Position.Bottom,
         targetPosition: layoutType === 'Horizontal' ? Position.Left : Position.Top,
       }
@@ -188,10 +202,13 @@ const TreeView: React.FC = () => {
       .filter((node) => node.parentId)
       .map((node) => ({
         id: `${node.parentId}-${node.id}`,
+        type: 'customEdge',
         source: node.parentId!,
         target: node.id,
+        style: { stroke: node.parentId ? getCategoryTheme(apiNodes.find(n => n.id === node.parentId)?.category || '').accent : '#94a3b8', strokeWidth: 2, opacity: 0.8 },
         data: {
-          nodeColor: nodeColorMap.get(node.parentId!) || '#94a3b8',
+          nodeColor: node.parentId ? getCategoryTheme(apiNodes.find(n => n.id === node.parentId)?.category || '').accent : '#94a3b8',
+          animated: true,
         }
       }))
 
@@ -219,7 +236,9 @@ const TreeView: React.FC = () => {
         const isActive = !selectedCategory || n.data.category === selectedCategory
         return {
           ...n,
-          style: { ...n.style, opacity: isActive ? 1 : 0.2, transition: 'opacity 0.3s' },
+          className: isActive ? '' : 'not-category-selected',
+          data: { ...n.data, isCategoryActive: !!selectedCategory, isActiveCategory: isActive },
+          style: { ...n.style, transition: 'all 0.4s ease-in-out' },
         }
       })
     )
@@ -233,7 +252,8 @@ const TreeView: React.FC = () => {
           targetNode?.category === selectedCategory
         return {
           ...e,
-          style: { ...e.style, opacity: isActive ? 0.8 : 0.1, transition: 'opacity 0.3s' },
+          className: isActive ? '' : 'not-category-selected',
+          style: { ...e.style, transition: 'all 0.4s ease-in-out', stroke: sourceNode ? getCategoryTheme(sourceNode.category).accent : '#94a3b8', strokeWidth: 2 },
         }
       })
     )
@@ -244,13 +264,13 @@ const TreeView: React.FC = () => {
       setTimeout(() => {
         const nodesToFit = rfNodes.filter(n => n.data.category === selectedCategory).map(n => ({ id: n.id }));
         if (nodesToFit.length > 0) {
-          fitView({ nodes: nodesToFit, padding: 0.2, duration: 800 });
+          fitView({ nodes: nodesToFit, padding: 0.5, duration: 1000, maxZoom: 1.2 });
         }
-      }, 50);
+      }, 100);
     } else {
       setTimeout(() => {
         fitView({ padding: 0.2, duration: 800 });
-      }, 50);
+      }, 100);
     }
   }, [selectedCategory, fitView, rfNodes]);
 
@@ -296,13 +316,20 @@ const TreeView: React.FC = () => {
     }, 100)
   }, [setNodes, fitView, rfNodes])
 
-  const handleResetView = useCallback(() => {
+    const handleResetView = useCallback(() => {
     fitView({ padding: 0.2, duration: 600 })
   }, [fitView])
 
   const closeDrillPanel = () => {
+    setNodes((nds) => nds.map((n) => ({ ...n, selected: false })))
     setDrillPanel({ isOpen: false, nodeId: null, nodeData: null })
   }
+
+  const onPaneClick = useCallback(() => {
+    setSelectedCategory(null)
+    setNodes((nds) => nds.map((n) => ({ ...n, selected: false })))
+    setDrillPanel({ isOpen: false, nodeId: null, nodeData: null })
+  }, [setNodes])
 
   const getNodeColor = (node: Node<NodeData>) => {
     const data = node.data as NodeData
@@ -335,24 +362,27 @@ const TreeView: React.FC = () => {
     <div className="relative w-full h-screen" style={{ background: '#080c14' }}>
       {/* React Flow Canvas */}
       <ReactFlow
-        nodes={nodes}
-        edges={edges}
+        nodes={rfNodes}
+        edges={rfEdges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onNodeClick={handleNodeClick}
         onNodeDragStop={handleNodeDragStop}
-        onMoveStart={(event) => {
-          if (event) setIsPanning(true)
-        }}
-        onMoveEnd={() => setIsPanning(false)}
+        onPaneClick={onPaneClick}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
         snapToGrid={true}
         snapGrid={[20, 20]}
+        defaultEdgeOptions={{ type: 'smoothstep', animated: true }}
         fitView
         fitViewOptions={{ padding: 0.12, maxZoom: 0.85 }}
         minZoom={0.1}
         maxZoom={1.5}
+        nodesDraggable={!isLocked}
+        className={`focus:outline-none outline-none transition-all duration-500 ${drillPanel.isOpen ? 'drill-active' : ''} ${selectedCategory ? 'category-active' : ''}`}
+        style={{
+          backgroundColor: '#020617',
+        }}
       >
         <Background
           color="rgba(148, 163, 184, 0.04)"
@@ -360,22 +390,34 @@ const TreeView: React.FC = () => {
           size={1.5}
           style={{ backgroundColor: '#080c14' }}
         />
-        <Controls position="bottom-left" />
-        <MiniMap
-          position="bottom-right"
-          nodeColor={getNodeColor}
-          maskColor="rgba(0, 0, 0, 0.6)"
-        />
       </ReactFlow>
 
-      {/* UI Overlay Layer — fades during panning */}
-      <div
-        className="pointer-events-none absolute inset-0 z-10"
-        style={{
-          opacity: isPanning ? 0 : 1,
-          transition: `opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) ${isPanning ? '150ms' : '0ms'}`,
-        }}
-      >
+      <style>{`
+        .drill-active .react-flow__node:not(.selected) {
+          opacity: 0.2 !important;
+          filter: blur(3px);
+          pointer-events: none;
+        }
+        .drill-active .react-flow__edge {
+          opacity: 0.1 !important;
+        }
+        .drill-active .ui-overlay-element {
+          opacity: 0.2 !important;
+          filter: blur(3px);
+          pointer-events: none;
+        }
+        .category-active .not-category-selected {
+          opacity: 0.2 !important;
+          filter: blur(4px) !important;
+          pointer-events: none;
+        }
+        .react-flow__node, .react-flow__edge, .ui-overlay-element {
+          transition: all 0.4s ease-in-out;
+        }
+      `}</style>
+
+      {/* UI Overlay Layer */}
+      <div className={`pointer-events-none absolute inset-0 z-10 ui-overlay-element ${drillPanel.isOpen ? 'opacity-0 pointer-events-none transition-opacity duration-500' : 'opacity-100 transition-opacity duration-500'}`}>
         {/* Commodity Ticker */}
         <CommodityTicker />
 
@@ -402,60 +444,113 @@ const TreeView: React.FC = () => {
           </div>
         </div>
 
-        {/* Floating Controls Bar */}
-        <div 
-          className={`pointer-events-auto absolute top-10 right-8 flex flex-col md:flex-row items-center gap-2 md:gap-3 px-4 py-2.5 rounded-2xl z-20 ${fontClass}`}
-          style={{
-            background: 'rgba(15, 23, 42, 0.85)',
-            backdropFilter: 'blur(24px)',
-            border: '1px solid rgba(148, 163, 184, 0.15)',
-            boxShadow: '0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
-          }}
-        >
-          <button
-            onClick={handleResetPanels}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/10 transition-all duration-300 active:scale-95 w-full md:w-auto"
-            title={t('Reset Layout')}
+        {/* Top Right Controls Container */}
+        <div className={`pointer-events-auto absolute top-14 right-6 flex flex-row items-center justify-end gap-4 z-50 ui-overlay-element`}>
+          {/* Electricity Tariff Rates Button */}
+          <ElectricityTariffPanel onOpenChange={setIsTariffPanelOpen} />
+
+          {/* Floating Controls Bar */}
+          <div 
+            className="flex items-center bg-slate-800/60 rounded-full border border-slate-700/50 shadow-inner px-1 py-1"
+            style={{
+              background: 'rgba(15, 23, 42, 0.85)',
+              backdropFilter: 'blur(24px)',
+              boxShadow: '0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+            }}
           >
-            <RotateCcw className="w-4 h-4" />
-            <span className="hidden md:inline">{t('Reset Layout')}</span>
-          </button>
-          
-          <div className="w-full md:w-px h-px md:h-5 bg-slate-700/60" />
+            <div className="group relative flex justify-center">
+              <button
+                onClick={handleResetPanels}
+                className="p-2 text-slate-400 hover:text-white hover:bg-slate-700/50 rounded-full transition-colors"
+              >
+                <RefreshCw className="w-4 h-4" />
+              </button>
+              <div className="absolute top-full mt-2 px-2.5 py-1.5 bg-slate-900 border border-slate-700/80 text-emerald-400 text-[10px] uppercase tracking-widest font-bold rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap z-50 transform translate-y-1 group-hover:translate-y-0">
+                {t('Reset Flow Layout')}
+              </div>
+            </div>
+            
+            <div className="group relative flex justify-center">
+              <button
+                onClick={handleResetView}
+                className="p-2 text-slate-400 hover:text-white hover:bg-slate-700/50 rounded-full transition-colors"
+              >
+                <Focus className="w-4 h-4" />
+              </button>
+              <div className="absolute top-full mt-2 px-2.5 py-1.5 bg-slate-900 border border-slate-700/80 text-emerald-400 text-[10px] uppercase tracking-widest font-bold rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap z-50 transform translate-y-1 group-hover:translate-y-0">
+                {t('Center Canvas')}
+              </div>
+            </div>
 
-          <button
-            onClick={handleResetView}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/10 transition-all duration-300 active:scale-95 w-full md:w-auto"
-            title={t('Reset View')}
-          >
-            <ExternalLink className="w-4 h-4" />
-            <span className="hidden md:inline">{t('Reset View')}</span>
-          </button>
+            <div className="w-px h-5 mx-1 bg-slate-700/60" />
 
-          <div className="w-full md:w-px h-px md:h-5 bg-slate-700/60" />
+            <div className="group relative flex justify-center">
+              <button
+                onClick={() => zoomOut()}
+                className="p-2 text-slate-400 hover:text-white hover:bg-slate-700/50 rounded-full transition-colors"
+              >
+                <ZoomOut className="w-4 h-4" />
+              </button>
+              <div className="absolute top-full mt-2 px-2.5 py-1.5 bg-slate-900 border border-slate-700/80 text-emerald-400 text-[10px] uppercase tracking-widest font-bold rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap z-50 transform translate-y-1 group-hover:translate-y-0">
+                {t('Zoom Out')}
+              </div>
+            </div>
+            
+            <div className="group relative flex justify-center">
+              <button
+                onClick={() => zoomIn()}
+                className="p-2 text-slate-400 hover:text-white hover:bg-slate-700/50 rounded-full transition-colors"
+              >
+                <ZoomIn className="w-4 h-4" />
+              </button>
+              <div className="absolute top-full mt-2 px-2.5 py-1.5 bg-slate-900 border border-slate-700/80 text-emerald-400 text-[10px] uppercase tracking-widest font-bold rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap z-50 transform translate-y-1 group-hover:translate-y-0">
+                {t('Zoom In')}
+              </div>
+            </div>
+            
+            <div className="group relative flex justify-center">
+              <button
+                onClick={() => setIsLocked(!isLocked)}
+                className={`p-2 rounded-full transition-colors ${isLocked ? 'text-rose-400 hover:bg-rose-500/10' : 'text-slate-400 hover:text-white hover:bg-slate-700/50'}`}
+              >
+                {isLocked ? <Lock className="w-4 h-4" /> : <Unlock className="w-4 h-4" />}
+              </button>
+              <div className="absolute top-full mt-2 px-2.5 py-1.5 bg-slate-900 border border-slate-700/80 text-emerald-400 text-[10px] uppercase tracking-widest font-bold rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap z-50 transform translate-y-1 group-hover:translate-y-0">
+                {isLocked ? t('Unlock Grid') : t('Lock Grid')}
+              </div>
+            </div>
+            
+            <div className="w-px h-5 mx-1 bg-slate-700/60" />
 
-          <div className="flex items-center gap-2.5">
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">{t('View')}:</span>
-            <div className="flex bg-slate-800/60 p-1 rounded-full border border-slate-700/50 shadow-inner">
+            <div className="group relative flex justify-center">
               <button
                 onClick={() => setLayoutType('Default')}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all duration-300 ${layoutType === 'Default' ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30 shadow-sm' : 'text-slate-400 hover:text-white border border-transparent'}`}
+                className={`p-2 rounded-full transition-colors ${layoutType === 'Default' ? 'bg-blue-500/20 text-blue-400 shadow-sm' : 'text-slate-400 hover:text-white hover:bg-slate-700/50'}`}
               >
-                {t('Vertical')}
+                <Rows className="w-4 h-4" />
               </button>
+              <div className="absolute top-full mt-2 px-2.5 py-1.5 bg-slate-900 border border-slate-700/80 text-emerald-400 text-[10px] uppercase tracking-widest font-bold rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap z-50 transform translate-y-1 group-hover:translate-y-0">
+                {t('Vertical View')}
+              </div>
+            </div>
+            
+            <div className="group relative flex justify-center">
               <button
                 onClick={() => setLayoutType('Horizontal')}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all duration-300 ${layoutType === 'Horizontal' ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30 shadow-sm' : 'text-slate-400 hover:text-white border border-transparent'}`}
+                className={`p-2 rounded-full transition-colors ${layoutType === 'Horizontal' ? 'bg-blue-500/20 text-blue-400 shadow-sm' : 'text-slate-400 hover:text-white hover:bg-slate-700/50'}`}
               >
-                {t('Horizontal')}
+                <Columns className="w-4 h-4" />
               </button>
+              <div className="absolute top-full mt-2 px-2.5 py-1.5 bg-slate-900 border border-slate-700/80 text-emerald-400 text-[10px] uppercase tracking-widest font-bold rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap z-50 transform translate-y-1 group-hover:translate-y-0">
+                {t('Horizontal View')}
+              </div>
             </div>
           </div>
         </div>
 
         {/* Legend */}
         <div
-          className={`pointer-events-auto absolute top-28 left-7 rounded-[20px] overflow-hidden z-50 ${fontClass} transition-all duration-500 group`}
+          className={`pointer-events-auto absolute top-28 left-7 rounded-[20px] overflow-hidden z-50 ${fontClass} group ui-overlay-element ${isTariffPanelOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
           style={{
             background: 'rgba(15, 23, 42, 0.75)',
             backdropFilter: 'blur(24px)',
@@ -501,23 +596,22 @@ const TreeView: React.FC = () => {
         </div>
 
         {/* Dashboard */}
-        <div className="pointer-events-auto">
+        <div className={`pointer-events-auto transition-all duration-500 ${selectedCategory ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
           <Dashboard />
         </div>
       </div>
 
       {/* Drill Panel */}
       <div
-        className={`fixed right-0 top-0 h-screen w-[380px] transform z-30 overflow-y-auto ${
+        className={`fixed right-0 top-0 h-screen w-[380px] transform z-[70] overflow-y-auto ${
           drillPanel.isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         style={{
-          opacity: isPanning ? 0 : 1,
           background: 'rgba(10, 15, 28, 0.95)',
           backdropFilter: 'blur(24px)',
           borderLeft: '1px solid rgba(148, 163, 184, 0.08)',
           boxShadow: drillPanel.isOpen ? '-20px 0 80px rgba(0, 0, 0, 0.5)' : 'none',
-          transition: `transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) ${isPanning ? '150ms' : '0ms'}`,
+          transition: `transform 0.4s cubic-bezier(0.16,1,0.3,1)`,
         }}
       >
         {drillPanel.isOpen && drillPanel.nodeData && (

@@ -39,6 +39,21 @@ const DICTIONARY: Record<string, string> = {
   'Grid Sync': 'গ্রিড সিঙ্ক',
   'Gas Supply': 'গ্যাস সরবরাহ',
   'Fuel Import': 'জ্বালানি আমদানি',
+  'Load Flow Model': 'লোড ফ্লো মডেল',
+  
+  // Tooltips & Actions
+  'Vertical View': 'উল্লম্ব ভিউ',
+  'Horizontal View': 'অনুভূমিক ভিউ',
+  'Reset Flow Layout': 'ফ্লো লেআউট রিসেট করুন',
+  'Center Canvas': 'ক্যানভাস সেন্টারে আনুন',
+  'Zoom In': 'জুম ইন',
+  'Zoom Out': 'জুম আউট',
+  'Lock Grid': 'গ্রিড লক করুন',
+  'Unlock Grid': 'গ্রিড আনলক করুন',
+  'Close Panel': 'প্যানেল বন্ধ করুন',
+  'Categories': 'ক্যাটাগরি',
+  'View System Details': 'সিস্টেম বিস্তারিত দেখুন',
+
   'Load Shed': 'লোড শেডিং',
   'Cap. Charge': 'ক্যাপাসিটি চার্জ',
   'Voltage': 'ভোল্টেজ',
@@ -206,11 +221,13 @@ const DICTIONARY: Record<string, string> = {
   'km Lines': 'কিলোমিটার লাইন',
   'Million Consumers': 'মিলিয়ন গ্রাহক',
   'Lakh Consumers': 'লাখ গ্রাহক',
+  'Koti MT': 'কোটি মেট্রিক টন',
+  'Koti cfd': 'কোটি ঘনফুট/দিন',
   'Million Metric Tons': 'মিলিয়ন মেট্রিক টন',
   'Million Tonnes/Year': 'মিলিয়ন টন/বছর',
   'MW Demand': 'মেগাওয়াট চাহিদা',
   'MW': 'মেগাওয়াট',
-  '৳/kWh': '৳/কিলোওয়াট-ঘণ্টা (ইউনিট)',
+  '৳/Unit': '৳/ইউনিট',
   '%': '%',
 
   // UI Elements & Drill Panel
@@ -230,37 +247,58 @@ const DICTIONARY: Record<string, string> = {
   'Designation': 'ধরন বা পদবি',
   'Status': 'বর্তমান অবস্থা',
   'Website': 'ওয়েবসাইট',
+  'Daily Cost': 'দৈনিক খরচ',
+  'Monthly Cost': 'মাসিক খরচ',
+  'Yearly Cost': 'বার্ষিক খরচ',
+  'Daily Volume': 'দৈনিক সরবরাহ',
+  'Monthly Volume': 'মাসিক সরবরাহ',
+  'Yearly Volume': 'বার্ষিক সরবরাহ',
+  'Daily Import': 'দৈনিক আমদানি',
+  'Monthly Import': 'মাসিক আমদানি',
+  'Yearly Import': 'বার্ষিক আমদানি',
+  'KMT': 'হাজার মেট্রিক টন (KMT)',
+  'Lakh MT': 'লাখ মেট্রিক টন',
+  'Grid Frequency': 'গ্রিড ফ্রিকোয়েন্সি',
+  'Transmission Voltage': 'ট্রান্সমিশন ভোল্টেজ',
+  'Distribution Voltage': 'ডিস্ট্রিবিউশন ভোল্টেজ',
+  'Consumer Voltage': 'গ্রাহক ভোল্টেজ',
+  '50.0 Hz (Target)': '৫০.০ হার্জ (টার্গেট)',
+  '400kV / 230kV': '৪০০ কেভি / ২৩০ কেভি',
+  '132kV / 33kV / 11kV': '১৩২ কেভি / ৩৩ কেভি / ১১ কেভি',
+  '230V (Single) / 400V (3-Phase)': '২৩০ ভোল্ট (সিঙ্গেল) / ৪০০ ভোল্ট (থ্রি-ফেজ)',
+  'Real-time frequency and voltage parameters of the Bangladesh National Grid.': 'বাংলাদেশ জাতীয় গ্রিডের রিয়েল-টাইম ফ্রিকোয়েন্সি এবং ভোল্টেজ প্যারামিটার।',
+  'National Grid Status': 'জাতীয় গ্রিড স্ট্যাটাস',
 
-  // Node Descriptions
-  'National policy oversight for energy sector': 'দেশের বিদ্যুৎ ও জ্বালানি খাতের জাতীয় নীতি তদারকি ও সার্বিক দিকনির্দেশনা প্রদান।',
-  'Oversees generation, transmission, and distribution': 'বিদ্যুৎ উৎপাদন, সঞ্চালন ও বিতরণ ব্যবস্থার সার্বিক নিয়ন্ত্রণ ও ব্যবস্থাপনা।',
-  'Renewable energy and fuel import coordination': 'গ্যাস, কয়লা ও তেল আমদানি এবং নবায়নযোগ্য জ্বালানির সার্বিক সমন্বয়।',
-  'Independent electricity and gas regulator': 'বিদ্যুৎ ও গ্যাসের দাম নির্ধারণ এবং খাতের স্বাধীন নিয়ন্ত্রক সংস্থা।',
-  'State-owned generation utility': 'রাষ্ট্রীয় মালিকানাধীন সর্ববৃহৎ বিদ্যুৎ উৎপাদনকারী এবং পাইকারি ক্রেতা প্রতিষ্ঠান।',
-  'Barapukuria, Rangpur coal facilities': 'বড়পুকুরিয়া, পায়রা ও অন্যান্য কয়লাভিত্তিক বিদ্যুৎ কেন্দ্রসমূহ।',
-  'Natural gas powered generating stations': 'দেশের নিজস্ব গ্যাসে চলা বিদ্যুৎ কেন্দ্রসমূহ।',
-  'Kaptai and Teesta hydroelectric facilities': 'কাপ্তাই জলবিদ্যুৎ কেন্দ্র ও অন্যান্য পরিবেশবান্ধব উদ্যোগ।',
-  'Solar and wind energy initiatives': 'সৌরবিদ্যুৎ, বায়ুবিদ্যুৎ এবং গ্রিন এনার্জি প্রকল্পসমূহ।',
-  'Major private power producer': 'দেশের অন্যতম শীর্ষস্থানীয় বেসরকারি বিদ্যুৎ উৎপাদনকারী (IPP) গ্রুপ।',
-  'Various smaller independent producers': 'দেশের গ্রিডে বিদ্যুৎ সরবরাহকারী অন্যান্য বেসরকারি উৎপাদনকারী প্রতিষ্ঠানসমূহ।',
-  'Short-term emergency power capacity': 'জরুরি ভিত্তিতে স্বল্প মেয়াদে বিদ্যুৎ ঘাটতি মেটাতে স্থাপিত কেন্দ্র।',
-  'Coal-based import from India': 'ভারতের ঝাড়খণ্ডে অবস্থিত আদানি গ্রুপের কয়লাভিত্তিক কেন্দ্র থেকে আন্তঃদেশীয় আমদানি।',
-  'Hydro power import from Tripura': 'ভারতের ত্রিপুরা রাজ্য থেকে আসা বিদ্যুৎ আমদানি।',
-  'State-owned gas supplier and producer': 'রাষ্ট্রীয় মালিকানাধীন তেল, গ্যাস ও খনিজ সম্পদ অনুসন্ধান ও উৎপাদন কর্পোরেশন।',
-  'Liquefied natural gas importer and regasifier': 'বিদেশ থেকে তরলীকৃত প্রাকৃতিক গ্যাস (LNG) আমদানি ও রিগ্যাসিফিকেশনকারী প্রতিষ্ঠান।',
-  'Imported coal from international markets': 'কয়লাভিত্তিক কেন্দ্রগুলোর জন্য আন্তর্জাতিক বাজার থেকে আমদানিকৃত কয়লা সরবরাহ ব্যবস্থা।',
-  'Solar, wind, and biomass resources': 'সৌর, বায়ু, এবং বায়োমাসের মতো পরিবেশবান্ধব জ্বালানি সম্পদের উৎস।',
-  'Transmission backbone of Bangladesh power system': 'সারা দেশে বিদ্যুৎ সরবরাহের জাতীয় গ্রিড ও সঞ্চালন লাইনের একক স্বত্বাধিকারী।',
-  'Real-time grid operations and frequency control': 'জাতীয় গ্রিডের লোড ব্যালেন্সিং, ফ্রিকোয়েন্সি নিয়ন্ত্রণ এবং রিয়েল-টাইম মনিটরিং।',
-  'Distribution company serving Dhaka south and suburbs': 'ঢাকা দক্ষিণ ও পার্শ্ববর্তী শিল্পাঞ্চলে বিদ্যুৎ বিতরণের দায়িত্বে থাকা কোম্পানি।',
-  'Distribution company serving Dhaka north and suburbs': 'ঢাকা উত্তর ও শহরতলীতে নিরবচ্ছিন্ন বিদ্যুৎ সরবরাহকারী ডেসকো।',
-  '80 Palli Bidyut Samities serving rural areas': 'সারা দেশের প্রত্যন্ত ও গ্রামীণ জনপদে ৮০টি সমিতির মাধ্যমে বিদ্যুৎ সরবরাহকারী বোর্ড।',
-  'Distribution company serving northern regions': 'রাজশাহী ও রংপুর বিভাগসহ উত্তরাঞ্চলে বিদ্যুৎ বিতরণের দায়িত্বপ্রাপ্ত কোম্পানি।',
-  'Distribution company serving western and southern regions': 'খুলনা ও বরিশাল বিভাগসহ দক্ষিণ-পশ্চিমাঞ্চলে বিদ্যুৎ বিতরণকারী সংস্থা।',
-  'Garments, textile, cement, and manufacturing sectors': 'গার্মেন্টস, টেক্সটাইল ও বৃহৎ শিল্প কারখানাসমূহের বিদ্যুৎ চাহিদা।',
-  'Retail, offices, hospitals, and service sectors': 'শপিং মল, হাসপাতাল, অফিস-আদালত ও সেবামূলক খাতের বিদ্যুৎ চাহিদা।',
-  'Irrigation pumps and agricultural processing': 'বোরো মৌসুমে সেচ পাম্প এবং কৃষি খাতের বিদ্যুৎ চাহিদা।',
-  '35+ million household connections': 'সারা দেশে সাড়ে ৩ কোটিরও বেশি বাসাবাড়ি ও গৃহস্থালি সংযোগ।',
+    // Node Descriptions
+  'The supreme policy-making body overseeing the entire energy and mineral resources sector, ensuring national energy security and sustainable growth.': 'দেশের জ্বালানি ও খনিজ সম্পদ খাতের সর্বোচ্চ নীতিনির্ধারণী সংস্থা; যা জাতীয় জ্বালানি নিরাপত্তা নিশ্চিতের পাশাপাশি টেকসই প্রবৃদ্ধির রূপরেখা প্রণয়ন করে।',
+  'Responsible for the holistic management, strategic planning, and regulatory oversight of electricity generation, transmission, and distribution across the nation.': 'সারা দেশে বিদ্যুৎ উৎপাদন, সঞ্চালন ও বিতরণের সামগ্রিক ব্যবস্থাপনা, কৌশলগত পরিকল্পনা এবং তদারকিতে সরাসরি ভূমিকা পালনকারী প্রতিষ্ঠান।',
+  'Coordinates the exploration, production, and import of primary fuels (gas, coal, oil) and spearheads renewable energy policy implementation.': 'প্রাথমিক জ্বালানির (গ্যাস, কয়লা, তেল) অনুসন্ধান, উৎপাদন ও আমদানি সমন্বয়ের পাশাপাশি নবায়নযোগ্য জ্বালানি নীতি বাস্তবায়নে নেতৃত্ব দিচ্ছে।',
+  'An independent statutory body that ensures fair tariffs, promotes competition, and protects consumer rights in the electricity and downstream gas sectors.': 'বিদ্যুৎ ও গ্যাস খাতে ন্যায্য মূল্য নির্ধারণ, বাজার প্রতিযোগিতা সৃষ্টি এবং গ্রাহক অধিকার সুরক্ষায় নিয়োজিত একটি স্বাধীন সংবিধিবদ্ধ সংস্থা।',
+  'The largest state-owned statutory body functioning as the single buyer of electricity and managing massive public generation facilities.': 'দেশের বিদ্যুৎ খাতের প্রধান নিয়ন্ত্রক; যা বিদ্যুতের একক ক্রেতা হিসেবে কাজ করার পাশাপাশি বৃহৎ সরকারি বিদ্যুৎকেন্দ্রগুলো সরাসরি পরিচালনা করে।',
+  'Major baseload thermal power stations utilizing domestic and imported coal to maintain grid stability and meet base demand.': 'দেশের নিজস্ব ও আমদানিকৃত কয়লার সাহায্যে নিরবচ্ছিন্নভাবে বিদ্যুৎ উৎপাদন করে গ্রিডের স্থিতিশীলতা রক্ষায় নিয়োজিত বেসলোড তাপবিদ্যুৎ কেন্দ্রসমূহ।',
+  'The backbone of the power grid, these stations use domestic natural gas and imported LNG to provide reliable and cost-effective electricity.': 'জাতীয় গ্রিডের মেরুদণ্ড হিসেবে পরিচিত এই কেন্দ্রগুলো নিজস্ব প্রাকৃতিক গ্যাস ও এলএনজি ব্যবহার করে নির্ভরযোগ্য এবং সাশ্রয়ী বিদ্যুৎ সরবরাহ করে আসছে।',
+  'Eco-friendly renewable energy facilities harnessing water flow to provide essential peaking power and grid frequency regulation.': 'পানির প্রবাহ কাজে লাগিয়ে পিক আওয়ারের জরুরি বিদ্যুৎ এবং গ্রিড ফ্রিকোয়েন্সি নিয়ন্ত্রণে সহায়তাকারী পরিবেশবান্ধব জলবিদ্যুৎ কেন্দ্র।',
+  'Key sustainability projects integrating utility-scale solar parks and coastal wind farms to reduce carbon footprint and fossil fuel dependency.': 'কার্বন নিঃসরণ ও জীবাশ্ম জ্বালানির ওপর নির্ভরতা কমানোর লক্ষ্যে বৃহৎ পরিসরের সৌরপার্ক ও উপকূলীয় বায়ুবিদ্যুৎ প্রকল্পসমূহ।',
+  'A leading Independent Power Producer (IPP) contributing significantly to the national grid through high-efficiency combined cycle power plants.': 'উচ্চ-দক্ষতাসম্পন্ন কম্বাইন্ড সাইকেল পাওয়ার প্ল্যান্টের মাধ্যমে জাতীয় গ্রিডে উল্লেখযোগ্য অবদান রাখা অন্যতম শীর্ষ আইপিপি (IPP)।',
+  'A diverse portfolio of private sector generation companies adding critical capacity and fostering market competition.': 'দেশের বিদ্যুৎ খাতে গুরুত্বপূর্ণ সক্ষমতা যোগ করা এবং বাজারে প্রতিযোগিতা বৃদ্ধিতে সহায়ক বিভিন্ন বেসরকারি উৎপাদনকারী প্রতিষ্ঠান।',
+  'Quick-rental and rental power plants deployed to rapidly address short-term power deficits and stabilize regional supply.': 'স্বল্পমেয়াদী বিদ্যুতের ঘাটতি দ্রুত মেটাতে এবং আঞ্চলিক সরবরাহ স্থিতিশীল করতে স্থাপিত কুইক-রেন্টাল ও রেন্টাল বিদ্যুৎ কেন্দ্রসমূহ।',
+  'A dedicated cross-border transmission link importing baseload coal power from the Adani Godda plant in India.': 'ভারতের আদানির গোড্ডা কেন্দ্র থেকে কয়লাভিত্তিক বেসলোড বিদ্যুৎ আমদানির জন্য একটি ডেডিকেটেড আন্তঃদেশীয় সঞ্চালন লাইন।',
+  'A strategic cross-border interconnection importing clean hydroelectric power from Tripura, India, strengthening regional cooperation.': 'আঞ্চলিক সহযোগিতা জোরদার করতে ভারতের ত্রিপুরা থেকে পরিবেশবান্ধব জলবিদ্যুৎ আমদানির একটি কৌশলগত আন্তঃদেশীয় সংযোগ।',
+  'The national oil company responsible for exploration, production, and distribution of natural gas and mineral resources.': 'প্রাকৃতিক গ্যাস ও খনিজ সম্পদের অনুসন্ধান, উৎপাদন এবং বিতরণের দায়িত্বে থাকা রাষ্ট্রীয় তেল ও গ্যাস কর্পোরেশন।',
+  'Manages the importation, regasification, and integration of LNG to supplement declining domestic natural gas reserves.': 'দেশের কমতে থাকা প্রাকৃতিক গ্যাস রিজার্ভের পরিপূরক হিসেবে এলএনজি আমদানি, রিগ্যাসিফিকেশন এবং সরবরাহের ব্যবস্থাপনা করে।',
+  'International supply chains ensuring the delivery of high-calorific-value coal for major baseload power plants.': 'প্রধান বেসলোড বিদ্যুৎ কেন্দ্রগুলোতে উচ্চ তাপমাত্রার কয়লা সরবরাহ নিশ্চিত করার আন্তর্জাতিক সাপ্লাই চেইন।',
+  'A growing sector of decentralized and grid-tied renewable resources aiming to diversify the primary energy mix.': 'প্রাথমিক জ্বালানির মিশ্রণে বৈচিত্র্য আনতে বিকেন্দ্রীকৃত এবং গ্রিড-সংযুক্ত নবায়নযোগ্য জ্বালানির একটি ক্রমবর্ধমান খাত।',
+  'The sole state-owned entity responsible for operating, maintaining, and expanding the national high-voltage transmission grid.': 'জাতীয় হাই-ভোল্টেজ সঞ্চালন গ্রিড পরিচালনা, রক্ষণাবেক্ষণ এবং সম্প্রসারণের একক দায়িত্বে থাকা রাষ্ট্রায়ত্ত প্রতিষ্ঠান।',
+  'The central nervous system of the grid, balancing real-time supply and demand, and maintaining system frequency within safe limits.': 'জাতীয় গ্রিডের স্নায়ুকেন্দ্র; যা প্রতি মুহূর্তে বিদ্যুৎ সরবরাহ ও চাহিদার ভারসাম্য রক্ষা করে এবং সিস্টেম ফ্রিকোয়েন্সিকে নিরাপদ মাত্রায় ধরে রাখে।',
+  'Manages the intricate power distribution network for the southern parts of the capital and adjacent highly industrialized areas.': 'ঢাকা দক্ষিণ ও তৎসংলগ্ন শিল্পাঞ্চলের ব্যাপক গ্রাহকগোষ্ঠীর কাছে বিদ্যুৎ পৌঁছে দিতে এক বিশাল ও জটিল বিতরণ নেটওয়ার্ক পরিচালনা করছে ডিপিডিসি।',
+  'Delivers reliable electricity to the northern half of the capital, encompassing major commercial hubs and residential zones.': 'রাজধানীর উত্তরাংশের প্রধান বাণিজ্যিক কেন্দ্র ও আবাসিক এলাকাগুলোতে নিরবচ্ছিন্ন বিদ্যুৎ সরবরাহ নিশ্চিত করে আসছে ডেসকো।',
+  'The largest distribution network in the country, electrifying thousands of villages through rural cooperatives.': 'পল্লী বিদ্যুতায়ন বোর্ডের অধীনে স্থানীয় সমবায় সমিতিগুলোর মাধ্যমে প্রত্যন্ত গ্রামগুলোতে আলো ছড়ানো দেশের সর্ববৃহৎ বিতরণ নেটওয়ার্ক।',
+  'Ensures stable power supply to the Rajshahi and Rangpur divisions, supporting regional agricultural and industrial growth.': 'রাজশাহী ও রংপুর বিভাগে নিরবচ্ছিন্ন বিদ্যুৎ সরবরাহের মাধ্যমে বৃহত্তর উত্তরের কৃষি ও শিল্পায়নে মূল ভূমিকা রাখছে এই সংস্থা।',
+  'Provides electricity to the Khulna and Barisal divisions, encompassing major ports and coastal economic zones.': 'মোংলা ও পায়রা বন্দরসহ খুলনা এবং বরিশাল বিভাগের সমগ্র উপকূলীয় অর্থনৈতিক অঞ্চলে বিদ্যুৎ সরবরাহের দায়িত্বে রয়েছে ওজোপাডিকো।',
+  'High-demand industrial hubs driving the national economy, requiring uninterrupted and high-quality power supply.': 'জাতীয় অর্থনীতির মূল চালিকাশক্তি এসব বৃহৎ শিল্পাঞ্চলে উৎপাদন সচল রাখতে প্রয়োজন হয় সার্বক্ষণিক উচ্চমাত্রার নিরবচ্ছিন্ন বিদ্যুৎ।',
+  'The urban commercial backbone, characterized by fluctuating daytime demand driven by commercial complexes and essential services.': 'শহুরে অর্থনীতির প্রাণকেন্দ্র; যেখানে মূলত বড় বড় মার্কেট, শপিং মল এবং কর্পোরেট অফিসের কারণে দিনের বেলা বিদ্যুতের ব্যাপক চাহিদা তৈরি হয়।',
+  'Critical seasonal load driven by rural irrigation pumps ensuring national food security and agricultural productivity.': 'জাতীয় খাদ্য নিরাপত্তা এবং কৃষিজ উৎপাদনশীলতা নিশ্চিতকারী গ্রামীণ সেচ পাম্পগুলোর দ্বারা সৃষ্ট গুরুত্বপূর্ণ মৌসুমী লোড।',
+  'The largest consumer base by volume, representing millions of households with a predominantly evening peak demand profile.': 'আয়তনের দিক থেকে সর্ববৃহৎ গ্রাহক গোষ্ঠী, যেখানে লক্ষ লক্ষ পরিবারের সান্ধ্যকালীন পিক আওয়ারের চাহিদাই প্রধান।',
 
   // Ticker Names & Units
   'Gold (22K BD)': 'স্বর্ণ (২২ ক্যারেট)',
@@ -295,6 +333,45 @@ const DICTIONARY: Record<string, string> = {
   'normal': 'স্বাভাবিক',
   'alert': 'জরুরি অবস্থা',
   'warning': 'সতর্কতা',
+
+  // Electricity Tariff Panel
+  'Electricity Tariff': 'বিদ্যুতের ট্যারিফ',
+  'Tariff Rates': 'ট্যারিফ রেট',
+  'All Customer Categories': 'সকল গ্রাহক শ্রেণি',
+  'Official Data': 'সরকারি তথ্য',
+  'Verified': 'যাচাইকৃত',
+  'Last Verified': 'সর্বশেষ যাচাই',
+  'Tariff effective per BERC Gazette': 'বিইআরসি গেজেট অনুযায়ী কার্যকর ট্যারিফ',
+  'Residential': 'আবাসিক',
+  'Commercial': 'বাণিজ্যিক',
+  'Small Industry': 'ক্ষুদ্র শিল্প',
+  'Medium Industry': 'মাঝারি শিল্প',
+  'Large Industry': 'বৃহৎ শিল্প',
+  'Agricultural (Irrigation)': 'কৃষি (সেচ)',
+  'Street Lighting': 'সড়ক বাতি',
+  'Religious & Charitable': 'ধর্মীয় ও দাতব্য',
+  'Households and domestic meter connections': 'গৃহস্থালি ও আবাসিক মিটার সংযোগ',
+  'Shops, offices, malls, and service sector': 'দোকান, অফিস, শপিংমল ও সেবা খাত',
+  'Connected load up to 120 kW': 'সংযুক্ত লোড ১২০ কিলোওয়াট পর্যন্ত',
+  'Connected load 120 kW – 5 MW': 'সংযুক্ত লোড ১২০ কিলোওয়াট থেকে ৫ মেগাওয়াট',
+  'Connected load above 5 MW (132 kV+)': 'সংযুক্ত লোড ৫ মেগাওয়াটের ঊর্ধ্বে (১৩২ কেভি+)',
+  'Municipal and city corporation street lights': 'পৌরসভা ও সিটি কর্পোরেশনের সড়ক বাতি',
+  'Mosques, temples, churches, and charitable organizations': 'মসজিদ, মন্দির, গির্জা ও দাতব্য প্রতিষ্ঠান',
+  'Slab / Tier': 'স্ল্যাব / ধাপ',
+  'Energy Charge': 'এনার্জি চার্জ',
+  'Demand Charge': 'ডিমান্ড চার্জ',
+  '(starts)': '(শুরু)',
+  'Flat Rate': 'ফ্ল্যাট রেট',
+  'Peak Hours': 'পিক আওয়ার',
+  'Off-Peak': 'অফ-পিক',
+  '0–75 Unit': '০–৭৫ ইউনিট',
+  '76–200 Unit': '৭৬–২০০ ইউনিট',
+  '201–300 Unit': '২০১–৩০০ ইউনিট',
+  '301–400 Unit': '৩০১–৪০০ ইউনিট',
+  '401–600 Unit': '৪০১–৬০০ ইউনিট',
+  '601+ Unit': '৬০১+ ইউনিট',
+  'Minimum monthly charge': 'সর্বনিম্ন মাসিক চার্জ',
+  'Reset View': 'ভিউ রিসেট',
 };
 
 const enToBnDigits = (numStr: string) => {
@@ -420,7 +497,21 @@ export const UNIT_EXPLANATIONS: Record<string, { defEn: string, defBn: string, e
 };
 
 export const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
-  const [language, setLanguage] = useState<Language>('EN');
+  const [language, setLanguage] = useState<Language>('BN'); // Default to Bangladesh
+
+  useEffect(() => {
+    // Detect IP location to set the language on initial load
+    fetch('https://ipapi.co/json/')
+      .then(res => res.json())
+      .then(data => {
+        if (data.country_code && data.country_code !== 'BD') {
+          setLanguage('EN'); // Show US/EN if not from Bangladesh
+        }
+      })
+      .catch(err => {
+        console.warn('IP location fetch failed, defaulting to BN:', err);
+      });
+  }, []);
 
   const toggleLanguage = () => {
     setLanguage(prev => (prev === 'EN' ? 'BN' : 'EN'));
@@ -432,7 +523,7 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
   };
 
   const formatNum = (num: number, maxFractions: number = 2): string => {
-    let str = num.toLocaleString('en-US', { maximumFractionDigits: maxFractions });
+    let str = num.toLocaleString(language === 'BN' ? 'en-IN' : 'en-US', { maximumFractionDigits: maxFractions });
     if (language === 'BN') {
       return enToBnDigits(str);
     }
