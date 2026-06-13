@@ -3,7 +3,8 @@ import yahooFinance from 'yahoo-finance2';
 
 yahooFinance.suppressNotices(['yahooSurvey']);
 
-export const revalidate = 86400; // Cache for 24 hours (86400 seconds)
+// We calculate Cache-Control dynamically instead of static revalidate
+// export const revalidate = 86400; 
 
 const bnToEn = (str: string) => {
   const bnDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
@@ -15,8 +16,9 @@ async function fetchBdGold() {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 8000); // 8s timeout to avoid Vercel 10s limit
     
+    // Don't cache here, let the main API route handle the Cache-Control header
     const res = await fetch('https://www.alaminjewellers.com/gold-price/', { 
-      next: { revalidate: 3600 },
+      cache: 'no-store',
       signal: controller.signal
     });
     clearTimeout(timeoutId);
@@ -42,6 +44,17 @@ export async function GET() {
     { id: 'BDT=X', name: 'USD/BDT (Live Rate)', unit: '', prefix: '৳', fallback: 117.5 },
     { id: 'EURBDT=X', name: 'EUR/BDT (Live Rate)', unit: '', prefix: '৳', fallback: 125.0 },
   ];
+
+  // Calculate seconds until next 12 AM (Midnight) Bangladesh Standard Time (UTC+6)
+  const now = new Date();
+  const bstTimeMs = now.getTime() + (6 * 3600000);
+  const bstDate = new Date(bstTimeMs);
+  
+  // Set to next midnight in BST
+  const nextMidnightBst = new Date(bstTimeMs);
+  nextMidnightBst.setUTCHours(24, 0, 0, 0); // 24:00:00 is next midnight
+  
+  const secondsUntilMidnightBst = Math.max(0, Math.floor((nextMidnightBst.getTime() - bstDate.getTime()) / 1000));
 
   try {
     // 1. Fetch Yahoo Finance Data with timeout
@@ -75,7 +88,11 @@ export async function GET() {
       prefix: '৳',
     });
 
-    return NextResponse.json(formattedResults);
+    return NextResponse.json(formattedResults, {
+      headers: {
+        'Cache-Control': `public, s-maxage=${secondsUntilMidnightBst}, stale-while-revalidate=600`,
+      },
+    });
   } catch (error) {
     console.warn('Market Data Fetch Error, returning fallback data:', error);
     
@@ -98,6 +115,10 @@ export async function GET() {
       prefix: '৳',
     });
 
-    return NextResponse.json(fallbackResults);
+    return NextResponse.json(fallbackResults, {
+      headers: {
+        'Cache-Control': 'public, s-maxage=300', // retry in 5 mins on failure
+      },
+    });
   }
 }

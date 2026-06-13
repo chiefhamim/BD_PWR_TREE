@@ -6,6 +6,10 @@ declare global {
 
 let prisma: PrismaClient
 
+if (!process.env.DATABASE_URL) {
+  process.env.DATABASE_URL = 'file:/tmp/dev.db'
+}
+
 if (process.env.NODE_ENV === 'production') {
   prisma = new PrismaClient()
 } else {

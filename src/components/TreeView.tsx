@@ -652,7 +652,7 @@ const TreeView: React.FC = () => {
               <div className="flex items-center gap-1.5 mt-2 text-[9px] font-mono text-slate-500 uppercase tracking-wider">
                 <span className="text-emerald-500/80">{t('Source')}: <a href={drillPanel.nodeData.websiteUrl || "https://power.gov.bd"} target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 underline decoration-emerald-500/30 underline-offset-2 transition-colors">{drillPanel.nodeData.category === 'government' ? 'MoPEMR' : 'BPDB Database'}</a></span>
                 <span className="text-slate-700">•</span>
-                <span>{t('Updated')}: {mounted ? new Date().toLocaleTimeString(language === 'EN' ? 'en-US' : 'bn-BD', { hour: '2-digit', minute: '2-digit' }) : '--:--'}</span>
+                <span>{t('Updated')}: {mounted ? new Date().toLocaleTimeString(language === 'EN' ? 'en-US' : 'bn-BD', { hour: '2-digit', minute: '2-digit', hour12: true }) : '--:--'}</span>
               </div>
             </div>
 

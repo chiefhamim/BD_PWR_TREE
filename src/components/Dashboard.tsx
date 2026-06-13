@@ -231,7 +231,7 @@ const Dashboard: React.FC<DashboardProps> = ({ stats = DEFAULT_STATS }) => {
                 <div className="w-px h-5 bg-slate-800" />
                 <div className="flex flex-col items-center">
                   <span className="text-[8px] font-bold text-slate-500 uppercase tracking-widest mb-0.5">{t('Updated')}</span>
-                  <span className="text-[11px] font-mono text-slate-300 font-medium tracking-wider group-hover:text-white transition-colors">{mounted ? new Date().toLocaleTimeString(language === 'EN' ? 'en-US' : 'bn-BD', { hour: '2-digit', minute: '2-digit' }) : '--:--'}</span>
+                  <span className="text-[11px] font-mono text-slate-300 font-medium tracking-wider group-hover:text-white transition-colors">{mounted ? new Date().toLocaleTimeString(language === 'EN' ? 'en-US' : 'bn-BD', { hour: '2-digit', minute: '2-digit', hour12: true }) : '--:--'}</span>
                 </div>
               </div>
             </div>
