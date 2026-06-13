@@ -10,8 +10,11 @@ interface LanguageContextType {
   setLanguage: (lang: Language) => void;
   t: (key: string) => string;
   formatNum: (num: number, maxFractions?: number) => string;
-  formatCurrency: (num: number, currencyType?: 'BDT' | 'USD') => string;
+  formatCurrency: (num: number, forceCurrency?: 'BDT' | 'USD') => string;
   translateKpi: (value: string | number | undefined, unit: string | undefined) => { value: string; unit: string };
+  currency: 'BDT' | 'USD';
+  toggleCurrency: () => void;
+  exchangeRate: number;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -520,6 +523,8 @@ export const UNIT_EXPLANATIONS: Record<string, { defEn: string, defBn: string, e
 
 export const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
   const [language, setLanguage] = useState<Language>('BN'); // Default to Bangladesh
+  const [currency, setCurrency] = useState<'BDT' | 'USD'>('BDT');
+  const [exchangeRate, setExchangeRate] = useState<number>(117.5);
 
   useEffect(() => {
     // Detect IP location to set the language on initial load
@@ -528,15 +533,31 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
       .then(data => {
         if (data.country_code && data.country_code !== 'BD') {
           setLanguage('EN'); // Show US/EN if not from Bangladesh
+          setCurrency('USD'); // Default to USD if outside BD
         }
       })
       .catch(err => {
         console.warn('IP location fetch failed, defaulting to BN:', err);
       });
+
+    // Fetch Live Exchange Rate from our API
+    fetch('/api/market-data')
+      .then(res => res.json())
+      .then(data => {
+        const bdtRate = data.find((item: any) => item.id === 'BDT=X');
+        if (bdtRate && bdtRate.price) {
+          setExchangeRate(bdtRate.price);
+        }
+      })
+      .catch(console.error);
   }, []);
 
   const toggleLanguage = () => {
     setLanguage(prev => (prev === 'EN' ? 'BN' : 'EN'));
+  };
+
+  const toggleCurrency = () => {
+    setCurrency(prev => (prev === 'BDT' ? 'USD' : 'BDT'));
   };
 
   const t = (key: string): string => {
@@ -552,28 +573,31 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
     return str;
   };
 
-  const formatCurrency = (num: number, currencyType: 'BDT' | 'USD' = 'BDT'): string => {
-    if (currencyType === 'USD') {
+  const formatCurrency = (num: number, forceCurrency?: 'BDT' | 'USD'): string => {
+    // If language is EN, default to USD behavior unless forced to BDT
+    const activeCurrency = forceCurrency || (language === 'EN' ? 'USD' : 'BDT');
+    
+    if (activeCurrency === 'USD') {
       if (language === 'EN') {
-        if (num >= 1e9) return (num / 1e9).toFixed(2) + ' B';
-        if (num >= 1e6) return (num / 1e6).toFixed(2) + ' M';
-        return num.toLocaleString('en-US', { maximumFractionDigits: 2 });
+        if (num >= 1e9) return (num / 1e9).toFixed(2) + ' B USD';
+        if (num >= 1e6) return (num / 1e6).toFixed(2) + ' M USD';
+        return num.toLocaleString('en-US', { maximumFractionDigits: 2 }) + ' USD';
       } else {
-        if (num >= 1e9) return enToBnDigits((num / 1e9).toFixed(2)) + ' বিলিয়ন';
-        if (num >= 1e6) return enToBnDigits((num / 1e6).toFixed(2)) + ' মিলিয়ন';
-        return enToBnDigits(num.toLocaleString('en-US', { maximumFractionDigits: 2 }));
+        if (num >= 1e9) return enToBnDigits((num / 1e9).toFixed(2)) + ' বিলিয়ন ইউএসডি';
+        if (num >= 1e6) return enToBnDigits((num / 1e6).toFixed(2)) + ' মিলিয়ন ইউএসডি';
+        return enToBnDigits(num.toLocaleString('en-US', { maximumFractionDigits: 2 })) + ' ইউএসডি';
       }
     }
 
-    // BDT Formatting - ALWAYS use Crore (1e7) and Lakh (1e5) instead of Millions/Billions
+    // BDT Formatting - ALWAYS use Crore (1e7) and Lakh (1e5)
     if (language === 'EN') {
-      if (num >= 1e7) return (num / 1e7).toFixed(2) + ' Cr';
-      if (num >= 1e5) return (num / 1e5).toFixed(2) + ' Lakh';
-      return num.toLocaleString('en-US', { maximumFractionDigits: 2 });
+      if (num >= 1e7) return (num / 1e7).toFixed(2) + ' Cr BDT';
+      if (num >= 1e5) return (num / 1e5).toFixed(2) + ' Lakh BDT';
+      return num.toLocaleString('en-US', { maximumFractionDigits: 2 }) + ' BDT';
     } else {
-      if (num >= 1e7) return enToBnDigits((num / 1e7).toFixed(2)) + ' কোটি';
-      if (num >= 1e5) return enToBnDigits((num / 1e5).toFixed(2)) + ' লাখ';
-      return enToBnDigits(num.toLocaleString('en-US', { maximumFractionDigits: 2 }));
+      if (num >= 1e7) return enToBnDigits((num / 1e7).toFixed(2)) + ' কোটি টাকা';
+      if (num >= 1e5) return enToBnDigits((num / 1e5).toFixed(2)) + ' লাখ টাকা';
+      return enToBnDigits(num.toLocaleString('en-US', { maximumFractionDigits: 2 })) + ' টাকা';
     }
   };
 
@@ -581,6 +605,25 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
     if (!value) return { value: '—', unit: t(unit || '') };
     let numVal = typeof value === 'number' ? value : Number(value);
     
+    if (language === 'EN') {
+      // Dynamic conversion from BDT to USD for KPI Blocks in US mode
+      if (unit && (unit.includes('Cr BDT Charge') || unit.includes('Cr BDT Loss') || unit.includes('Cr BDT Budget'))) {
+        if (!isNaN(numVal)) {
+          // Input value is in Crores of BDT. So actual BDT = numVal * 1e7
+          const actualBDT = numVal * 1e7;
+          const actualUSD = actualBDT / exchangeRate;
+          
+          if (actualUSD >= 1e9) {
+            numVal = actualUSD / 1e9;
+            unit = unit.replace('Cr BDT', 'B USD');
+          } else {
+            numVal = actualUSD / 1e6;
+            unit = unit.replace('Cr BDT', 'M USD');
+          }
+        }
+      }
+    }
+
     if (language === 'BN' && unit === 'Million Tonnes/Year' && !isNaN(numVal)) {
       return { value: formatNum(numVal / 10), unit: 'কোটি টন/বছর' };
     }
@@ -592,7 +635,7 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
   };
 
   return (
-    <LanguageContext.Provider value={{ language, toggleLanguage, setLanguage, t, formatNum, formatCurrency, translateKpi }}>
+    <LanguageContext.Provider value={{ language, toggleLanguage, setLanguage, currency, toggleCurrency, exchangeRate, t, formatNum, formatCurrency, translateKpi }}>
       {children}
     </LanguageContext.Provider>
   );

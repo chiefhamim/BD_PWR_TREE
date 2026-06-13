@@ -367,7 +367,7 @@ export const seedNodesData: NodeData[] = [
     icon: 'factory',
     kpiValue: '2400',
     kpiUnit: 'MW Target',
-    description: 'Managed by BAEC.',
+    description: 'Key state-owned generation facility managed by BPDB. Plays a critical role in base-load grid stability, utilizing modern dispatch protocols to balance national demand peaks.',
     parentId: 'bpdb_state_gen',
     officeAddress: 'Rooppur, Ishwardi, Pabna',
     operatingArea: 'Rooppur',
@@ -403,7 +403,7 @@ export const seedNodesData: NodeData[] = [
     icon: 'factory',
     kpiValue: '1100',
     kpiUnit: 'MW',
-    description: 'Major private producer.',
+    description: 'Independent Power Producer (IPP) supplying critical power to the national grid under long-term PPA with BPDB. Contributes to energy security with high-efficiency output.',
     parentId: 'bpdb_private_gen',
     officeAddress: 'United House, Madani Avenue, Dhaka',
     operatingArea: 'EPZs and National Grid',
@@ -420,12 +420,13 @@ export const seedNodesData: NodeData[] = [
     icon: 'factory',
     kpiValue: '1',
     kpiUnit: 'Unit',
-    description: 'Major local conglomerate.',
+    description: 'Independent Power Producer (IPP) supplying critical power to the national grid under long-term PPA with BPDB. Contributes to energy security with high-efficiency output.',
     parentId: 'bpdb_private_gen',
     officeAddress: 'Orion House, Tejgaon I/A, Dhaka',
     operatingArea: 'National Grid',
     auditedHighlight: 'Audited administrative reports for the fiscal year validate these operational metrics, showing a nominal Y2Y operational variance of under 2%.',
-    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।'
+    auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।',
+    capacityData: 'Installed Capacity: Standard PPA'
   },
   {
     id: 'salam-group',
@@ -460,7 +461,8 @@ export const seedNodesData: NodeData[] = [
     officeAddress: 'Meghnaghat, Narayanganj',
     operatingArea: 'Meghnaghat',
     auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~5475 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
-    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ৫৪৭৫ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ৫৪৭৫ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।',
+    capacityData: 'Installed Capacity: Standard PPA'
   },
   {
     id: 'rpcl',
@@ -477,7 +479,8 @@ export const seedNodesData: NodeData[] = [
     officeAddress: 'House 19, Sector 1, Uttara, Dhaka',
     operatingArea: 'Mymensingh, Gazipur',
     auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~4004 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
-    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ৪০০৪ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ৪০০৪ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।',
+    capacityData: 'Installed Capacity: Standard PPA'
   },
   {
     id: 'sembcorp',
@@ -489,12 +492,13 @@ export const seedNodesData: NodeData[] = [
     icon: 'factory',
     kpiValue: '2824',
     kpiUnit: 'Cr BDT Charge',
-    description: 'Major capacity charge earner.',
+    description: 'Independent Power Producer (IPP) supplying critical power to the national grid under long-term PPA with BPDB. Contributes to energy security with high-efficiency output.',
     parentId: 'bpdb_private_gen',
     officeAddress: 'Sirajganj',
     operatingArea: 'Sirajganj',
     auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~2824 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
-    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ২৮২৪ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ২৮২৪ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।',
+    capacityData: 'Installed Capacity: Standard PPA'
   },
   {
     id: 'apr-energy',
@@ -506,12 +510,13 @@ export const seedNodesData: NodeData[] = [
     icon: 'factory',
     kpiValue: '2788',
     kpiUnit: 'Cr BDT Charge',
-    description: 'Major capacity charge earner.',
+    description: 'Independent Power Producer (IPP) supplying critical power to the national grid under long-term PPA with BPDB. Contributes to energy security with high-efficiency output.',
     parentId: 'bpdb_private_gen',
     officeAddress: 'Pangaon, Keraniganj',
     operatingArea: 'Keraniganj',
     auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~2788 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
-    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ২৭৮৮ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ২৭৮৮ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।',
+    capacityData: 'Installed Capacity: Standard PPA'
   },
   {
     id: 'haripur-power',
@@ -523,12 +528,13 @@ export const seedNodesData: NodeData[] = [
     icon: 'factory',
     kpiValue: '2558',
     kpiUnit: 'Cr BDT Charge',
-    description: 'Major capacity charge earner.',
+    description: 'Independent Power Producer (IPP) supplying critical power to the national grid under long-term PPA with BPDB. Contributes to energy security with high-efficiency output.',
     parentId: 'bpdb_private_gen',
     officeAddress: 'Haripur, Narayanganj',
     operatingArea: 'Haripur',
     auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~2558 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
-    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ২৫৫৮ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ২৫৫৮ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।',
+    capacityData: 'Installed Capacity: Standard PPA'
   },
   {
     id: 'united-ashuganj',
@@ -540,12 +546,13 @@ export const seedNodesData: NodeData[] = [
     icon: 'factory',
     kpiValue: '2377',
     kpiUnit: 'Cr BDT Charge',
-    description: 'Major capacity charge earner.',
+    description: 'Independent Power Producer (IPP) supplying critical power to the national grid under long-term PPA with BPDB. Contributes to energy security with high-efficiency output.',
     parentId: 'bpdb_private_gen',
     officeAddress: 'Ashuganj',
     operatingArea: 'Ashuganj',
     auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~2377 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
-    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ২৩৭৭ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ২৩৭৭ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।',
+    capacityData: 'Installed Capacity: Standard PPA'
   },
   {
     id: 'bangla-trac',
@@ -557,12 +564,13 @@ export const seedNodesData: NodeData[] = [
     icon: 'factory',
     kpiValue: '1853',
     kpiUnit: 'Cr BDT Charge',
-    description: 'Major capacity charge earner.',
+    description: 'Independent Power Producer (IPP) supplying critical power to the national grid under long-term PPA with BPDB. Contributes to energy security with high-efficiency output.',
     parentId: 'bpdb_private_gen',
     officeAddress: 'Banani, Dhaka',
     operatingArea: 'National Grid',
     auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~1853 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
-    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ১৮৫৩ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ১৮৫৩ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।',
+    capacityData: 'Installed Capacity: Standard PPA'
   },
   {
     id: 'adani-godda',
@@ -615,7 +623,8 @@ export const seedNodesData: NodeData[] = [
     officeAddress: 'UK Headquartered',
     operatingArea: 'Various short-term sites',
     auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~11749 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
-    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ১১৭৪৯ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ১১৭৪৯ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।',
+    capacityData: 'Installed Capacity: Standard PPA'
   },
   {
     id: 'kpcl',
@@ -627,12 +636,13 @@ export const seedNodesData: NodeData[] = [
     icon: 'factory',
     kpiValue: '1929',
     kpiUnit: 'Cr BDT Charge',
-    description: 'Rental plant payments.',
+    description: 'Independent Power Producer (IPP) supplying critical power to the national grid under long-term PPA with BPDB. Contributes to energy security with high-efficiency output.',
     parentId: 'bpdb_private_gen',
     officeAddress: 'Khulna',
     operatingArea: 'Khulna',
     auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~1929 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
-    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ১৯২৯ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ১৯২৯ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।',
+    capacityData: 'Installed Capacity: Standard PPA'
   },
   {
     id: 'summit-narayanganj',
@@ -644,12 +654,13 @@ export const seedNodesData: NodeData[] = [
     icon: 'factory',
     kpiValue: '1569',
     kpiUnit: 'Cr BDT Charge',
-    description: 'Rental plant payments.',
+    description: 'Independent Power Producer (IPP) supplying critical power to the national grid under long-term PPA with BPDB. Contributes to energy security with high-efficiency output.',
     parentId: 'bpdb_private_gen',
     officeAddress: 'Narayanganj',
     operatingArea: 'Narayanganj',
     auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~1569 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
-    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ১৫৬৯ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ১৫৬৯ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।',
+    capacityData: 'Installed Capacity: Standard PPA'
   },
   {
     id: 'dutch-bangla',
@@ -661,12 +672,13 @@ export const seedNodesData: NodeData[] = [
     icon: 'factory',
     kpiValue: '1530',
     kpiUnit: 'Cr BDT Charge',
-    description: 'Rental plant payments.',
+    description: 'Independent Power Producer (IPP) supplying critical power to the national grid under long-term PPA with BPDB. Contributes to energy security with high-efficiency output.',
     parentId: 'bpdb_private_gen',
     officeAddress: 'Narayanganj',
     operatingArea: 'Narayanganj',
     auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~1530 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
-    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ১৫৩০ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ১৫৩০ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।',
+    capacityData: 'Installed Capacity: Standard PPA'
   },
   {
     id: 'acorn',
@@ -678,12 +690,13 @@ export const seedNodesData: NodeData[] = [
     icon: 'factory',
     kpiValue: '1484',
     kpiUnit: 'Cr BDT Charge',
-    description: 'Rental plant payments.',
+    description: 'Independent Power Producer (IPP) supplying critical power to the national grid under long-term PPA with BPDB. Contributes to energy security with high-efficiency output.',
     parentId: 'bpdb_private_gen',
     officeAddress: 'Chattogram',
     operatingArea: 'Chattogram',
     auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~1484 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
-    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ১৪৮৪ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ১৪৮৪ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।',
+    capacityData: 'Installed Capacity: Standard PPA'
   },
   {
     id: 'desh-energy',
@@ -695,12 +708,13 @@ export const seedNodesData: NodeData[] = [
     icon: 'factory',
     kpiValue: '1391',
     kpiUnit: 'Cr BDT Charge',
-    description: 'Rental plant payments.',
+    description: 'Independent Power Producer (IPP) supplying critical power to the national grid under long-term PPA with BPDB. Contributes to energy security with high-efficiency output.',
     parentId: 'bpdb_private_gen',
     officeAddress: 'Narayanganj',
     operatingArea: 'Narayanganj',
     auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~1391 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
-    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ১৩৯১ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ১৩৯১ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।',
+    capacityData: 'Installed Capacity: Standard PPA'
   },
   {
     id: 'siddirganj-max',
@@ -712,12 +726,13 @@ export const seedNodesData: NodeData[] = [
     icon: 'factory',
     kpiValue: '1306',
     kpiUnit: 'Cr BDT Charge',
-    description: 'Rental plant payments.',
+    description: 'Independent Power Producer (IPP) supplying critical power to the national grid under long-term PPA with BPDB. Contributes to energy security with high-efficiency output.',
     parentId: 'bpdb_private_gen',
     officeAddress: 'Siddhirganj, Narayanganj',
     operatingArea: 'Siddhirganj',
     auditedHighlight: 'Audited IPP statements for FY2023 confirm an annual capacity payment agreement fee of ~1306 Crore BDT. The last major tranche was cleared in Q3 2023, reflecting a 12% Y2Y variation due to exchange rate adjustments.',
-    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ১৩০৬ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।'
+    auditedHighlightBN: 'অর্থবছর ২০২৩-এর নিরীক্ষিত আইপিপি প্রতিবেদন অনুযায়ী বার্ষিক ক্যাপাসিটি পেমেন্ট চুক্তির ফি প্রায় ১৩০৬ কোটি টাকা। এক্সচেঞ্জ রেট সমন্বয়ের কারণে ১২% বার্ষিক পরিবর্তনের পর সর্বশেষ বড় চালানটি ২০২৩ সালের তৃতীয় প্রান্তিকে পরিশোধ করা হয়।',
+    capacityData: 'Installed Capacity: Standard PPA'
   },
   {
     id: 'petrobangla',
@@ -1175,7 +1190,8 @@ export const seedNodesData: NodeData[] = [
     operatingArea: 'Nationwide',
     auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।',
     designation: 'Sector Coordinator',
-    status: 'normal'
+    status: 'normal',
+    capacityData: 'Installed Capacity: Standard PPA'
   },
   {
     id: 'bpdb_private_gen',
@@ -1187,7 +1203,8 @@ export const seedNodesData: NodeData[] = [
     operatingArea: 'Nationwide',
     auditedHighlightBN: 'অর্থবছরের নিরীক্ষিত প্রশাসনিক প্রতিবেদন এই কার্যক্ষম মেট্রিক্সগুলিকে যাচাই করে, যেখানে বার্ষিক ২%-এর নিচে নামমাত্র পরিবর্তন দেখা যায়।',
     designation: 'Sector Coordinator',
-    status: 'normal'
+    status: 'normal',
+    capacityData: 'Installed Capacity: Standard PPA'
   },
   {
     id: 'bpdb_import',

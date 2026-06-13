@@ -63,7 +63,7 @@ const MetricCard = ({ metric, t, formatNum, setActiveDetail, fontClass }: any) =
 const Dashboard: React.FC<DashboardProps> = ({ stats = DEFAULT_STATS }) => {
   const [activeDetail, setActiveDetail] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
-  const { t, formatNum, language } = useLanguage();
+  const { t, formatNum, language, currency, exchangeRate } = useLanguage();
   const fontClass = language === 'BN' ? 'font-bengali' : 'font-sans';
 
   React.useEffect(() => {
@@ -112,17 +112,31 @@ const Dashboard: React.FC<DashboardProps> = ({ stats = DEFAULT_STATS }) => {
 
             {/* Content Area */}
             <div className="px-6 pb-6 pt-4">
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-0.5">
                 {DETAIL_MAP[activeDetail].details.map((item, idx) => {
-                  let finalValue = item.value;
-                  if (language === 'EN' && finalValue.includes('৳/Unit')) {
-                     finalValue = finalValue
-                        .replace(/[0-9.]+/g, (m) => formatNum(parseFloat(m) / 117.5, 3))
-                        .replace('৳/Unit', '$/Unit');
-                  } else if (language === 'EN' && finalValue.includes('koti ৳')) {
-                     finalValue = finalValue
-                        .replace(/[0-9,.]+/g, (m) => formatNum(parseFloat(m.replace(/,/g, '')) / 11.75, 2))
-                        .replace('koti ৳', 'M $');
+                  let finalValue = t(item.value);
+                  
+                  // Apply dynamic currency conversion using the real exchange rate
+                  if (currency === 'USD') {
+                    if (finalValue.includes('৳/Unit')) {
+                       finalValue = finalValue
+                          .replace(/[0-9.]+/g, (m) => formatNum(parseFloat(m) / exchangeRate, 3))
+                          .replace('৳/Unit', '$/Unit');
+                    } else if (finalValue.includes('koti ৳')) {
+                       finalValue = finalValue
+                          .replace(/[0-9,.]+/g, (m) => {
+                             const numCroreBDT = parseFloat(m.replace(/,/g, ''));
+                             const numBDT = numCroreBDT * 10000000;
+                             const numUSD = numBDT / exchangeRate;
+                             return formatNum(numUSD / 1000000, 2);
+                          })
+                          .replace('koti ৳', 'M $');
+                    } else {
+                       // Still fallback formats for standard numeric
+                       finalValue = finalValue
+                          .replace(/[0-9,.]+/g, (m) => formatNum(parseFloat(m.replace(/,/g, ''))))
+                          .replace('MW', t('MW'));
+                    }
                   } else {
                      if (language !== 'EN' && finalValue.includes('koti ৳')) {
                         const numericMatch = finalValue.match(/[0-9,.]+/);
@@ -241,8 +255,8 @@ const Dashboard: React.FC<DashboardProps> = ({ stats = DEFAULT_STATS }) => {
           <div className="grid grid-cols-2 md:grid-cols-5 gap-2 flex-1 w-full xl:w-auto">
             {[
               { icon: Flame, label: "Fuel Import", emoji: "🛢️", value: language === 'EN' ? stats.fuelImport : stats.fuelImport / 10, unit: language === 'EN' ? "KMT" : "Lakh MT", color: "#f87171", maxFractions: 1 },
-              { icon: DollarSign, label: "Bulk Price", emoji: "💰", value: language === 'EN' ? stats.unitPrice / 117.5 : stats.unitPrice, unit: language === 'EN' ? "$/Unit" : "৳/Unit", color: "#a78bfa", maxFractions: language === 'EN' ? 3 : 2 },
-              { icon: Landmark, label: "Cap. Charge", emoji: "🏦", value: language === 'EN' ? 76.71 / 11.75 : 76.71, unit: language === 'EN' ? "M $" : "koti ৳", color: "#f43f5e", maxFractions: 2 },
+              { icon: DollarSign, label: "Bulk Price", emoji: "💰", value: currency === 'USD' ? stats.unitPrice / exchangeRate : stats.unitPrice, unit: currency === 'USD' ? "$/Unit" : "৳/Unit", color: "#a78bfa", maxFractions: currency === 'USD' ? 3 : 2 },
+              { icon: Landmark, label: "Cap. Charge", emoji: "🏦", value: currency === 'USD' ? (76.71 * 1e7) / (exchangeRate * 1e6) : 76.71, unit: currency === 'USD' ? "M $" : "koti ৳", color: "#f43f5e", maxFractions: 2 },
               { icon: Activity, label: "Sys Loss", emoji: "📉", value: stats.systemLoss, unit: "%", color: "#fb7185" },
               { icon: Battery, label: "Green Mix", emoji: "🌿", value: (stats.renewable / stats.totalCapacity) * 100, unit: "%", color: "#34d399" },
             ].map((metric, idx) => (
