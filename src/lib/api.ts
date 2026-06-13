@@ -20,6 +20,7 @@ export interface NodeData {
   lastUpdated?: string
   officeAddress?: string
   operatingArea?: string
+  auditedHighlight?: string
 }
 
 export interface Node extends NodeData {}

@@ -14,7 +14,7 @@ import ReactFlow, {
   Position,
 } from 'reactflow'
 import 'reactflow/dist/style.css'
-import { RefreshCw, Loader, X, Focus, ChevronDown, ChevronRight, ZoomIn, ZoomOut, Lock, Unlock, Rows, Columns, ExternalLink } from 'lucide-react'
+import { RefreshCw, Loader, X, Focus, ChevronDown, ChevronRight, ZoomIn, ZoomOut, Lock, Unlock, Rows, Columns, ExternalLink, ShieldCheck } from 'lucide-react'
 
 import EntityNode from './nodes/EntityNode'
 import FlowEdge from './edges/FlowEdge'
@@ -56,13 +56,16 @@ interface DrillPanelState {
 const GRID_SIZE = 20
 
 const CATEGORY_LEGEND = [
+  { id: 'ministry', color: '#e63946', glow: '230, 57, 70', label: 'Ministry' },
   { id: 'government', color: '#f94144', glow: '249, 65, 68', label: 'Government' },
-  { id: 'generation', color: '#f3722c', glow: '243, 114, 44', label: 'Generation' },
-  { id: 'transmission', color: '#f8961e', glow: '248, 150, 30', label: 'Transmission' },
-  { id: 'distribution', color: '#f9c74f', glow: '249, 199, 79', label: 'Distribution' },
-  { id: 'consumer', color: '#90be6d', glow: '144, 190, 109', label: 'Consumer' },
-  { id: 'fuel', color: '#43aa8b', glow: '67, 170, 139', label: 'Fuel Supply' },
   { id: 'regulator', color: '#577590', glow: '87, 117, 144', label: 'Regulator' },
+  { id: 'state_generation', color: '#f3722c', glow: '243, 114, 44', label: 'State Gen' },
+  { id: 'private_generation', color: '#f8961e', glow: '248, 150, 30', label: 'Private Gen' },
+  { id: 'import', color: '#8338ec', glow: '131, 56, 236', label: 'Import' },
+  { id: 'transmission', color: '#3a86ff', glow: '58, 134, 255', label: 'Transmission' },
+  { id: 'distribution', color: '#f9c74f', glow: '249, 199, 79', label: 'Distribution' },
+  { id: 'fuel_supply', color: '#43aa8b', glow: '67, 170, 139', label: 'Fuel Supply' },
+  { id: 'consumer', color: '#90be6d', glow: '144, 190, 109', label: 'Consumer' },
 ]
 
 export type LayoutType = 'Default' | 'Horizontal'
@@ -669,6 +672,19 @@ const TreeView: React.FC = () => {
               <div className="mb-6 prose prose-invert prose-sm max-w-none">
                 <p className="text-slate-300 leading-relaxed font-serif">
                   {t(drillPanel.nodeData.description)}
+                </p>
+              </div>
+            )}
+
+            {/* Audited Highlight */}
+            {drillPanel.nodeData.auditedHighlight && (
+              <div className="mb-6 bg-slate-800/40 p-4 border-l-4 border-amber-600 italic font-serif">
+                <h3 className="text-xs uppercase tracking-wider text-amber-500 font-sans font-bold mb-2 flex items-center gap-1.5">
+                  <ShieldCheck className="w-3 h-3" />
+                  {t('Audited Record')}
+                </h3>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  {t(drillPanel.nodeData.auditedHighlight)}
                 </p>
               </div>
             )}

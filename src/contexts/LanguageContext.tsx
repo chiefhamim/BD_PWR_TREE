@@ -339,13 +339,19 @@ const DICTIONARY: Record<string, string> = {
 
   // Categories & Statuses
   'Government': 'সরকার',
-  'Generation': 'উৎপাদন খাত',
-  'Consumer': 'গ্রাহক পর্যায়',
+  'Ministry': 'মন্ত্রণালয়',
+  'Regulator': 'নিয়ন্ত্রক সংস্থা',
+  'State Gen': 'সরকারি বিদ্যুৎ উৎপাদন',
+  'Private Gen': 'বেসরকারি বিদ্যুৎ উৎপাদন',
+  'Import': 'আন্তঃদেশীয় আমদানি',
+  'Transmission': 'বিদ্যুৎ সঞ্চালন',
+  'Distribution': 'বিদ্যুৎ বিতরণ',
   'Fuel Supply': 'জ্বালানি সরবরাহ',
-  'Regulator': 'নিয়ন্ত্রক সংস্থা',
+  'Consumer': 'গ্রাহক পর্যায়',
   'normal': 'স্বাভাবিক',
   'alert': 'জরুরি অবস্থা',
   'warning': 'সতর্কতা',
+  'Audited Record': 'নিরীক্ষিত রেকর্ড',
 
   // Electricity Tariff Panel
   'Electricity Tariff': 'বিদ্যুতের ট্যারিফ',
